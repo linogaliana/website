@@ -1,7 +1,7 @@
 ---
 authors:
 - Lino Galiana
-bio: I am data scientist at the Insee (French national statistical institute), interested in big data and computational methods for statistical and economic analysis
+bio: I am a statistician at the Department of Economic Studies (Insee), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
 education:
   courses:
   - course: Statistics and Data Science
@@ -48,7 +48,7 @@ user_groups:
 ---
 
 
-I am statistician at the Department of Economic Studies at the Insee, the French official statistical institute. I use big data and computational methods to produce academic papers related to microeconomics or data science fields. 
+I am a statistician at the Department of Economic Studies (Insee), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
 
-I also teach urban economics for Master students at Sciences Po Paris
+I also teach urban economics for Master students at Sciences Po Paris.
 
