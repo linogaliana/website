@@ -1,0 +1,13 @@
+---
+title: 'Futur cours: R collaboratif'
+author: ~
+date: '2019-05-22'
+slug: futur-cours-r-collaboratif
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Futur cours sur la manière de conduire des projets collaboratifs en `R`
