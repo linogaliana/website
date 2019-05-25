@@ -17,7 +17,8 @@ email: "lino.galiana@insee.fr"
 interests:
 - Big data
 - Statistics
-- Economics
+- Econometrics
+- Machine Learning
 name: Lino Galiana
 organizations:
 - name: INSEE
