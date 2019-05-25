@@ -23,10 +23,10 @@ publishDate: "2019-05-31"
 slides: example
 summary: Communication at UEA Amsterdam 
 tags: ['segregation','big data']
-title: Communication at UEA Amsterdam. Dynamic approach of spatial segregation, a framework with mobile phone data
+title: Dynamic approach of spatial segregation, a framework with mobile phone data
 ---
 
-
+Communication at the European Urban Economics Association conference in Amsterdam
 
 <!-----------
 url_code: ""
