@@ -1,5 +1,5 @@
 ---
-abstract: That paper proposes an innovative methodology to study segregation dynamics at fine spatial and temporal granularity for both low- and high-income groups. We build infra-day segregation indexes using individual geocoded position records from anonymized mobile phone data. We adopt a Monte-Carlo procedure to estimate phone users' likelihood of belonging to low- or high-income groups. We estimate infra-day segregation indexes by taking into account co-presence at 500x500 meters cells. We propose robustness checks and compare results with residential segregation indexes derived from tax data. 
+abstract: "That paper proposes an innovative methodology to study segregation dynamics at fine spatial and temporal granularity for both low- and high-income groups. We build infra-day segregation indexes using individual geocoded position records from anonymized mobile phone data. We adopt a Monte-Carlo procedure to estimate phone users' likelihood of belonging to low- or high-income groups. We estimate infra-day segregation indexes by taking into account co-presence at 500x500 meters cells. We propose robustness checks and compare results with residential segregation indexes derived from tax data." 
 all_day: false
 authors: ~
 date: "2019-05-31"
