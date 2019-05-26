@@ -1,7 +1,7 @@
 ---
 authors:
 - Lino Galiana
-bio: I am a statistician at the Department of Economic Studies (Insee), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
+bio: I am a statistician at the Department of Economic Studies of Insee, the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
 education:
   courses:
   - course: Statistics and Data Science
@@ -27,7 +27,7 @@ role: Data Scientist
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'lino.galiana@insee.fr'
+  link: 'mailto:lino.galiana@insee.fr'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/linogaliana
@@ -49,7 +49,10 @@ user_groups:
 ---
 
 
-I am a statistician at the Department of Economic Studies (Insee), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
+I am a statistician at the Department of Economic Studies of [Insee](https://www.insee.fr/fr/accueil), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
+
+I mostly work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `spark` and <i class="fab fa-python"></i> for big data analysis. Some of the <i class="fab fa-r-project"></i> packages I developed are available on my <i class="fab fa-github"></i> [Github page](https://github.com/linogaliana)
 
 I also teach urban economics for Master students at Sciences Po Paris.
+
 

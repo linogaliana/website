@@ -29,7 +29,7 @@ subtitle = ""
     category = ""
     publication_type = ""
     exclude_featured = false
-    
+  
 [design]
   # Toggle between the various page layout types.
   #   1 = List
@@ -43,7 +43,7 @@ subtitle = ""
   #   Uncomment (by removing `#`) an option to apply it.
   #   Choose a light or dark text color by setting `text_color_light`.
   #   Any HTML color name or Hex value is valid.
-
+    
   # Background color.
   # color = "navy"
   
