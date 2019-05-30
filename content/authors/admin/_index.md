@@ -1,18 +1,18 @@
 ---
 authors:
 - Lino Galiana
-bio: I am a statistician at the Department of Economic Studies of Insee, the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
+bio: I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
 education:
   courses:
-  - course: Statistics and Data Science
+  - course: Msc Statistics and Data Science
     institution: ENSAE
     year: 2017
-  - course: Economics
+  - course: Msc Econometrics
     institution: ENS Lyon & Paris School of Economics
     year: 2013-2018
-  - course: Applied Mathematics
+  - course: Msc Applied Mathematics
     institution: Université Pierre et Marie Curie (Jussieu), Paris VI
-    year: 2017
+    year: 2015-2017
 email: "lino.galiana@insee.fr"
 interests:
 - Big data
@@ -49,10 +49,11 @@ user_groups:
 ---
 
 
-I am a statistician at the Department of Economic Studies of [Insee](https://www.insee.fr/fr/accueil), the French national statistical institute. I study Big Data and computational methods related to microeconometric and data science fields. 
+I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
 
-I mostly work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `spark` and <i class="fab fa-python"></i> for big data analysis. Some of the <i class="fab fa-r-project"></i> packages I developed are available on my <i class="fab fa-github"></i> [Github page](https://github.com/linogaliana)
+I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `spark` and `python` <i class="fab fa-python"></i> for big data analysis. Some of the <i class="fab fa-r-project"></i> packages I developed are available on my <i class="fab fa-github"></i> [Github page](https://github.com/linogaliana)
 
 I also teach urban economics for Master students at Sciences Po Paris.
 
 
+ 

@@ -8,6 +8,7 @@ event: UEA Amsterdam
 event_url: http://www.urbaneconomics.org/meetings/emuea2019/program.html
 featured: true
 image:
+  url: "headers/gifParis.gif"
   caption: 'Dynamic approach of spatial segregation, a framework with mobile phone data'
   focal_point: Right
 links:
@@ -27,6 +28,10 @@ title: Dynamic approach of spatial segregation, a framework with mobile phone da
 ---
 
 Communication at the European Urban Economics Association conference in Amsterdam
+
+Estimated evolution of low-income population in Paris city:
+![](./gif_Paris.gif)
+
 
 <!-----------
 url_code: ""

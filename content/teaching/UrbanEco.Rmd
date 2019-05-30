@@ -10,4 +10,4 @@ image:
   focal_point: ''
 ---
 
-Urban Economics course at Sciences Po
+Urban Economics course at Sciences Po. Program available [here](/doc/syllabus.pdf)

@@ -18,17 +18,17 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "Data scientist"
+  title = "Statistician"
   company = "INSEE"
   company_url = "https://www.insee.fr/fr/accueil"
   location = "Paris"
-  image = "Logo_Insee.png"
+  image = "/img/Logo_Insee.png"
   date_start = "2018-09-01"
   date_end = ""
   description = """
   Academic research in the Department of Economic Studies.
   
-  I mostly use big data sources or computational methods to produce academic papers.
+  I use big data sources and computational methods to improve our knowledge of economic phenomena. 
   """
 
 [[experience]]
@@ -39,12 +39,12 @@ date_format = "Jan 2006"
   date_start = "2016-01-01"
   date_end = ""
   description = """
-  Urban Economics, M1 STU (since 2016)
+  Urban Economics: Master 1 in geography (since 2016)
   
   Past courses:
 
-  * Microeconomics (undergraduate, 2016-2017)
-  * Mathematics for economists (undergraduate, 2016-2017)
+  * Microeconomics: undergraduate, 2016-2017
+  * Mathematics for economists: undergraduate, 2016-2017
   """
 
 +++
