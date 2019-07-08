@@ -1,5 +1,5 @@
 ---
-title: 'pocker: A docker container to use R and Python together'
+title: 'pocker: A docker container to integrate R and Python in CI/CD frameworks'
 author: ~
 date: '`r Sys.time()`'
 slug: pocker-a-docker-container-to-use-r-and-python-together
@@ -29,7 +29,9 @@ Since I am a beginner in `docker` ecosystem, it has not been an easy path. When 
 
 This is not the most natural workflow. If you go into project history, you might see that I did not adopt initially that workflow. I adopted it after merging branches from two separated project that were pursuing the same goal. This complex set up presents an advantage for reproducibility: each time project updates are pushed, the code used to build `pocker` image and the example of use from continuous integration is updated. 
 
-I should warn people used to create docker image that I might not have created the most parsimonious image necessary to run `R` and `Python` together. I would welcome pull request to improve `pocker` repository. 
+I should warn people used to create docker image that I might not have created the most parsimonious image necessary to run `R` and `Python` together. I would welcome pull request to improve `pocker` repository
+
+
 ## Some explanations
 
 `DockerFile` is used to build the image. The main steps are the following:
