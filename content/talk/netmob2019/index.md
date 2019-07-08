@@ -26,7 +26,7 @@ tags: ['segregation','big data']
 title: Netmob 2019 poster about segregation
 ---
 
-Poster:
+You can find here the poster we presented with François Sémécurbe in `netmob` conference:
 
 <object data="/static/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/img/netmob2019/Poster_NETMOB.pdf">
