@@ -21,4 +21,4 @@ url_slides: ""
 url_video: ""
 ---
 
-R Package that aims helping anyone working with cancer data to import Epidemium dataset and build robust statistical models
+R Package aiming to help anyone working with cancer data to import Epidemium dataset and build robust statistical models (LASSO feature selection)
