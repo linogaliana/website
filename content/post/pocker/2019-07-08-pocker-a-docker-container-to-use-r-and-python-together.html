@@ -1,7 +1,7 @@
 ---
-title: 'pocker: A docker container to use R and Python together'
+title: 'pocker: A docker container to integrate R and Python in CI/CD frameworks'
 author: ~
-date: '2019-07-09 01:11:15'
+date: '2019-07-09 01:42:29'
 slug: pocker-a-docker-container-to-use-r-and-python-together
 categories: ["R", "Python", "Docker"]
 tags: ["R", "CI/CD", "pocker", "docker","python"]
@@ -29,8 +29,10 @@ draft: no
 <p class="caption"><em>Complex workflow, simple image</em></p>
 </div>
 <p>This is not the most natural workflow. If you go into project history, you might see that I did not adopt initially that workflow. I adopted it after merging branches from two separated project that were pursuing the same goal. This complex set up presents an advantage for reproducibility: each time project updates are pushed, the code used to build <code>pocker</code> image and the example of use from continuous integration is updated.</p>
-<p>I should warn people used to create docker image that I might not have created the most parsimonious image necessary to run <code>R</code> and <code>Python</code> together. I would welcome pull request to improve <code>pocker</code> repository.
-## Some explanations</p>
+<p>I should warn people used to create docker image that I might not have created the most parsimonious image necessary to run <code>R</code> and <code>Python</code> together. I would welcome pull request to improve <code>pocker</code> repository</p>
+</div>
+<div id="some-explanations" class="section level2">
+<h2>Some explanations</h2>
 <p><code>DockerFile</code> is used to build the image. The main steps are the following:</p>
 <ul>
 <li>Start from <code>rocker/verse</code> container that avoids re-installing tidyverse each time a CI/CD job is ran.</li>
