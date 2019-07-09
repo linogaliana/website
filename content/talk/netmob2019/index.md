@@ -28,9 +28,9 @@ title: Netmob 2019 poster about segregation
 
 You can find here the poster we presented with François Sémécurbe in `netmob` conference:
 
-<object data="/img/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/img/netmob2019/Poster_NETMOB.pdf">
-        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/img/netmob2019/Poster_NETMOB.pdf">Download PDF</a>.</p>
+<object data="/pdf/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/pdf/netmob2019/Poster_NETMOB.pdf">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/pdf/netmob2019/Poster_NETMOB.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 

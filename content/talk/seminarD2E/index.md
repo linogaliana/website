@@ -28,6 +28,13 @@ title: Séminaire du Département des Etudes Economiques
 
 February 2019: Communication at the Department of Economic Studies, INSEE
 
+<object data="/pdf/d2e/d2e.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/pdf/d2e/d2e.pdf">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/pdf/d2e/d2e.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+
 
 <!-----------
 url_code: ""

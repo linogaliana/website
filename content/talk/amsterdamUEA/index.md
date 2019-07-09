@@ -20,16 +20,29 @@ math: true
 projects:
 - internal-project
 publishDate: "2019-05-31"
-slides: example
-summary: Communication at UEA Amsterdam 
+summary: Communication at UEA Amsterdam 2019
 tags: ['segregation','big data']
-title: Dynamic approach of spatial segregation, a framework with mobile phone data
+title: UEA Amsterdam 2019. Dynamic approach of spatial segregation, a framework with mobile phone data
 ---
+
+<!---------
+To link slides into YAML header
+slides: /img/uea2019/uea2019.pdf
+---------->
 
 Communication at the European Urban Economics Association conference in Amsterdam
 
 Estimated evolution of low-income population in Paris city:
 ![](./gif_Paris.gif)
+
+You can find the presentation here: 
+
+<object data="/pdf/uea2019/uea2019.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/pdf/uea2019/uea2019.pdf">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/pdf/uea2019/uea2019.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 
 
 <!-----------
