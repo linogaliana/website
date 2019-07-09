@@ -1,5 +1,5 @@
 ---
-abstract: That paper proposes an innovative methodology to study segregation dynamics at fine spatial and temporal granularity for both low- and high-income groups. We build infra-day segregation indexes using individual geocoded position records from anonymized mobile phone data. We adopt a Monte-Carlo procedure to estimate phone users' likelihood of belonging to low- or high-income groups. We estimate infra-day segregation indexes by taking into account co-presence at 500x500 meters cells. We propose robustness checks and compare results with residential segregation indexes derived from tax data. 
+abstract: The purpose of our project is to better understand the mechanisms underlying aggregated segregation results at city level. Marseille municipality with its fascinating social organization is a perfect case study for this purpose.
 all_day: false
 authors: ~
 date: "2019-07-09"
@@ -28,9 +28,9 @@ title: Netmob 2019 poster about segregation
 
 You can find here the poster we presented with François Sémécurbe in `netmob` conference:
 
-<object data="/static/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/img/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/img/netmob2019/Poster_NETMOB.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/img/netmob2019/Poster_NETMOB.pdf">Download PDF</a>.</p>
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/img/netmob2019/Poster_NETMOB.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 
