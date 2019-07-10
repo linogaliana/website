@@ -6,8 +6,8 @@ slug: pocker-a-docker-container-to-use-r-and-python-together
 categories: ["R", "Python", "Docker"]
 tags: ["R", "CI/CD", "pocker", "docker","python"]
 image:
-  caption: '/img/pocker/pocker.png'
-  focal_point: ''
+  caption: A docker container integrating together R and Python
+  focal_point: Smart
 draft: no
 ---
 

@@ -42,6 +42,9 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/linogaliana
+- icon: gitlab
+  icon_pack: fab
+  link: https://gitlab.com/linogaliana
 superuser: true
 user_groups:
 - Researchers
@@ -49,7 +52,7 @@ user_groups:
 ---
 
 
-I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
+I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I use Big Data and computational methods in microeconometric and data science fields. 
 
 I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `spark` and `python` <i class="fab fa-python"></i> for big data analysis. Some of the <i class="fab fa-r-project"></i> packages I developed are available on my <i class="fab fa-github"></i> [Github page](https://github.com/linogaliana)
 

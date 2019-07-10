@@ -26,7 +26,8 @@ date_format = "Jan 2006"
   date_start = "2018-09-01"
   date_end = ""
   description = """
-  Academic research in the Department of Economic Studies.
+<img src="/img/logo/Logo_Insee.png" align="right" width="80" />  
+  Academic research in the Department of Economic Studies. 
   
   I use big data sources and computational methods to improve our knowledge of economic phenomena. 
   """
@@ -39,6 +40,7 @@ date_format = "Jan 2006"
   date_start = "2016-01-01"
   date_end = ""
   description = """
+<img src="/img/logo/logo_sciencespo.png" align="right" width="200" />  
   Urban Economics: Master 1 in geography (since 2016)
   
   Past courses:
