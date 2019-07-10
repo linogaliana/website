@@ -32,6 +32,10 @@ subtitle = ""
   name = "Python"
   description = ""
 
-
+[[feature]]
+  icon = "linux"
+  icon_pack = "fab"
+  name = "Linux"
+  description = ""
 
 +++
