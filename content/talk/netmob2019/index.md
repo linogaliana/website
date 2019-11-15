@@ -23,7 +23,7 @@ publishDate: "2019-07-09"
 slides: example
 summary: Communication at netmob conference
 tags: ['segregation','big data']
-title: Netmob 2019 poster about segregation
+title: Netmob 2019 poster [segregation]
 ---
 
 You can find here the poster we presented with François Sémécurbe in `netmob` conference:

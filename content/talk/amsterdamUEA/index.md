@@ -22,7 +22,7 @@ projects:
 publishDate: "2019-05-31"
 summary: Communication at UEA Amsterdam 2019
 tags: ['segregation','big data']
-title: UEA Amsterdam 2019. Dynamic approach of spatial segregation, a framework with mobile phone data
+title: UEA Amsterdam 2019 [segregation]
 ---
 
 <!---------
