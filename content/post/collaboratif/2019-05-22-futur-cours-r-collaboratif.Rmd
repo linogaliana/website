@@ -1,10 +1,10 @@
 ---
-title: 'Futur cours: R collaboratif'
+title: 'Travail collaboratif avec R'
 author: ~
-date: '2019-05-22'
+date: '2020-03-28'
 slug: futur-cours-r-collaboratif
-categories: []
-tags: []
+categories: ["r","git"]
+tags: ["R","git","packages","rmarkdown"]
 image:
   caption: ''
   focal_point: ''

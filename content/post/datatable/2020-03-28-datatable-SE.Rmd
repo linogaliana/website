@@ -1,0 +1,247 @@
+---
+title: "Variable name in functions, it's easy with datatable"
+author: ~
+date: "2020-03-28"
+slug: pocker-a-docker-container-to-use-r-and-python-together
+categories: ["R", "datatable"]
+tags: ["R", "datatable"]
+image:
+  caption: Variable names in datatable, it's easy
+  focal_point: Smart
+draft: no
+---
+
+I recently add the occasion to participate to the [never-ending debate](https://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly) between `dplyr` and `data.table` fans ([here](https://gitlab.com/linogaliana/documentationR/-/issues/9). I listed three arguments in favor of `data.table` approach :
+
+1. `data.table` is very stable while `dplyr` changes a lot.  This makes process depending on `dplyr` more likely to break. 
+2. `data.table` is really fast and is not very demanding in terms of RAM. This is the main arguments in favor of `data.table`.
+3. `data.table` grammar is often considered harder to learn than `dplyr` equivalent verbs. That's not necessarily true. 
+
+Regarding the first point, I think it is worth mentionning that a `Docker` based infrastructure where version changes can be tested should reduce the risk. 
+
+The second point is clearly in favor of `data.table`. Hadley Wickham, that created `dplyr`, gives the reason : 
+
+> Memory and performance
+
+> I've lumped these together, because, to me, they're not that important. Most R users work with well under 1 million rows of data, and dplyr is sufficiently fast enough for that size of data that you're not aware of processing time. We optimise dplyr for expressiveness on medium data; feel free to use data.table for raw speed on bigger data.
+> Hadley Wickham ([lien](https://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly/27840349#27840349))
+
+There exists many `benchmark` on the subject so will not develop this point. 
+
+The third point deserves some development. It is often said that `data.table` syntax is not user-friendly. Maybe but once you get the logic of the syntax it is very powerful ! There is one point, not often discussed, where `dplyr` logic is really really hard to understand: when you want to use standard evaluation! Have you ever tried to understand the [dplyr vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html) on the subject ? For some operations you need `!!`, for others `!!!`, not forgetting about `:=` and `rlang::sym` otherwise it won't work... In `data.table`, this is very easy: `get` makes quite well the job !
+
+I think it is worth developping a little bit on the subject because for people that develop package (and if you don't you should), this is fundamental ! Have you ever tried to use a function that takes a variable name as parameter ? For instance, 
+
+```{r, eval = FALSE}
+do_something <- function(data, xvar = "x"){
+  #do something
+}
+```
+
+If yes, you might have been through an ordeal if you used `dplyr`. I think it is a very common operation when you don't want to repeat yourself to create than kind of function. But it is very painful with `dplyr` and very easy with `data.table`. 
+
+The following table sums up what I will show below:
+
+Package   | Standard Evaluation (SE) | Non Standard Evaluation  (NSE)  |
+-----------|--------------------------|--------------------------------|
+`dplyr`    |  `df %>% dplyr::filter(x < 10)` | `df %>% dplyr::filter(!!rlang::sym("x")<10)`
+`data.table`    |  `df[x<10]`              | `df[get('x')<10]`
+
+
+
+# Standard evaluation / Non standard evaluation: what are we talking about ?
+
+In `R` you have two ways to refer to an object:
+
+* **Standard evaluation** (SE): find a value behind a name. `R` starts from `.GlobalEnv` and goes down along the series of namespaces in the `searchpaths()` as long as it does not find a value that matches the name. If `R` does not find an object, it throws an error ;
+* **Non standard evaluation** (NSE): `R` does not respect that rule because it does not start searching in the global environment. Evaluation uses an implicit context to match a value behind a name. 
+
+In the context of NSE, the object `x` is interpreted as belonging to a specific environment (for instance a dataframe). Only if the object is not found in this environment, `R` will start from the global environment. 
+
+
+`data.table` and `dplyr` are both based on non standard evaluation. Variable names are quoted as `dt[,x]` (`data.table`) or  `df %>% mutate(x)` (`dplyr`): `x` does not exist in the global environment, only within the dataframe. 
+
+
+This example ([borrowed from ThinkR](https://thinkr.fr/tidyeval/)) is maybe more explicit
+
+```{r, eval = FALSE}
+iris %>% dplyr::filter(Species == "setosa")
+```
+
+The `Species` symbol is not related to anything when thinking about standard evaluation. No `Species` symbol is associated with a value in the global environment. Here, `Species` must be evaluated in the context of the dataframe `iris`.  Base `R`  would not allow such shortcut because you would need to write `iris$Species`:
+
+```{r, eval = FALSE}
+iris[iris$Species == "setosa", ]
+```
+
+As `dplyr`, `data.table` works well with NSE. In `data.table`, you would write:
+
+```{r, eval = FALSE}
+data.table::as.data.table(iris)[Species == "setosa"]
+```
+
+NSE must be avoided when you start to use functions or share programs. Objects in another users environment do not necessarily match yours. Hard to debug errors might occur. 
+
+For instance, the following two commands will not return the same result because there is an ambiguity regarding `Species`: are we talking about the variable or the object ?
+
+```{r}
+nrow(
+  data.table::as.data.table(iris)[Species == "setosa"]
+)
+
+Species <- "setosa"
+nrow(
+  data.table::as.data.table(iris)[Species == Species]
+)
+```
+
+# The `dplyr` approach
+
+With `dplyr`, you must use the tools provided by `rlang` to be able to use SE. In the past, it was possible to use `*_` functions (e.g. `group_by_`) but they have been deprecated. First, let's use import `magrittr` to get the `%>%` available. We won't need to import `dplyr` or any other package. 
+
+```{r}
+library("magrittr")
+```
+
+First, there is a case where SE is easy to use in `dplyr`: in `select` operations
+
+```{r}
+mtcars %>% dplyr::select(c("mpg","cyl")) %>% head()
+```
+
+Difficulties arise when you want to use a variable name in `mutate` or `group_by`. If you don't unquote the name, you will just write the name everywhere:
+
+```{r}
+xvar <- "mpg"
+mtcars %>% dplyr::mutate("x" := xvar) %>% head()
+```
+
+So you will need to do the following:
+
+1. `rlang::sym` (or `rlang::syms` if you have several variables)
+2. Apply the double bang `!!` operation (triple bang `!!!` with several)
+
+```{r}
+new_variable <- function(data, xvar = "mpg"){
+  data %>% dplyr::mutate("x" := !!rlang::sym(xvar))
+}
+new_variable(mtcars) %>% head()
+```
+
+I think adopting this syntax is a simplification of the examples in the [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html). It is even worse when you want to use grouping variables, e.g. create a new variable as a mean by group:
+
+```{r}
+new_variable_group <- function(data, grouping_var = c("cyl","vs"), xvar = "mpg"){
+  data %>%
+    dplyr::group_by(!!!rlang::syms(grouping_var)) %>%
+    dplyr::mutate("x" := mean(!!rlang::sym(xvar)))
+}
+new_variable_group(mtcars) %>% head()
+```
+
+Note that here we have a complex piece of code for something quite easy to think about. That would be even worse if you wanted to set the name of the output variable (here `x`) programmatically or perform operations on multiple columns. 
+
+If we want to `filter` our dataframe, the syntax will be equivalent:
+
+```{r}
+Species <- "setosa"
+iris %>% dplyr::filter(!!rlang::sym("Species") == Species) %>% head()
+```
+
+# `data.table`: SE made easy
+
+Let's import `data.table` first
+
+```{r}
+library("data.table")
+```
+
+There exists several ways to use standard evaluation in data.table. The first one comes from base `R` syntax:
+
+```{r}
+dt <- data.table::as.data.table(mtcars)
+select_cols = c("mpg", "cyl")
+head(dt[ , select_cols, with = FALSE])
+```
+
+`unix terminal` users should be familiar with the second one. With `..`, that says `data.table` to search for names one level higher than where `[...]` bind us to be: at the level of the `data.table` itself:
+
+```{r}
+head(dt[ , ..select_cols])
+```
+
+However, I clearly prefer, in this context equivalent to a `select` in `dplyr`, to use `.SDcols` that understand variable names. This will bring me to do
+
+```{r}
+head(dt[ , .SD, .SDcols = select_cols])
+```
+
+
+We must introduce a new actor in the place: `get`. This is a base function that returns the value of a named object. Clearly about evaluation, right ? Instead of calling `dt[,x]`, we will call `dt[,get("x")]`. For instance,
+
+```{r}
+head(dt[ , .("mpg" = get("mpg"),"cyl" = get("cyl"))])
+```
+
+In the context of selecting subset of columns, I think `.SD` is better. 
+
+`select` was the easy case in `dplyr`. What happens with computations equivalent to `group_by`, `mutate` or `filter` ?
+
+
+Well, to create new columns, we use `:=` based on modification in place. This is the coolest feature of `data.table` making it faster and less demanding in memory than any other solution based on copy (e.g. `dplyr::mutate`). If you don't understand the `:=` verb, I recommend the `data.table` vignettes. 
+
+Using `data.table` within a function requires an extra-precaution if you don't want to modify the input dataframe. Because `data.table` is based on modification in place, the function's environment is not isolated from the global environment. You don't modify a copy of the input data but directly the data in the global environment. To avoid that, we will start all functions with a `copy` of the input object. 
+
+The `new_variable` function will be:
+
+```{r}
+new_variable <- function(data, xvar = "mpg", newname = "x"){
+  datanew <- data.table::copy(data)
+  return(datanew[, c(newname) := get(xvar)])
+}
+head(new_variable(dt, newname = "newvar"))
+```
+
+Note that I added an argument to also programmatically set the new variable name. The syntax is more concise and more easy to understand than in the `dplyr`'s case. We use `c(newname)` to set the new column name to force SE and ensure that the new column will not be called `newname`. 
+
+What happens when we want to do that for several variables ? (Note that we have more ambition now!). This is not that much harder we the help of `.SD` :
+
+```{r}
+new_variables <- function(data, xvars = c("mpg","cyl"),
+                          newnames = c("x1","x2")){
+  datanew <- data.table::copy(data)
+  return(datanew[, c(newnames) := .SD, .SDcols = xvars])
+}
+head(new_variables(dt))
+```
+
+`by` argument natively accepts strings. Thus, if we want to translate the `new_variable_group` function in `data.table`, we can just add `by = grouping_var` in column names :
+
+```{r}
+new_variable_group <- function(data, grouping_var = c("cyl","vs"),
+                               xvar = "mpg", newname = "x"){
+  
+  datanew <- data.table::copy(data)
+  return(datanew[, c(newname) := mean(get(xvar)),
+                 by = grouping_var])
+}
+head(new_variable_group(dt, newname = "newvar"))
+```
+
+What if we are even more ambitious and want to do that operation for several columns. Once again, `.SD` will help. This time, we will use `lapply` function to call `mean` on several columns
+
+```{r}
+new_variables_group <- function(data, grouping_var = c("cyl","vs"),
+                                xvars = c("mpg", "disp"),
+                                newnames = c("x1","x2")){
+  
+  datanew <- data.table::copy(data)
+  return(
+    datanew[, c(newnames) := lapply(.SD, mean),
+            by = grouping_var,
+            .SDcols = xvars]
+  )
+}
+head(new_variables_group(dt))
+```
+
