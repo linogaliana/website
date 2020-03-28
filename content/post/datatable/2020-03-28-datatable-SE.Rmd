@@ -2,7 +2,7 @@
 title: "Variable name in functions, it's easy with datatable"
 author: ~
 date: "2020-03-28"
-slug: pocker-a-docker-container-to-use-r-and-python-together
+slug: datatable-nse
 categories: ["R", "datatable"]
 tags: ["R", "datatable"]
 image:
