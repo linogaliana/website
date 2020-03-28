@@ -3,7 +3,7 @@ title: 'Travail collaboratif avec R'
 author: ~
 date: '2020-03-28'
 slug: futur-cours-r-collaboratif
-categories: ["r","git"]
+categories: ["R","git"]
 tags: ["R","git","packages","rmarkdown"]
 image:
   caption: ''
