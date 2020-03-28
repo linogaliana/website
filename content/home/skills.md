@@ -21,22 +21,42 @@ subtitle = ""
   description = ""
   
 [[feature]]
-  icon = "chart-line"
-  icon_pack = "fas"
-  name = "Statistics"
-  description = ""  
-  
-[[feature]]
   icon = "python"
   icon_pack = "fab"
   name = "Python"
   description = ""
 
 [[feature]]
+  icon = "star"
+  icon_pack = "far"
+  name = "Spark"
+  description = ""
+
+  
+[[feature]]
+  icon = "git"
+  icon_pack = "fab"
+  name = "GIT"
+  description = ""
+  
+
+[[feature]]
   icon = "linux"
   icon_pack = "fab"
   name = "Linux"
   description = ""
+
+[[feature]]
+  icon = "docker"
+  icon_pack = "fab"
+  name = "CI/CD"
+  description = ""
+
   
+[[feature]]
+  icon = "chart-line"
+  icon_pack = "fas"
+  name = "Statistics"
+  description = ""  
 
 +++

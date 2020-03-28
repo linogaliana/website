@@ -45,6 +45,9 @@ social:
 - icon: gitlab
   icon_pack: fab
   link: https://gitlab.com/linogaliana
+- icon: stack-overflow
+  icon_pack: fab
+  link: https://stackoverflow.com/users/9197726/linog?tab=profile
 superuser: true
 user_groups:
 - Researchers
