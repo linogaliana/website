@@ -10,6 +10,11 @@
     <div class="article-style" itemprop="articleBody">
       {{ .Content }}
     </div>
+    
+    {{ if .Site.Params.toc | default true }}
+    {{ partial "toc" . }}
+    {{ end }}    
+    
 
     {{ partial "tags.html" . }}
 
