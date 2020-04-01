@@ -17,8 +17,9 @@ output:
     toc_depth: 1
 ---
 
-Avec mes collègues [Olivier Meslin](https://gitlab.com/oliviermeslin) de l'Insee et [Raphaële Adjerad](https://raphaele_adjerad.gitlab.io/website/) de la Drees, on a récemment écrit une introduction au package `{data.table}` pour des utilisateurs de `R` souhaitant le découvrir. Je la reprends dans ce post. Elle ne se limite néanmoins pas à des débutants, même des utilisateurs plus expérimentés de `R` mais ayant peu utilisé le *package* peuvent y trouver des informations utiles ! :nerd_face: 
+Avec mes collègues [Olivier Meslin](https://gitlab.com/oliviermeslin) de l'Insee et [Raphaële Adjerad](https://raphaele_adjerad.gitlab.io/website/) de la Drees, on a récemment écrit une introduction au package `{data.table}` pour des utilisateurs de `R` souhaitant le découvrir. Je la reprends dans ce post. Vous pouvez nous contacter par mail si besoin (<lino.galiana@insee.fr> et <olivier.meslin@insee.fr>).
 
+Cette introduction ne se limite néanmoins pas à des débutants. Même des utilisateurs plus expérimentés de `R` mais ayant peu utilisé le *package* peuvent y trouver des informations utiles ! :nerd_face: 
 
 > Pour dissocier le package du format de données, j'adopterai la syntaxe `{data.table}` pour parler du package et `data.table` pour parler des objets construits par le package (vous inquiétez pas, je vais revenir dessus).
 
