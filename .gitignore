@@ -5,3 +5,5 @@
 
 /public/*
 *.html
+
+!themes/hugo-academic/layouts/partials/toc.html
