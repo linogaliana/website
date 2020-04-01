@@ -17,3 +17,50 @@ text-transform:none;
 line-height:1;
 -webkit-font-smoothing:antialiased;
 -moz-osx-font-smoothing:grayscale}.myicon-scopus:before{content:"\e900"}
+
+
+
+
+
+
+
+
+
+.recommandation {
+  background: #ffbaba;
+  padding: 12pt;
+  border-radius: 15px;
+  border: 5px solid #ff0000;
+}
+
+.conseil {
+  background: #a3dfff;
+  padding: 12pt;
+  border-radius: 15px;
+  border: 5px solid #00a6ff;
+}
+
+.remarque {
+  background: #fffcad;
+  padding: 12pt;
+  border-radius: 15px;
+  border: 5px solid #ffe136;
+}
+
+
+/* Numbering suffix in TOC */
+.toc-section-number:after{
+    content: ". "
+}
+/* Numbering suffix in Body/Content */
+.header-section-number:after{
+    content: ". "
+}
+
+/* Add some Heading / Title before the TOC */
+#TOC:before{
+    content: "Outline";
+    font-family: 'Lato', sans-serif!important;
+    font-weight:400;
+    font-size: 26px;
+}
