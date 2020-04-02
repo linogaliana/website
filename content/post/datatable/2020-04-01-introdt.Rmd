@@ -35,8 +35,8 @@ Si vous êtes un lecteur pressé, vous pouvez directement passer à l'une des se
 
 * [Import des données](#import)
 * [Manipulations usuelles](#manipulation)
-* [Enchaîner des opérations](#enchainement)
-* [L'opérateur :=](#principe)
+* [Enchaîner des opérations](#enchainer)
+* [L'opérateur :=](#assignation)
 * [Programmer des fonctions avec `data.table`](#fonctions)
 
 
