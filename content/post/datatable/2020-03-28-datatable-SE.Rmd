@@ -1,7 +1,7 @@
 ---
-title: "Variable name in functions, it's easy with datatable"
+title: 'Variable name in functions, it\'s easy with datatable'
 author: ~
-date: "2020-03-28"
+date: '2020-03-28'
 slug: datatable-nse
 categories: ["R", "datatable"]
 tags: ["R", "datatable"]
