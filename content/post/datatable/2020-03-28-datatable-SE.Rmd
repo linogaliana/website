@@ -1,12 +1,12 @@
 ---
-title: 'Variable name in functions, it\'s easy with datatable'
+title: "Variable name in functions, it's easy with datatable"
 author: ~
 date: '2020-03-28'
 slug: datatable-nse
 categories: ["R", "datatable"]
 tags: ["R", "datatable"]
 image:
-  caption: Variable names in datatable, it's easy
+  caption: "Variable names in datatable, it's easy"
   focal_point: Smart
 draft: no
 ---
