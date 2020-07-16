@@ -1,0 +1,13 @@
+---
+title: '[forthcoming]: Python for a data scientist or data economist'
+author: ~
+date: '`r Sys.time()`'
+slug: UrbanEco
+categories: ["python","ENSAE"]
+tags: ["python","ENSAE","Data Science"]
+image:
+  caption: ''
+  focal_point: ''
+---
+
+[forthcoming] Website centralizing python for data scientist or data economist materials
