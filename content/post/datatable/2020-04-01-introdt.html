@@ -1,0 +1,786 @@
+---
+title: "Une introduction à data.table"
+author: ~
+date: "2020-04-01"
+slug: datatable-intro
+categories: ["R", "datatable"]
+tags: ["R", "datatable"]
+header:
+  image: "headers/datatable.png"
+  caption: Une introduction à data.table
+  focal_point: Smart
+draft: no
+output:
+  blogdown::html_page:
+    number_sections: true
+    toc: false
+    toc_depth: 1
+    keep_md: yes
+---
+
+
+
+<p>Avec mes collègues <a href="https://gitlab.com/oliviermeslin">Olivier Meslin</a> de l’Insee et <a href="https://raphaele_adjerad.gitlab.io/website/">Raphaële Adjerad</a> de la Drees, on a récemment écrit une introduction au package <code>{data.table}</code> pour des utilisateurs de <code>R</code> souhaitant le découvrir. Je la reprends dans ce post. Vous pouvez nous contacter par mail si besoin (<a href="mailto:lino.galiana@insee.fr" class="email">lino.galiana@insee.fr</a> et <a href="mailto:olivier.meslin@insee.fr" class="email">olivier.meslin@insee.fr</a>).</p>
+<p>Cette introduction ne se limite néanmoins pas à des débutants. Même des utilisateurs plus expérimentés de <code>R</code> mais ayant peu utilisé le <em>package</em> peuvent y trouver des informations utiles ! :nerd_face:</p>
+<blockquote>
+<p>Pour dissocier le package du format de données, j’adopterai la syntaxe <code>{data.table}</code> pour parler du package et <code>data.table</code> pour parler des objets construits par le package (vous inquiétez pas, je vais revenir dessus).</p>
+</blockquote>
+<p>Pour être certain de pouvoir exécuter toutes les commandes, ne pas oublier de charger le <em>package</em> avec <code>library(data.table)</code>.</p>
+<p>Si vous êtes un lecteur pressé, vous pouvez directement passer à l’une des sections suivantes en cliquant sur le lien :</p>
+<ul>
+<li><a href="#import">Import des données</a></li>
+<li><a href="#manipulation">Manipulations usuelles</a></li>
+<li><a href="#enchainer">Enchaîner des opérations</a></li>
+<li><a href="#assignation">L’opérateur :=</a></li>
+<li><a href="#fonctions">Programmer des fonctions avec <code>data.table</code></a></li>
+</ul>
+<div id="principe" class="section level1">
+<h1><span class="header-section-number">1</span> Principe</h1>
+<div id="pourquoi-faire-du-data.table" class="section level2">
+<h2><span class="header-section-number">1.1</span> Pourquoi faire du <code>{data.table}</code> ?</h2>
+<p><code>{data.table}</code> fournit tout un éco-système pour manipuler des données stucturées sous forme de <code>data.frame</code> (sélectionner des variables, sélectionner des observations, créer des variables, joindre des tables). Il s’agit d’un ensemble cohérent de commandes permettant de traiter des données en <code>R</code>, de manière très efficace.</p>
+<p><code>{data.table}</code> est particulièrement adapté aux données volumineuses (plus de 1Go) où l’utilisation de <code>{dplyr}</code> est vivement déconseillée :cop:. C’est la solution en <code>R</code> la plus adaptée pour le traitement de données si celles-ci ne sont pas structurées sous forme de base de données (par exemple <code>postgre</code>) ou si vous n’avez pas à disposition une infrastructure <code>Spark</code> (un <em>post</em> est prévu sur le sujet :open_mouth:). C’est aussi une solution très adaptée à la programmation fonctionnelle comme je l’ai déjà développé dans un <a href="/post/datatable/datatable-nse">autre post de blog</a> (oui en ce moment je fais du prosélytisme ! :grin:). Je ne pense pas qu’il faille réserver <code>{data.table}</code> aux données volumineuses, la syntaxe est tellement puissante, une fois qu’on est habitué à celle-ci, que c’est un <em>package</em> extrêmement intéressant pour des <em>dataframes</em> de toute taille.</p>
+<blockquote>
+<p>L’utilisation du <em>package</em> <code>{data.table}</code> peut paraître plus déroutante pour les débutants que l’utilisation de <code>{dplyr}</code>. Toutefois, l’apprentissage de <code>{data.table}</code> est particulièrement recommandé si vous avez l’intention d’utiliser <code>R</code> avec des données volumineuses car <code>{data.table}</code> est <em>beaucoup</em> plus rapide et puissant que <code>{dplyr}</code>. Des remarques et conseils sont présents dans cette introduction pour vous aider à vous familiariser avec la syntaxe de <code>{data.table}</code>.</p>
+</blockquote>
+</div>
+<div id="présentation-du-package" class="section level2">
+<h2><span class="header-section-number">1.2</span> Présentation du package</h2>
+<p><strong>Le <em>package</em> <code>{data.table}</code> propose une version améliorée du <code>data.frame</code> de base: le <code>data.table</code>.</strong> La visualisation est améliorée par rapport à un <code>data.frame</code> standard:</p>
+<pre class="r"><code>dt &lt;- data.table(x = exp(rnorm(1e4)),
+                 y = runif(1e4),
+                 z = sample(1:4, 1e4, replace = TRUE))
+dt</code></pre>
+<pre><code>##                x         y z
+##     1: 3.3021195 0.9217521 2
+##     2: 3.8267249 0.4078163 3
+##     3: 0.9220187 0.4545889 4
+##     4: 2.2317256 0.1433896 3
+##     5: 0.5689898 0.8039316 1
+##    ---                      
+##  9996: 2.8619303 0.6454085 2
+##  9997: 0.7709513 0.3862502 3
+##  9998: 2.0084728 0.4112280 2
+##  9999: 0.4495482 0.1704672 2
+## 10000: 0.6781734 0.8365159 1</code></pre>
+<p><strong>La fonction fondamentale de <code>{data.table}</code> est l’opérateur <code>[...]</code> (crochets).</strong> Dans un <code>data.frame</code> de base, les crochets <code>df[...]</code> servent uniquement à sélectionner des lignes ou des colonnes. Dans un <code>data.table</code>, les crochets <code>dt[...]</code> permettent de faire beaucoup plus de choses (quasiment tout, en pratique). En fait, les instructions à l’intérieur des crochets peuvent être envisagées comme des requêtes <code>SQL</code> mises en forme différemment.</p>
+<p><strong>La forme générale de l’opérateur <code>[...]</code> est la suivante: <code>DT[i, j, by]</code></strong>. Si on fait un parallèle avec <code>SQL</code>, <code>i</code> correspond au <code>WHERE</code>, <code>j</code> au <code>SELECT</code> et <code>by</code> au <code>GROUP BY</code>. Cette manipulation peut se lire comme ceci: "on part du <code>data.table</code> <code>DT</code>, on sélectionne certaines lignes avec <code>i</code>, puis on calcule <code>j</code> pour chaque groupe défini par <code>by</code>. La fonction <code>[...]</code> présente deux grands avantages:</p>
+<ul>
+<li>Il n’est pas nécessaire d’utiliser le préfixe <code>DT$</code> pour se référer aux variables à l’intérieur de <code>[...]</code>;</li>
+<li>Le code est très concis, ce qui aide à le rendre lisible.</li>
+</ul>
+<p>Voici un exemple simple. A partir des données générées ci-dessus, on veut calculer la moyenne de <code>y</code> par groupe défini par <code>z</code>, uniquement sur les observations pour lesquelles <code>x</code> est supérieur à 3. Voici comment on peut réaliser cette opération avec <code>Base R</code>, <code>dplyr</code> et <code>data.table</code>. Vous pouvez juger vous-même de la concision du code.</p>
+<table class='table'>
+<tr>
+<th>
+<code>Base R</code>
+</th>
+<th>
+<code>dplyr</code>
+</th>
+<th>
+<code>data.table</code>
+</th>
+<tr>
+<tr>
+<td>
+<pre class="r"><code>aggregate(
+  dt[dt[[&quot;x&quot;]] &gt; 3]$y,
+  by = list(dt[dt[[&quot;x&quot;]] &gt; 3]$z),
+  FUN = sum)</code></pre>
+</td>
+<td>
+<pre class="r"><code>dt %&gt;%
+  dplyr::filter(x &gt; 3) %&gt;%
+  dplyr::group_by(z) %&gt;%
+  dplyr::summarise(sum(y))</code></pre>
+</td>
+<td>
+<pre class="r"><code>dt[x &gt; 3, sum(y), by = z]</code></pre>
+</td>
+<tr>
+</table>
+</div>
+<div id="quelles-fonctions-peut-on-utiliser-avec-un-data.table" class="section level2">
+<h2><span class="header-section-number">1.3</span> Quelles fonctions peut-on utiliser avec un <code>data.table</code>?</h2>
+<p><strong>Les <code>data.tables</code> sont simplement des <code>data.frames</code> particuliers, donc on peut normalement leur appliquer toutes les méthodes valables pour les <code>data.frames</code>.</strong> En particulier, on peut utiliser avec un <code>data.table</code> toutes les fonctions des <em>packages</em> habituellement associés à <code>{dplyr}</code>: <code>stringr</code> pour le maniement de chaînes de caractères, <code>lubridate</code> pour les colonnes temporelles, <code>forcats</code> pour les colonnes de type <code>factor</code>, etc. Toutefois, il est utile de vérifier que le <em>package</em> <code>{data.table}</code> ne propose pas déjà une fonction adaptée. Par exemple, plutôt que d’utiliser la fonction <code>stringr::str_split_fixed()</code> pour séparer une colonne en fonction d’un caractère, on utilisera <code>data.table::tstrsplit()</code>.</p>
+</div>
+</div>
+<div id="import" class="section level1">
+<h1><span class="header-section-number">2</span> Lire et écrire des données avec <code>{data.table}</code></h1>
+<p>Le <em>package</em> <code>{data.table}</code> permet d’importer des fichiers plats avec la fonction <code>fread()</code>. Cette fonction présente trois avantages:</p>
+<ul>
+<li>Elle est très rapide pour importer de gros volumes de données (et nettement plus rapide que les fonctions du <em>package</em> <code>{readr}</code>);</li>
+<li>Elle permet de sélectionner facilement les colonnes qu’on veut importer (option <code>select</code>);</li>
+<li>Elle propose un grand nombre d’options, adaptées pour les usages avancés.</li>
+</ul>
+<p>Les principales options de <code>fread()</code> sont les suivantes:</p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="33%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Valeur par défaut</th>
+<th>Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>file</code></td>
+<td>Aucune</td>
+<td>Le chemin du fichier à importer</td>
+</tr>
+<tr class="even">
+<td><code>sep</code></td>
+<td>Le caractère le plus fréquent parmi <code>,\t |;:</code></td>
+<td>Le délimiteur du fichier</td>
+</tr>
+<tr class="odd">
+<td><code>header</code></td>
+<td><code>fread()</code> essaie de deviner</td>
+<td>La première ligne contient-elle les noms de colonnes?</td>
+</tr>
+<tr class="even">
+<td><code>nrows</code></td>
+<td><code>Inf</code></td>
+<td>Nombre maximum de lignes à importer (pas de limite par défaut)</td>
+</tr>
+<tr class="odd">
+<td><code>skip</code></td>
+<td><code>0</code></td>
+<td>Sauter les n premières lignes (0 par défaut)</td>
+</tr>
+<tr class="even">
+<td><code>stringsAsFactors</code></td>
+<td><code>FALSE</code></td>
+<td>Les chaînes de caractères sont-elles traitées comme des facteurs?</td>
+</tr>
+<tr class="odd">
+<td><code>select</code></td>
+<td><code>NULL</code></td>
+<td>Sélectionner les colonnes à importer</td>
+</tr>
+<tr class="even">
+<td><code>drop</code></td>
+<td><code>NULL</code></td>
+<td>Sélectionner les colonnes à ne pas importer</td>
+</tr>
+<tr class="odd">
+<td><code>colClasses</code></td>
+<td><code>fread()</code> essaie de deviner</td>
+<td>Définir le type des variables</td>
+</tr>
+<tr class="even">
+<td><code>encoding</code></td>
+<td><code>"unknown"</code></td>
+<td>Définir l’encodage du fichier (<code>"UTF-8"</code> ou <code>"Latin-1"</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>dec</code></td>
+<td>Le point</td>
+<td>Définir le marqueur décimal</td>
+</tr>
+<tr class="even">
+<td><code>data.table</code></td>
+<td><code>TRUE</code></td>
+<td><code>fread</code> renvoie un <code>data.table</code> si <code>TRUE</code>, un <code>data.frame</code> si <code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>showProgress</code></td>
+<td><code>TRUE</code></td>
+<td>Indiquer la progression de l’importation</td>
+</tr>
+</tbody>
+</table>
+<p>Quelques remarques sur les options de <code>fread()</code>:</p>
+<ul>
+<li><p><code>fread()</code> importe par défaut toutes les colonnes</p>
+<ul>
+<li>L’option <code>select</code> permet de sélectionner les colonnes, et doit être égale à un vecteur de noms. Exemple: <code>select = c("var1", "var2", "var4")</code>;</li>
+<li>Inversement, l’option <code>drop</code> permet de préciser quelles colonnes ne seront pas importées. Les options <code>select</code> et <code>drop</code> ne peuvent pas être utilisées en même temps.</li>
+</ul></li>
+<li><p><code>fread()</code> essaie par défaut de deviner le type des colonnes (<em>integer</em> pour les nombres entiers, <em>character</em> pour les chaînes de caractères…). L’option <code>colClasses</code> permet de choisir le type des colonnes, et doit égale à un vecteur dont chaque élément est de la forme <code>nom_variable = "type"</code>. Exemple: <code>colClasses = c(var1 = "character", var2 = "logical", var4 = "double")</code>;</p></li>
+<li><p>l’option <code>stringsAsFactors = TRUE</code> peut ralentir sensiblement l’importation des données; il faut l’utiliser avec circonspection.</p></li>
+</ul>
+<p><strong>Exemple 1:</strong> on veut importer le fichier des communes du code officiel géographique, en déclarant que le fichier est encodé en UTF-8 et en imposant que le code commune soit lu comme une chaîne de caractères et le code région comme un nombre entier. On écrit le code suivant:</p>
+<pre class="r"><code>communes &lt;- fread(&quot;./communes-01012019.csv&quot;,
+                  colClasses = c(com = &quot;character&quot;,
+                                 reg = &quot;integer&quot;),
+                  encoding = &quot;UTF-8&quot;)</code></pre>
+<p><strong>Exemple 2:</strong> on veut réaliser la même importation que précédemment, mais en sélectionnant uniquement le code commune, le nom de la commune et la région. On écrit le code suivant:</p>
+<pre class="r"><code>communes &lt;- fread(&quot;./communes-01012019.csv&quot;,
+                  select = c(&quot;com&quot;, &quot;libelle&quot;, &quot;reg&quot;),
+                  colClasses = c(com = &quot;character&quot;,
+                                 reg = &quot;integer&quot;),
+                  encoding = &quot;UTF-8&quot;)</code></pre>
+</div>
+<div id="manipulation" class="section level1">
+<h1><span class="header-section-number">3</span> Manipulation de données usuelles avec <code>{data.table}</code></h1>
+<p>Il y a principalement deux méthodes pour mettre des données sous forme d’un <code>data.table</code>:</p>
+<ul>
+<li>La fonction <code>data.table::fread()</code> importe un fichier plat ;</li>
+<li>Les fonctions <code>data.table::setDT()</code> et <code>data.table::as.data.table()</code> convertissent un <code>data.frame</code> en <code>data.table</code>.</li>
+</ul>
+<p>Dans la suite de cette section, on va illustrer les opérations de base en <code>{data.table}</code> avec le jeu de données <code>iris</code>, qu’on transforme en <code>data.table</code> pour l’occasion.</p>
+<pre class="r"><code>iris_dt &lt;- data.table::as.data.table(iris)</code></pre>
+<div id="sélectionner-des-lignes" class="section level2">
+<h2><span class="header-section-number">3.1</span> Sélectionner des lignes</h2>
+<p><strong>On peut sélectionner des lignes dans un <code>data.table</code> avec <code>dt[i]</code>.</strong> Exemple: on séléctionne les lignes de <code>iris_dt</code> correspondant à l’espèce “Setosa”:</p>
+<pre class="r"><code>selection &lt;- iris_dt[Species == &quot;setosa&quot;]</code></pre>
+<blockquote>
+<p><strong>Remarque très importante</strong></p>
+<p><strong>Lorsqu’on souhaite conserver toutes les lignes d’un <code>data.table</code>, il faut laisser vide l’emplacement pour <code>i</code>, sans oublier la virgule.</strong> Par exemple, pour connaître le nombre de lignes de <code>iris_dt</code>, on écrit: <code>iris_dt[ , .N]</code>. Notez bien l’emplacement vide et la virgule après <code>[</code>.</p>
+</blockquote>
+</div>
+<div id="sélectionner-des-colonnes" class="section level2">
+<h2><span class="header-section-number">3.2</span> Sélectionner des colonnes</h2>
+<p><strong>On peut sélectionner des colonnes dans un <code>data.table</code> et renvoyer un <code>data.table</code> de plusieurs façons</strong>.</p>
+<ul>
+<li>La première consiste à indiquer les colonnes à conserver sous forme de liste. La notation <code>.()</code> est un alias pour <code>list()</code> qui est assez pratique en <code>{data.table}</code>.</li>
+</ul>
+<pre class="r"><code>iris_dt[ , list(Petal.Width, Species)]
+iris_dt[ , .(Petal.Width, Species)]</code></pre>
+<ul>
+<li>La seconde méthode consiste à utiliser un mot-clé de <code>{data.table}</code>, <code>.SD</code> qui signifie <code>Subset of Data</code>. On indique les colonnes qui seront aliasées par <code>.SD</code> avec la dimension <code>.SDcols</code>.</li>
+</ul>
+<pre class="r"><code>iris_dt[ , .SD, .SDcols = c(&quot;Petal.Width&quot;, &quot;Species&quot;)]</code></pre>
+<blockquote>
+<p><strong>Remarque</strong></p>
+<p>La seconde méthode peut vous sembler inutilement complexe. C’est vrai dans l’exemple donné ci-dessus, mais les fonctions <code>.SD</code> et <code>.SDcols</code> s’avèrent très puissantes dans un grand nombre de situations (notamment quand on veut programmer des fonctions qui font appel à <code>{data.table}</code>). Si ça vous intéresse, vous pouvez aller <a href="#fonctions">plus loin</a> dans cette documentation ou lire mon <a href="/post/datatable/datatable-nse">précédent post</a></p>
+</blockquote>
+<div id="trier-un-data.table" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Trier un <code>data.table</code></h3>
+<p><strong>On peut trier un <code>data.table</code> avec la fonction <code>order()</code>.</strong> On trie <code>iris_dt</code> dans l’ordre croissant de <code>Sepal.Length</code> et dans l’ordre décroissant de la variable <code>Sepal.Width</code>.</p>
+<pre class="r"><code>iris_dt[order(Sepal.Length, -Sepal.Width)]</code></pre>
+<pre><code>##      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+##   1:          4.3         3.0          1.1         0.1    setosa
+##   2:          4.4         3.2          1.3         0.2    setosa
+##   3:          4.4         3.0          1.3         0.2    setosa
+##   4:          4.4         2.9          1.4         0.2    setosa
+##   5:          4.5         2.3          1.3         0.3    setosa
+##  ---                                                            
+## 146:          7.7         3.8          6.7         2.2 virginica
+## 147:          7.7         3.0          6.1         2.3 virginica
+## 148:          7.7         2.8          6.7         2.0 virginica
+## 149:          7.7         2.6          6.9         2.3 virginica
+## 150:          7.9         3.8          6.4         2.0 virginica</code></pre>
+</div>
+<div id="calculer-des-statistiques" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Calculer des statistiques</h3>
+<p><strong>La méthode pour sélectionner des colonnes est également valable pour calculer des statistiques, car <code>data.table</code> accepte les expressions dans <code>j</code>.</strong> Ainsi, pour calculer la moyenne de la variable <code>Sepal.Length</code>, on écrit:</p>
+<pre class="r"><code>ans &lt;- iris_dt[ , sum(Sepal.Length, na.rm = TRUE)]
+ans </code></pre>
+<pre><code>## [1] 876.5</code></pre>
+<pre class="r"><code># ou plus simplement
+iris_dt[ , sum(Sepal.Length, na.rm = TRUE)]</code></pre>
+<pre><code>## [1] 876.5</code></pre>
+<p>Si on veut calculer plusieurs statistiques à la fois (par exemple la moyenne et l’écart-type), on peut utiliser la notation <code>.()</code> dans <code>j</code>, et on peut donner des noms aux variables:</p>
+<pre class="r"><code>ans &lt;- iris_dt[ , .(sd = sd(Sepal.Length, na.rm = TRUE), 
+                    moyenne = sum(Sepal.Length, na.rm = TRUE))]
+ans </code></pre>
+<pre><code>##           sd moyenne
+## 1: 0.8280661   876.5</code></pre>
+<pre class="r"><code># ou plus simplement
+iris_dt[ , .(sd = sd(Sepal.Length, na.rm = TRUE), 
+             moyenne = sum(Sepal.Length, na.rm = TRUE))]</code></pre>
+<pre><code>##           sd moyenne
+## 1: 0.8280661   876.5</code></pre>
+<p><strong>On peut évidemment combiner <code>i</code> et <code>j</code> pour calculer la moyenne pour un groupe particulier.</strong> Dans l’exemple suivant, on sélectionne l’espèce “setosa” (avec <code>i</code>), ensuite on sélectionne et on calcule en même temps (avec <code>j</code>).</p>
+<pre class="r"><code>ans &lt;- iris_dt[Species == &quot;setosa&quot;, .(moyenne = sum(Sepal.Length, na.rm = TRUE))]
+ans</code></pre>
+<pre><code>##    moyenne
+## 1:   250.3</code></pre>
+</div>
+</div>
+<div id="les-fonctions-statistiques-utiles-de-data.table" class="section level2">
+<h2><span class="header-section-number">3.3</span> Les fonctions statistiques utiles de <code>{data.table}</code></h2>
+<p>Vous pouvez utiliser toutes les fonctions statistiques de <code>R</code> avec <code>{data.table}</code>. Le <em>package</em> <code>{data.table}</code> propose par ailleurs des fonctions optimisées qui peuvent vous être utiles. En voici quelques-unes:</p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="39%" />
+<col width="47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fonction</th>
+<th>Opération</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.N</code></td>
+<td>Nombre d’observations</td>
+<td><code>dt[ , .N, by = 'group_var']</code></td>
+</tr>
+<tr class="even">
+<td><code>uniqueN()</code></td>
+<td>Nombre d’observations uniques de la variable <code>x</code></td>
+<td><code>dt[ , uniqueN(x)]</code> ; <code>dt[ , uniqueN(x), by = 'group_var']</code></td>
+</tr>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>Nombre dans la liste</td>
+<td><code>dt[x %in% 1:5]</code></td>
+</tr>
+<tr class="even">
+<td><code>%chin%</code></td>
+<td>Mot dans la liste</td>
+<td><code>dt[x %chin% c("a", "b")]</code></td>
+</tr>
+<tr class="odd">
+<td><code>%between%</code></td>
+<td>Valeur entre deux nombres</td>
+<td><code>dt[x %between% c(5,13)]</code></td>
+</tr>
+<tr class="even">
+<td><code>%like%</code></td>
+<td>Reconnaissance d’une chaîne de caractères</td>
+<td><code>dt[departement %like% "^Haute"]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="opérations-par-groupe" class="section level2">
+<h2><span class="header-section-number">3.4</span> Opérations par groupe</h2>
+<p><strong>Toutes les opérations précédentes peuvent être réalisées par groupe.</strong> il suffit d’ajouter le nom des variables de groupe dans <code>by</code> (c’est l’équivalent du <code>dplyr::group_by()</code>). Lorsqu’il y a plusieurs variables de groupe, il faut écrire <code>by = c("var1", "var2", "var3")</code>. Par exemple, on peut calculer la moyenne de la variable <code>Sepal.Length</code> par espèce de fleur:</p>
+<pre class="r"><code>ans &lt;- iris_dt[ , .(moyenne = sum(Sepal.Length, na.rm = TRUE)), by = &quot;Species&quot;]
+ans </code></pre>
+<pre><code>##       Species moyenne
+## 1:     setosa   250.3
+## 2: versicolor   296.8
+## 3:  virginica   329.4</code></pre>
+</div>
+<div id="joindre-des-tables-avec-data.table" class="section level2">
+<h2><span class="header-section-number">3.5</span> Joindre des tables avec <code>{data.table}</code></h2>
+<p>Pour joindre des données, <code>{data.table}</code> propose une fonction <code>merge()</code> plus rapide que la fonction de base. La syntaxe générale est <code>z &lt;- merge(x, y, [options])</code>. Voici une liste des principales options (les autres options sont visibles avec <code>?data.table::merge</code>):</p>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Option</strong></th>
+<th><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>by = var_jointure</code></td>
+<td>Joindre sur la variable <code>var_jointure</code> (présente dans <code>x</code> et dans <code>y</code>)</td>
+</tr>
+<tr class="even">
+<td><code>by.x = "identx", by.y = "identy"</code></td>
+<td>Joindre sur la condition <code>identx == identy</code></td>
+</tr>
+<tr class="odd">
+<td><code>all.x = TRUE</code></td>
+<td><em>Left join</em> (garder toutes les lignes de <code>x</code>)</td>
+</tr>
+<tr class="even">
+<td><code>all.y = TRUE</code></td>
+<td><em>Right join</em> (garder toutes les lignes de <code>y</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>all = TRUE</code></td>
+<td><em>Full join</em> (garder toutes les lignes de <code>x</code> et de <code>y</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Enfin, il est possible de réalier des jointures plus sophistiquées avec <code>{data.table}</code>. Ces méthodes sont présentées dans la <a href="https://rstudio-pubs-static.s3.amazonaws.com/52230_5ae0d25125b544caab32f75f0360e775.html">vignette sur le sujet</a>.</p>
+</div>
+<div id="indexer-une-table-avec-data.table" class="section level2">
+<h2><span class="header-section-number">3.6</span> Indexer une table avec <code>{data.table}</code></h2>
+<p><strong>L’indexation est une fonctionalité très puissante pour accélérer les opérations sur les lignes (filtres, jointures, etc.) en <code>data.table</code></strong>. Pour indexer une table il faut déclarer les variables faisant office de clé (appelées <code>key</code>). C’est possible de la manière suivante: <code>data.table::setkey(dt, a)</code> ou <code>data.table::setkeyv(dt, "a")</code>. Le <code>data.table</code> sera réordonné en fonction de cette variable et l’algorithme de recherche sur les lignes sera ainsi beaucoup plus efficace.
+Lorsqu’il y a plusieurs variables-clé, on écrit <code>data.table::setkey(dt, a, b)</code> ou <code>data.table::setkeyv(dt, c("a","b"))</code>.
+Pour savoir si un <code>data.table</code> est déjà indexé, on peut exécuter la commande <code>key(dt)</code> qui renvoie le nom des clés s’il y en a, et <code>NULL</code> sinon.</p>
+<blockquote>
+<p><strong>Conseil</strong></p>
+<p><strong>L’exécution de la fonction <code>data.table::setkey()</code> peut prendre un peu de temps</strong> (parfois quelques minutes sur une table de plus de 10 millions de lignes), car <code>data.table</code> trie toute la table en fonction des variables-clé. Toutefois, c’est une étape vraiment utile car elle accélère considérablement les opérations ultérieures sur les lignes. Il est vivement recommandé de l’utiliser si une ou plusieurs variables vont régulièrement servir à filtrer ou combiner des données. Pour aller plus loin, voir cette <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-keys-fast-subset.html">vignette</a>.</p>
+</blockquote>
+</div>
+<div id="réorganiser-les-données-en-data.table" class="section level2">
+<h2><span class="header-section-number">3.7</span> Réorganiser les données en <code>data.table</code></h2>
+<p><strong>Le <em>package</em> <code>data.table</code> permet de réorganiser facilement une table de données avec les fonctions <code>dcast()</code> et <code>melt()</code>.</strong> La fonction <code>melt()</code> réorganise les donnée dans un format long. La fonction <code>melt()</code> réorganise les donnée dans un format large.</p>
+<table>
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong><code>melt()</code></strong></th>
+<th align="center"><strong><code>dcast()</code></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Réorganiser les donnée dans un format long</td>
+<td align="center">Réorganise les donnée dans un format large</td>
+</tr>
+<tr class="even">
+<td align="center"><img src="/img/datatable/widetolong.png" style="width:55.0%" /></td>
+<td align="center"><img src="/img/datatable/longtowide.png" style="width:62.0%" /></td>
+</tr>
+</tbody>
+</table>
+<p>L’utilisation de ces fonctions est illustrée avec la table <code>mtcars</code>, transformée en <code>data.table</code>.</p>
+<pre class="r"><code>mtcars_dt &lt;- data.table(mtcars)
+head(mtcars_dt)</code></pre>
+<pre><code>##     mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1: 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2: 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3: 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## 4: 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## 5: 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## 6: 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<div id="réorganiser-les-données-en-format-long-wide-to-long" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Réorganiser les données en format long (<em>wide to long</em>)</h3>
+<p>La fonction <code>melt()</code> réorganise les donnée dans un format long. Elle prend les arguments suivants:</p>
+<ul>
+<li><code>data</code>: les données;</li>
+<li><code>id.vars</code>: les variables qui identifient les lignes de table d’arrivée; elles restent inchangées</li>
+<li><code>measure.vars</code>: les variables qui sont transposées;</li>
+<li><code>variable.name</code>: le nom de la nouvelle colonne qui contient le nom des variables transposées;</li>
+<li><code>value.name</code>: le nom de la nouvelle colonne qui contient la valeur des variables transposées.</li>
+</ul>
+<p>Dans l’exemple qui suit, on réorganise la table <code>mtcars_dt</code> de façon à obtenir une table qui garde inchangées les colonnes <code>cyl</code> et <code>gear</code>, et comprend une ligne pour chacune des variables <code>mpg</code>, <code>disp</code>, <code>hp</code> et <code>wt</code>. Le nom et la valeur de chaque variable sont renseignées dans les colonnes <code>nom_de_variable</code> et <code>valeur_de_variable</code>.</p>
+<pre class="r"><code>mtcars_dt_melted &lt;- melt(mtcars_dt, 
+  c(&quot;cyl&quot;, &quot;gear&quot;), 
+  measure.vars = c(&quot;mpg&quot;, &quot;disp&quot;, &quot;hp&quot;, &quot;wt&quot;),
+  variable.name = &quot;nom_de_variable&quot;,
+  value.name    = &quot;valeur_de_variable&quot;
+  )
+head(mtcars_dt_melted)</code></pre>
+<pre><code>##    cyl gear nom_de_variable valeur_de_variable
+## 1:   6    4             mpg               21.0
+## 2:   6    4             mpg               21.0
+## 3:   4    4             mpg               22.8
+## 4:   6    3             mpg               21.4
+## 5:   8    3             mpg               18.7
+## 6:   6    3             mpg               18.1</code></pre>
+</div>
+<div id="réorganiser-les-données-en-format-large-long-to-wide" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Réorganiser les données en format large (<em>long to wide</em>)</h3>
+<p>La fonction <code>dcast()</code> réorganise les donnée dans un format large. Elle prend les arguments suivants:</p>
+<ul>
+<li><code>data</code>: les données;</li>
+<li><code>formula</code>: une formule de la forme <code>var_ligne ~ var_colonne</code> qui définit la structure de la nouvelle table;
+<ul>
+<li>s’il y a plusieurs variables, la formule prend la forme <code>var1 + var2 ~ var3</code>;</li>
+<li><code>dcast()</code> conserve une ligne par valeur de la partie gauche, et crée (au moins) une colonne par valeur de la partie droite;</li>
+</ul></li>
+<li><code>fun.aggregate</code>: une liste contenant la ou les fonction(s) utilisées pour agréger les données le cas échéant; exemple: <code>list(mean, sum, sd)</code>;</li>
+<li><code>value.var</code>: un vecteur contenant le nom de la ou des colonne(s) dont les valeurs vont être transposées; exemple: <code>c("var1", "var2")</code></li>
+</ul>
+<p>Dans l’exemple qui suit, on réorganise la table <code>mtcars_dt</code> de façon à obtenir une table qui contient une ligne par valeur de <code>gear</code> et une colonne par valeur de <code>cyl</code>. Ces colonnes vont contenir la moyenne de la variable <code>disp</code>.</p>
+<pre class="r"><code>mtcars_dt_casted &lt;-   dcast(mtcars_dt, 
+                            gear ~ cyl, 
+                            value.var = &quot;disp&quot;, 
+                            fun.aggregate = mean)
+head(mtcars_dt_casted)</code></pre>
+<pre><code>##    gear       4     6        8
+## 1:    3 120.100 241.5 357.6167
+## 2:    4 102.625 163.8      NaN
+## 3:    5 107.700 145.0 326.0000</code></pre>
+<p>Il est possible d’utiliser <code>dcast()</code> avec plusieurs variables à transposer et plusieurs fonctions pour transposer. Dans l’exemple qui suit, on obtient une colonne par valeur de <code>cyl</code>, par variable transposée (<code>disp</code> et <code>mpg</code>) et par fonction d’agrégation (<code>mean</code> et <code>sum</code>).</p>
+<pre class="r"><code># On ne conserve que cyl == 4 pour réduire le nombre de colonnes créées
+mtcars_dt_casted2 &lt;-   
+  dcast(mtcars_dt[cyl == 4], 
+        gear ~ cyl, 
+        value.var = c(&quot;disp&quot;, &quot;mpg&quot;), 
+        fun.aggregate = list(mean, sum))
+head(mtcars_dt_casted2)</code></pre>
+<pre><code>##    gear disp_mean_4 mpg_mean_4 disp_sum_4 mpg_sum_4
+## 1:    3     120.100     21.500      120.1      21.5
+## 2:    4     102.625     26.925      821.0     215.4
+## 3:    5     107.700     28.200      215.4      56.4</code></pre>
+<p><strong>Conseils</strong>:</p>
+<ul>
+<li><p>La fonction <code>dcast()</code> crée une colonne par valeur des variables utilisées dans la partie droite de la formule (trois colonnes pour les trois valeurs de <code>cyl</code> dans l’exemple qui précède). <strong>Il faut donc faire attention à ce que ces variables aient un nombre limité de valeurs</strong>, pour ne pas obtenir une table <em>extrêmement</em> large. On peut éventuellement discrétiser les variables continues, ou regrouper les modalités avant d’utiliser <code>dcast()</code>.</p></li>
+<li><p>On peut obtenir des <strong>noms de colonnes peu significatifs</strong> lorsqu’on utilise <code>dcast()</code> avec une colonne numérique et une fonction d’agrégation (<code>4</code>, <code>6</code>, <code>8</code> dans l’exemple précédent). Il est conseillé de modifier légèrement la partie droite de la formule pour obtenir des noms plus significatifs. Voici un exemple:</p>
+<pre class="r"><code>head(mtcars_dt_casted2 &lt;- dcast(mtcars_dt, 
+                                gear ~ paste0(&quot;cyl&quot;, cyl), 
+                                value.var = &quot;disp&quot;, 
+                                fun.aggregate = mean))</code></pre>
+<pre><code>##    gear    cyl4  cyl6     cyl8
+## 1:    3 120.100 241.5 357.6167
+## 2:    4 102.625 163.8      NaN
+## 3:    5 107.700 145.0 326.0000</code></pre></li>
+</ul>
+<pre class="r"><code>dcast(mtcars_dt, gear ~ cyl, value.var = c(&quot;disp&quot;, &quot;hp&quot;), fun = list(mean, sum))</code></pre>
+<pre><code>##    gear disp_mean_4 disp_mean_6 disp_mean_8 hp_mean_4 hp_mean_6 hp_mean_8
+## 1:    3     120.100       241.5    357.6167        97     107.5  194.1667
+## 2:    4     102.625       163.8         NaN        76     116.5       NaN
+## 3:    5     107.700       145.0    326.0000       102     175.0  299.5000
+##    disp_sum_4 disp_sum_6 disp_sum_8 hp_sum_4 hp_sum_6 hp_sum_8
+## 1:      120.1      483.0     4291.4       97      215     2330
+## 2:      821.0      655.2        0.0      608      466        0
+## 3:      215.4      145.0      652.0      204      175      599</code></pre>
+</div>
+</div>
+</div>
+<div id="enchainer" class="section level1">
+<h1><span class="header-section-number">4</span> Enchaîner les opérations en <code>{data.table}</code></h1>
+<div id="le-principe-est-simple" class="section level2">
+<h2><span class="header-section-number">4.1</span> Le principe est simple…</h2>
+<p><strong>Il est facile d’enchaîner des opérations avec <code>data.table</code>: il suffit d’accoler les opérateurs <code>[]</code>.</strong> Votre code <code>{data.table}</code> prendra alors la forme suivante: <code>dt[opération 1][opération 2][opération 3][...]</code>. Voici un exemple simple, dans lequel on calcule la moyenne d’une variable par groupe, puis on trie la table.</p>
+<pre class="r"><code># En chaînant
+ans &lt;- iris_dt[ , .(moyenne = mean(Sepal.Length, na.rm = TRUE)), by = Species][order(moyenne)]
+ans</code></pre>
+<pre><code>##       Species moyenne
+## 1:     setosa   5.006
+## 2: versicolor   5.936
+## 3:  virginica   6.588</code></pre>
+</div>
+<div id="mais-il-faut-que-le-code-reste-lisible" class="section level2">
+<h2><span class="header-section-number">4.2</span> … mais il faut que le code reste lisible</h2>
+<p>Le problème avec l’enchaînement d’opérations multiples est qu’on aboutit rapidement à des lignes de codes extrèmement longues. C’est pourquoi <strong>il est préférable de revenir régulièrement à la ligne, de façon à garder un code qui reste lisible.</strong> Il y a évidemment plusieurs façons d’organiser le code. Le seul principe est que le crochet qui commence une nouvelle opération doit être accolé au crochet qui termine l’opération précédente (<code>...][...</code>). Voici une organisation possible:</p>
+<pre class="r"><code>resultat &lt;- 
+  dt[i = ...,
+     j = ...,
+     by = ...
+     ][i = ...,
+       j = ...,
+       by = ...
+       ]</code></pre>
+<p>Ce n’est néanmoins pas très lisible. Il est préférable de faire:</p>
+<pre class="r"><code>resultat &lt;- dt[i = ...,
+               j = ...,
+               by = ...
+               ]
+resultat &lt;- resultat[i = ...,
+                     j = ...,
+                     by = ...
+                     ]</code></pre>
+<p>Comme vu précédemment, <code>i</code>, <code>j</code> et <code>by</code> ne sont pas forcément présents dans toutes les étapes. Voici ce que cette organisation du code donne sur un exemple légèrement plus complexe que le précédent:</p>
+<pre class="r"><code>iris_dt[ , Total.Length := Sepal.Length + Petal.Length]
+
+resultat &lt;- iris_dt[ ,.(moyenne = mean(Total.Length, na.rm = TRUE)),
+              by = Species]
+resultat &lt;- resultat[order(moyenne)]
+resultat</code></pre>
+<pre><code>##       Species moyenne
+## 1:     setosa   6.468
+## 2: versicolor  10.196
+## 3:  virginica  12.140</code></pre>
+<blockquote>
+<p><strong>Remarque</strong></p>
+<p><strong>L’enchaînement des opérations en <code>{data.table}</code> est puissant, mais peut aboutir à des résultats non désirés si on ne fait pas attention.</strong> Les exemples de cet encadré utilisent la fonction <code>:=</code>; si vous ne la connaissez pas encore, il est conseillé de lire la section <a href="#assignation">La fonction d’assignation par référence (ou <code>:=</code>)</a> avant de poursuivre la lecture.</p>
+</blockquote>
+<p>Voici deux exemples d’opérations enchaînées en <code>{data.table}</code> dont le code est très proche et qui aboutissent à des résultats très différents. Le premier exemple ne conserve qu’une partie de la table <code>dt</code> puis crée une variable, tandis que le second crée une variable avec une valeur non manquante pour une partie de la table uniquement.</p>
+<table class='table'>
+<tr>
+<th>
+</th>
+<th>
+Exemple 1
+</th>
+<th>
+Exemple 2
+</th>
+<tr>
+<tr>
+<td>
+<strong>Code</strong>
+</td>
+<td>
+<pre class="r"><code>dt[x &gt; 3][ , newvar := 1]</code></pre>
+</td>
+<td>
+<pre class="r"><code>dt[x &gt; 3, newvar := 1]</code></pre>
+</td>
+</tr>
+<tr>
+<th>
+Signification
+</th>
+<th>
+Partir de <code>dt</code>, conserver uniquement les observations pour lesquelles <code>x &gt; 3</code>, et créer une nouvelle variable <code>newvar</code> qui vaut 1 partout
+</th>
+<th>
+Partir de <code>dt</code>, créer une nouvelle variable <code>newvar</code> qui vaut 1 pour les observations pour lesquelles <code>x &gt; 3</code> et <code>NA</code> ailleurs
+</th>
+<tr>
+</table>
+</div>
+</div>
+<div id="assignation" class="section level1">
+<h1><span class="header-section-number">5</span> La fonction d’assignation par référence (ou <code>:=</code>)</h1>
+<p>Jusqu’à présent, nous avons manipulé un <code>data.table</code> existant, mais nous ne lui avons pas ajouté de nouvelles colonnes. Pour ce faire, nous allons utiliser la fonction <code>:=</code> (qui s’appelle “<em>assignation par référence</em>” et qui peut également s’écrire <code>`:=`()</code>). Voici comment on crée une nouvelle colonne dans <code>iris_dt</code>:</p>
+<pre class="r"><code>iris_dt[ , nouvelle_colonne :=  Petal.Width * 10]
+head(iris_dt)</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species Total.Length
+## 1:          5.1         3.5          1.4         0.2  setosa          6.5
+## 2:          4.9         3.0          1.4         0.2  setosa          6.3
+## 3:          4.7         3.2          1.3         0.2  setosa          6.0
+## 4:          4.6         3.1          1.5         0.2  setosa          6.1
+## 5:          5.0         3.6          1.4         0.2  setosa          6.4
+## 6:          5.4         3.9          1.7         0.4  setosa          7.1
+##    nouvelle_colonne
+## 1:                2
+## 2:                2
+## 3:                2
+## 4:                2
+## 5:                2
+## 6:                4</code></pre>
+<div id="la-spécificité-de-data.table-la-modification-par-référence" class="section level2">
+<h2><span class="header-section-number">5.1</span> La spécificité de <code>{data.table}</code>: la modification par référence</h2>
+<p><strong>A première vue, on peut penser que la fonction <code>:=</code> est l’équivalent de la fonction <code>dplyr::mutate()</code> dans la grammaire <code>{data.table}</code>.</strong> C’est vrai dans la mesure où elle permet de faire des choses similaires, mais il faut garder en tête que son fonctionnement est complètement différent de celui de <code>dplyr::mutate()</code>. En effet, <strong>la grande spécificité de <code>{data.table}</code> par rapport à <code>{dplyr}</code> est que l’utilisation de la fonction <code>:=</code> modifie directement la table de données</strong>, car <code>{data.table}</code> fonctionne sur le principe de la modification par référence (voir <a href="https://gitlab.com/linogaliana/bigr/-/blob/master/04-datatable.Rmd">ce lien</a>
+pour plus de détails). Cela signifie en pratique qu’<strong>il ne faut pas réassigner l’objet lorsqu’on modifie une de ses colonnes</strong>. C’est ce comportement qui permet à <code>{data.table}</code> d’être très rapide et très économe en mémoire vive, rendant son usage approprié pour des données volumineuses.</p>
+<p>Pour créer une colonne, on écrit donc directement <code>dt[ , nouvelle_colonne := une_formule]</code> et non <code>dt &lt;- dt[ , nouvelle_colonne := une_formule]</code>. Voici un exemple qui compare <code>{dplyr}</code> et <code>{data.table}</code>:</p>
+<table class='table'>
+<tr>
+<th>
+<code>dplyr</code> : Il faut une assignation (<code>&lt;-</code>) pour modifier <code>iris</code>
+</th>
+<th>
+<code>data.table</code>: Il ne faut pas d’assignation pour modifier <code>iris_dt</code>
+</th>
+<tr>
+<tr>
+<td>
+<pre class="r"><code>iris &lt;- iris %&gt;%
+  dplyr::mutate(nouvelle_colonne =  Petal.Width * 10)</code></pre>
+</td>
+<td>
+<pre class="r"><code>iris_dt[ , nouvelle_colonne :=  Petal.Width * 10]</code></pre>
+</td>
+</tr>
+</table>
+</div>
+<div id="les-usages-de" class="section level2">
+<h2><span class="header-section-number">5.2</span> Les usages de <code>:=</code></h2>
+<p>On peut se servir de la fonction <code>:=</code> de multiples façons, et avec plusieurs notations.</p>
+<div id="créer-plusieurs-variables-à-la-fois" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Créer plusieurs variables à la fois</h3>
+<p>Voici comment créer plusieurs variables à la fois avec <code>:=</code>, en utilisant une notation vectorielle:</p>
+<pre class="r"><code>iris_dt[ , c(&quot;nouvelle_colonne1&quot;, &quot;nouvelle_colonne2&quot;) :=  
+           list(Petal.Width * 10, Petal.Length * 20)]</code></pre>
+<p>On peut faire exactement la même chose en utilisant la notation <code>`:=`()</code>. Voici le même exemple écrit avec <code>`:=`()</code>.</p>
+<pre class="r"><code>iris_dt[ , `:=`(nouvelle_colonne1 =  Petal.Width * 10,
+                nouvelle_colonne2 =  Petal.Length * 20)]</code></pre>
+<p><strong>Remarque</strong></p>
+<p>Si vous utilisez la notation<code>`:=`()</code>, alors il faut utiliser uniquement <code>=</code> à l’intérieur des parenthèses pour créer ou modifier des variables, et non <code>:=</code>. Exemple:</p>
+<pre class="r"><code>dt[ , `:=`(var1 = &quot;Hello&quot;, var2 = &quot;world&quot;)]</code></pre>
+</div>
+<div id="supprimer-une-colonne" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Supprimer une colonne</h3>
+<p>On peut facilement supprimer une colonne en lui assignant la valeur <code>NULL</code> (c’est hyper rapide!). Voici un exemple:</p>
+<pre class="r"><code>iris_dt[ , colonne_existante := NULL]</code></pre>
+</div>
+<div id="faire-un-remplacement-conditionnel" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Faire un remplacement conditionnel</h3>
+<p>La fonction <code>:=</code> peut être utilisée pour modifier une colonne pour certaines lignes seulement, en fonction d’une condition logique. C’est beaucoup plus efficace qu’un terme <code>dplyr::if_else()</code> ou <code>dplyr::case_when()</code>. Imaginons qu’on veuille créer une colonne <code>x</code> qui vaut <code>Petal.Length</code> sauf pour les lignes où <code>Species</code> est <code>setosa</code> où elle vaut <code>NA</code>. Dans ce cas, le code <code>{dplyr}</code> serait:</p>
+<pre class="r"><code>iris %&gt;% 
+  dplyr::mutate(x = dplyr::case_when(
+    Species ~ &quot;setosa&quot; == NA_real_,
+    TRUE ~ Petal.Length)
+  )</code></pre>
+<p>et le code équivalent en <code>{data.table}</code>, nécessitant beaucoup moins de mémoire vive:</p>
+<pre class="r"><code>iris_dt[ , &quot;x&quot; := Petal.Length]
+iris_dt[Species == &quot;setosa&quot;, x := NA_real_]</code></pre>
+</div>
+</div>
+<div id="attention-en-utilisant" class="section level2">
+<h2><span class="header-section-number">5.3</span> Attention en utilisant <code>:=</code></h2>
+<p>L’utilisation de la fonction <code>:=</code> est déroutante lorsqu’on découvre <code>{data.table}</code>. Voici trois remarques qui vous feront gagner du temps:</p>
+<ul>
+<li><p><strong>Vous pouvez faire appel à d’autres fonctions à l’intérieur de la fonction <code>:=</code>.</strong> Par exemple, si on veut mettre la variable <code>name</code> en minuscules, on peut utiliser la fonction <code>tolower()</code>. On écrit alors:</p>
+<pre class="r"><code>dt[ , name_minuscule := tolower(name)]</code></pre></li>
+<li><p>Lorsque l’on crée plusieurs variables avec la fonction <code>:=</code>, elles sont créées en même temps. <strong>On ne peut donc pas faire appel dans une formule à une variable qu’on crée dans le même appel à la fonction <code>:=</code>.</strong> Par exemple, le code suivant <em>ne fonctionne pas</em>:</p>
+<pre class="r"><code>dt[ , `:=`(nouvelle_colonne1 =  Petal.Width * 10,
+           nouvelle_colonne2 =  nouvelle_colonne1 + 5)]</code></pre></li>
+</ul>
+<p>En effet, au moment où la fonction <code>:=</code> est exécutée, la colonne <code>nouvelle_colonne1</code> n’existe pas encore, donc la formule <code>nouvelle_colonne2 =  nouvelle_colonne1 + 5</code> n’a pas encore de sens. Si vous créez des variables en chaîne, il faut décomposer l’opération en plusieurs étapes enchaînées. Voici le code qui permet de créer les deux colonnes à la suite:</p>
+<pre class="r"><code>dt[ , `:=`(nouvelle_colonne1 :=  Petal.Width * 10]
+dt[ , nouvelle_colonne2 :=  nouvelle_colonne1 + 5)]</code></pre>
+<ul>
+<li><p><strong>Un mauvais usage de la fonction <code>:=</code> peut vous amener à écraser par erreur vos données.</strong> En effet, si vous exécuter par erreur la commande <code>dt[ , ma_variable_importante := 0]</code>, vous écrasez la variable <code>ma_variable_importante</code>. Vous devez alors recharger vos données… Il faut donc bien réfléchir à ce que vous voulez faire avant de remplacer une variable avec la fonction <code>:=</code>. Si vous modifiez un <code>data.table</code> dans une fonction, un filet de sécurité consiste à d’abord copier le <code>data.table</code> initial et ainsi faire les modifications sur le nouvel objet, de la manière suivante:</p>
+<pre class="r"><code>modif_variable &lt;- function(dt, variable = &quot;x&quot;){
+  dt_copy &lt;- data.table::copy(dt)
+  # On utilise get() lorsqu&#39;on utilise un nom de variable avec des quotes 
+  dt_copy[,c(variable) := get(variable) + 1] 
+  return(dt_copy)
+}</code></pre></li>
+</ul>
+</div>
+</div>
+<div id="fonctions" class="section level1">
+<h1><span class="header-section-number">6</span> Programmer des fonctions avec <code>data.table</code></h1>
+<div id="utiliser-.sd-et-lapply" class="section level2">
+<h2><span class="header-section-number">6.1</span> Utiliser <code>.SD</code> et <code>lapply</code></h2>
+<p>Le mot clé <code>.SD</code> (<em>Subset of Data</em>) permet d’appliquer la même opération sur plusieurs colonnes. Les colonnes auxquelles l’opération s’applique sont contrôlées par l’argument <code>.SDcols</code> (par défaut, toutes les colonnes sont traitées). Le mot clé <code>.SD</code> est régulièrement utilisé en conjonction avec la fonction <code>lapply</code>.
+<strong>Cette syntaxe, très puissante, permet également d’avoir des codes assez compacts, ce qui les rend plus lisible.</strong></p>
+<p>Un usage classique de ce duo <code>lapply</code>+<code>.SD</code> consiste à écrire des fonctions de statistiques descriptives. Par exemple, imaginons qu’on souhaite calculer la moyenne, la variance et les quantiles (P25, P50 et P75) de nombreuses colonnes. On peut alors définir la fonction suivante:</p>
+<pre class="r"><code>mes_statistiques &lt;- function(x) return(c(mean(x), var(x), quantile(x, probs = c(.25,.5,.75))))</code></pre>
+<p>et l’appliquer aux deux colonnes <code>Petal.Width</code> et <code>Petal.Length</code> de la manière suivante:</p>
+<pre class="r"><code>data_agregee &lt;- iris_dt[ ,
+                         lapply(.SD, mes_statistiques), 
+                         .SDcols = c(&quot;Petal.Width&quot;,&quot;Petal.Length&quot;)]
+data_agregee[, &#39;stat&#39; := c(&quot;moyenne&quot;,&quot;variance&quot;,&quot;P25&quot;,&quot;P50&quot;,&quot;P75&quot;)]
+data_agregee</code></pre>
+<pre><code>##    Petal.Width Petal.Length     stat
+## 1:   1.1993333     3.758000  moyenne
+## 2:   0.5810063     3.116278 variance
+## 3:   0.3000000     1.600000      P25
+## 4:   1.3000000     4.350000      P50
+## 5:   1.8000000     5.100000      P75</code></pre>
+<p>Il est très simple d’effectuer des calculs par groupe avec la méthode <code>lapply</code>+<code>.SD</code>. On peut par exemple facilement adapter le code précédent pour calculer des statistiques descriptives par espèce de fleur (variable <code>Species</code>).</p>
+<pre class="r"><code>data_agregee &lt;- iris_dt[ ,
+                         lapply(.SD, mes_statistiques), 
+                         by = &quot;Species&quot;, 
+                         .SDcols = c(&quot;Petal.Width&quot;,&quot;Petal.Length&quot;)]
+data_agregee[, &#39;stat&#39; := c(&quot;moyenne&quot;,&quot;variance&quot;,&quot;P25&quot;,&quot;P50&quot;,&quot;P75&quot;), by = &quot;Species&quot;]
+data_agregee</code></pre>
+</div>
+<div id="définir-des-fonctions-modifiant-un-data.table" class="section level2">
+<h2><span class="header-section-number">6.2</span> Définir des fonctions modifiant un <code>{data.table}</code></h2>
+<p><strong>Il est très facile d’écrire avec <code>data.table</code> des fonctions génériques faisant appel à des noms de variables en arguments.</strong> Pour déclarer à <code>{data.table}</code> qu’un nom fait référence à une colonne, la manière la plus simple est d’utiliser la fonction <code>get</code>. Dans l’exemple suivant, on définit la fonction <code>creation_var</code> qui crée dans la table <code>data</code> une nouvelle variable (dont le nom est l’argument <code>nouveau_nom</code>) égale à une autre variable incrémentée (dont le nom est l’argument <code>nom_variable</code>) de 1. L’utilisation de <code>get</code> permet d’indiquer à <code>{data.table}</code> que la chaîne de caractères <code>nom_variable</code> désigne une colonne de la table <code>data</code>.</p>
+<pre class="r"><code>creation_var &lt;- function(data, nom_variable, nouveau_nom = &quot;x&quot;){
+  data[,c(nouveau_nom) := get(nom_variable)+1]
+}
+head(creation_var(iris_dt, &quot;Petal.Width&quot;,&quot;toto&quot;),2)</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species Total.Length
+## 1:          5.1         3.5          1.4         0.2  setosa          6.5
+## 2:          4.9         3.0          1.4         0.2  setosa          6.3
+##    nouvelle_colonne  x toto
+## 1:                2 NA  1.2
+## 2:                2 NA  1.2</code></pre>
+<p><code>c(nouveau_nom)</code> permet de s’assurer que <code>{data.table}</code> crée une nouvelle colonne avec le nom défini en argument et pas en l’appelant <code>nouveau_nom</code>. Le code équivalent en <code>{dplyr}</code> est beaucoup moins lisible et est moins général car il ne permet pas de définir en argument le nouveau nom de la variable.</p>
+<!---**Remarque**---->
+<p>Il est particulièrement complexe d’écrire avec <code>{dplyr}</code> des fonctions génériques faisant appel à des noms de variables en arguments: il est nécessaire de faire appel à plusieurs fonctionnalités de <code>{rlang}</code> pour être en mesure d’effectuer une opération équivalente. Voici pour information la version <code>{dplyr}</code> de l’exemple précédent:</p>
+<pre class="r"><code>modif_var &lt;- function(data, nom_variable){
+  data %&gt;% dplyr::mutate(nouveau_nom = !!rlang::sym(nom_variable)+1]
+}</code></pre>
+<p>C’est l’une des raisons pour lesquelles il est préférable d’utiliser <code>{data.table}</code> lorsqu’on souhaite manipuler fréquemment des données à l’aide de fonctions. Le lecteur intéressé par la question pourra consulter ce <a href="https://linogaliana.netlify.com/post/datatable/datatable-nse/">post</a> sur le sujet.
+:::</p>
+<blockquote>
+<p><strong>Conseil</strong></p>
+<p>Lorsqu’on définit des fonctions pour effectuer des traitements génériques, il est conseillé de privilégier <code>data.table</code> sur <code>dplyr</code>. Une précaution est néanmoins nécessaire pour ne pas modifier les données en entrée de la fonction si l’opérateur <code>:=</code> est utilisée. Il est recommandé dans ce cas de créer une copie du dataframe en entrée (<code>data.table::copy(df)</code>) et d’effectuer les traitements sur cette copie.</p>
+</blockquote>
+</div>
+</div>
+<div id="références" class="section level1">
+<h1><span class="header-section-number">7</span> Références</h1>
+<ul>
+<li>la <a href="https://www.rdocumentation.org/packages/data.table">documentation officielle</a> de <code>data.table</code> (en anglais);</li>
+<li>les <a href="https://github.com/Rdatatable/data.table/wiki/Getting-started">vignettes</a> de <code>data.table</code>:
+<ul>
+<li><a href="https://cloud.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">Introduction à <code>data.table</code></a> (en anglais);</li>
+<li><a href="https://cloud.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html">Modification par référence</a> (en anglais);</li>
+<li><a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-faq.html">la foire aux questions de <code>data.table</code></a> (en anglais);</li>
+</ul></li>
+<li>une <a href="https://github.com/rstudio/cheatsheets/raw/master/datatable.pdf"><em>cheatsheet</em></a> sur <code>data.table</code> (en anglais);</li>
+<li>une <a href="https://stt4230.rbind.io/tutoriels_etudiants/hiver_2017/data.table">introduction à l’utilisation de l’opérateur <code>[...]</code></a> (en français);</li>
+<li>Ce <a href="https://gitlab.com/linogaliana/bigr/-/blob/master/04-datatable.Rmd">cours complet sur <code>data.table</code></a> (en français).</li>
+<li>Cette <a href="https://dreamrs.github.io/talks/20180528_RAddicts_datatable.pdf">présentation des fonctionalités du package</a> (en français).</li>
+<li>Ce <a href="https://linogaliana.netlify.com/post/datatable/datatable-nse/">post sur les fonctions utilisant data.table</a></li>
+</ul>
+</div>

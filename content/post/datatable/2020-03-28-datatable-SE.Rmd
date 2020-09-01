@@ -9,6 +9,9 @@ image:
   caption: Variable names in datatable, it's easy
   focal_point: Smart
 draft: no
+output:
+  html_document:
+    keep_md: yes
 ---
 
 I recently gave my opinion concerning the [never-ending debate](https://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly) between `{dplyr}` and `{data.table}` fans ([here](https://gitlab.com/linogaliana/documentationR/-/issues/9)). I listed three arguments in favor of `{data.table}` approach :
