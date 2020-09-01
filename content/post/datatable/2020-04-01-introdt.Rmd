@@ -15,6 +15,7 @@ output:
     number_sections: true
     toc: false
     toc_depth: 1
+    keep_md: yes
 ---
 
 Avec mes collègues [Olivier Meslin](https://gitlab.com/oliviermeslin) de l'Insee et [Raphaële Adjerad](https://raphaele_adjerad.gitlab.io/website/) de la Drees, on a récemment écrit une introduction au package `{data.table}` pour des utilisateurs de `R` souhaitant le découvrir. Je la reprends dans ce post. Vous pouvez nous contacter par mail si besoin (<lino.galiana@insee.fr> et <olivier.meslin@insee.fr>).
