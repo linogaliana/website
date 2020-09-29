@@ -8,8 +8,9 @@ tags: ["Microeconomics"]
 image:
   caption: ''
   focal_point: ''
+output:
+  html_document:
+    keep_md: yes
 ---
 
-
-
-<p>Undergraduate microeconomics course at Sciences Po</p>
+Undergraduate microeconomics course at Sciences Po

@@ -8,6 +8,9 @@ tags: ["Mathematics"]
 image:
   caption: ''
   focal_point: ''
+output:
+  html_document:
+    keep_md: yes
 ---
 
 Undergraduate mathematics course at Sciences Po
