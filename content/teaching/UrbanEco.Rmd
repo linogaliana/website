@@ -1,7 +1,7 @@
 ---
 title: '2016-2019: Urban Economics'
 author: ~
-date: '`r Sys.time()`'
+date: '2018-01-01'
 slug: UrbanEco
 categories: ["Urban Economics","Sciences Po"]
 tags: ["Microeconomics","Urban Economics"]
