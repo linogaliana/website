@@ -1,7 +1,7 @@
 ---
 title: '2020: Python pour les data scientists et économistes'
 author: ~
-date: '`r Sys.time()`'
+date: '2020-09-29 12:23:03'
 slug: pythonDSclass
 categories: ["python","ENSAE"]
 tags: ["python","data science"]
