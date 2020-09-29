@@ -51,18 +51,18 @@ output:
                  y = runif(1e4),
                  z = sample(1:4, 1e4, replace = TRUE))
 dt</code></pre>
-<pre><code>##                x         y z
-##     1: 3.3021195 0.9217521 2
-##     2: 3.8267249 0.4078163 3
-##     3: 0.9220187 0.4545889 4
-##     4: 2.2317256 0.1433896 3
-##     5: 0.5689898 0.8039316 1
-##    ---                      
-##  9996: 2.8619303 0.6454085 2
-##  9997: 0.7709513 0.3862502 3
-##  9998: 2.0084728 0.4112280 2
-##  9999: 0.4495482 0.1704672 2
-## 10000: 0.6781734 0.8365159 1</code></pre>
+<pre><code>##                 x         y z
+##     1: 0.89255230 0.2803997 3
+##     2: 0.23208154 0.2376177 1
+##     3: 1.78440258 0.3720179 3
+##     4: 5.94106079 0.8896245 1
+##     5: 0.82248759 0.1408057 2
+##    ---                       
+##  9996: 2.68730985 0.2007362 4
+##  9997: 1.27954062 0.4318464 3
+##  9998: 0.08121285 0.3141325 3
+##  9999: 0.30299953 0.3042741 4
+## 10000: 2.94862999 0.9957759 1</code></pre>
 <p><strong>La fonction fondamentale de <code>{data.table}</code> est l’opérateur <code>[...]</code> (crochets).</strong> Dans un <code>data.frame</code> de base, les crochets <code>df[...]</code> servent uniquement à sélectionner des lignes ou des colonnes. Dans un <code>data.table</code>, les crochets <code>dt[...]</code> permettent de faire beaucoup plus de choses (quasiment tout, en pratique). En fait, les instructions à l’intérieur des crochets peuvent être envisagées comme des requêtes <code>SQL</code> mises en forme différemment.</p>
 <p><strong>La forme générale de l’opérateur <code>[...]</code> est la suivante: <code>DT[i, j, by]</code></strong>. Si on fait un parallèle avec <code>SQL</code>, <code>i</code> correspond au <code>WHERE</code>, <code>j</code> au <code>SELECT</code> et <code>by</code> au <code>GROUP BY</code>. Cette manipulation peut se lire comme ceci: "on part du <code>data.table</code> <code>DT</code>, on sélectionne certaines lignes avec <code>i</code>, puis on calcule <code>j</code> pour chaque groupe défini par <code>by</code>. La fonction <code>[...]</code> présente deux grands avantages:</p>
 <ul>
