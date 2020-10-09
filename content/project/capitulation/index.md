@@ -12,7 +12,6 @@ links:
 summary: I use microsimulation as a tool to understand capital accumulation in a life cycle perspective
 tags:
 - Microsimulation
-- R
 - Computational statistics
 - Rcpp
 title: Capital accumulation microsimulation

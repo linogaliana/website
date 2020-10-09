@@ -4,7 +4,7 @@ author: ~
 date: "2020-04-01"
 slug: datatable-intro
 categories: ["R", "datatable"]
-tags: ["R", "datatable"]
+tags: ["datatable"]
 header:
   image: "headers/datatable.png"
   caption: Une introduction à data.table
