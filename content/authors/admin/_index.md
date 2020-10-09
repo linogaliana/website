@@ -1,7 +1,7 @@
 ---
 authors:
 - Lino Galiana
-bio: I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
+bio: I am data scientist in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
 education:
   courses:
   - course: Msc Statistics and Data Science
@@ -48,6 +48,9 @@ social:
 - icon: stack-overflow
   icon_pack: fab
   link: https://stackoverflow.com/users/9197726/linog?tab=profile
+- icon: r-project
+  icon_pack: fab
+  link: https://www.r-bloggers.com/
 superuser: true
 user_groups:
 - Researchers
@@ -55,11 +58,10 @@ user_groups:
 ---
 
 
-I am a statistician in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I use Big Data and computational methods in microeconometric and data science fields. 
+I am data scientist in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I use Big Data and computational methods in microeconometric and data science fields. 
 
-I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `spark` and `python` <i class="fab fa-python"></i> for big data analysis. Some of the <i class="fab fa-r-project"></i> packages I developed are available on my <i class="fab fa-github"></i> [Github page](https://github.com/linogaliana)
+I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `Spark` and `Python` <i class="fab fa-python"></i> for big data analysis. I am a huge `Git` <i class="fas fa-code-branch"></i> fan. Most of my work is available on my <a href="https://github.com/linogaliana" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana) or <a href="https://gitlab.com/linogaliana" class="github"><i class="fab fa-gitlab"></i></a> [Gitlab page](https://gitlab.com/linogaliana) page. I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
 
-I also teach urban economics for Master students at Sciences Po Paris.
-
-
- 
+I currently teach *Python for Data Scientists and Economists* at ENSAE Paris Tech.
+You can find the [course website here](https://linogaliana-teaching.netlify.app/) and the
+underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. I used to teach urban economics for Master students at Sciences Po Paris. See [teaching](teaching) section for more details.
