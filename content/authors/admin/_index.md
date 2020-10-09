@@ -61,6 +61,6 @@ I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve 
 
 I currently teach *Python for Data Scientists and Economists* at ENSAE Paris Tech.
 You can find the [course website here](https://linogaliana-teaching.netlify.app/) and the
-underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. I used to teach urban economics for Master students at Sciences Po Paris.
+underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. I used to teach urban economics for Master students at Sciences Po Paris. See [teaching](teaching) section for more details.
 
 You can find some elements regarding <i class="fab fa-r-project"></i> on [R-bloggers website](https://www.r-bloggers.com/)
