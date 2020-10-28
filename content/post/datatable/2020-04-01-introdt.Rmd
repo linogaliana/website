@@ -3,7 +3,7 @@ title: "Une introduction à data.table"
 author: ~
 date: "2020-04-01"
 slug: datatable-intro
-categories: ["datatable"]
+categories: ["datatable","tutoriels"]
 tags: ["datatable"]
 header:
   image: "headers/datatable.png"
@@ -11,7 +11,7 @@ header:
   focal_point: Smart
 draft: no
 output:
-  blogdown::html_page:
+  html_document:
     number_sections: true
     toc: false
     toc_depth: 1
@@ -302,7 +302,7 @@ Pour savoir si un `data.table` est déjà indexé, on peut exécuter la commande
 
 | **`melt()`**                                         | **`dcast()`**                                    |
 | :--------------------------------------------------: | :----------------------------------------------: |
-| Réorganiser les donnée dans un format long           | Réorganise les donnée dans un format large       |
+| Réorganiser les donnée dans un format long           | Réorganise les données dans un format large       |
 |![](/img/datatable/widetolong.png){width=55%}       |![](/img/datatable/longtowide.png){width=62%}   |
 
 L'utilisation de ces fonctions est illustrée avec la table `mtcars`, transformée en `data.table`.
