@@ -51,18 +51,18 @@ output:
                  y = runif(1e4),
                  z = sample(1:4, 1e4, replace = TRUE))
 dt</code></pre>
-<pre><code>##                x         y z
-##     1: 0.0883599 0.7188317 2
-##     2: 0.5098882 0.5608839 4
-##     3: 0.7483665 0.9817983 1
-##     4: 1.6279169 0.9326840 4
-##     5: 3.2353070 0.5413059 2
-##    ---                      
-##  9996: 0.4803414 0.5679199 2
-##  9997: 1.7207371 0.3442717 3
-##  9998: 2.8596922 0.8306742 2
-##  9999: 1.4440247 0.0181544 3
-## 10000: 0.2565156 0.4462553 1</code></pre>
+<pre><code>##                x          y z
+##     1: 3.2193589 0.65015799 3
+##     2: 0.1500640 0.42119459 3
+##     3: 0.8592948 0.90337559 1
+##     4: 6.6902065 0.76823894 1
+##     5: 0.1721819 0.85042140 1
+##    ---                       
+##  9996: 0.3489890 0.66865232 4
+##  9997: 3.1448911 0.04429528 2
+##  9998: 0.7610394 0.91360389 2
+##  9999: 0.7231980 0.52243656 2
+## 10000: 1.1125828 0.18380511 2</code></pre>
 <p><strong>La fonction fondamentale de <code>{data.table}</code> est l’opérateur <code>[...]</code> (crochets).</strong> Dans un <code>data.frame</code> de base, les crochets <code>df[...]</code> servent uniquement à sélectionner des lignes ou des colonnes. Dans un <code>data.table</code>, les crochets <code>dt[...]</code> permettent de faire beaucoup plus de choses (quasiment tout, en pratique). En fait, les instructions à l’intérieur des crochets peuvent être envisagées comme des requêtes <code>SQL</code> mises en forme différemment.</p>
 <p><strong>La forme générale de l’opérateur <code>[...]</code> est la suivante: <code>DT[i, j, by]</code></strong>. Si on fait un parallèle avec <code>SQL</code>, <code>i</code> correspond au <code>WHERE</code>, <code>j</code> au <code>SELECT</code> et <code>by</code> au <code>GROUP BY</code>. Cette manipulation peut se lire comme ceci: "on part du <code>data.table</code> <code>DT</code>, on sélectionne certaines lignes avec <code>i</code>, puis on calcule <code>j</code> pour chaque groupe défini par <code>by</code>. La fonction <code>[...]</code> présente deux grands avantages:</p>
 <ul>
@@ -425,8 +425,8 @@ Pour savoir si un <code>data.table</code> est déjà indexé, on peut exécuter 
 <td align="center">Réorganise les données dans un format large</td>
 </tr>
 <tr class="even">
-<td align="center"><img src="img/datatable/widetolong.png" style="width:55.0%" /></td>
-<td align="center"><img src="img/datatable/longtowide.png" style="width:62.0%" /></td>
+<td align="center"><img src="/img/datatable/widetolong.png" style="width:55.0%" /></td>
+<td align="center"><img src="/img/datatable/longtowide.png" style="width:62.0%" /></td>
 </tr>
 </tbody>
 </table>
