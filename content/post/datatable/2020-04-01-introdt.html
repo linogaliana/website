@@ -402,17 +402,17 @@ summary {
                  z = sample(1:4, 1e4, replace = TRUE))
 dt</code></pre>
 <pre><code>##                x         y z
-##     1: 0.2786394 0.1426457 2
-##     2: 0.3514102 0.8768776 2
-##     3: 2.0520666 0.9561970 2
-##     4: 0.5963048 0.0506609 3
-##     5: 1.6119166 0.6320518 4
+##     1: 4.0402452 0.9864080 2
+##     2: 0.1768968 0.9272230 2
+##     3: 1.2694537 0.9936716 2
+##     4: 0.1860610 0.2373146 3
+##     5: 0.8478877 0.3686287 3
 ##    ---                      
-##  9996: 1.4823383 0.1585601 2
-##  9997: 0.4267325 0.1705932 3
-##  9998: 0.2860449 0.9167674 3
-##  9999: 3.4620126 0.8151852 1
-## 10000: 0.1738500 0.6855108 4</code></pre>
+##  9996: 2.4922896 0.4040395 2
+##  9997: 1.1072519 0.6656757 1
+##  9998: 1.9840249 0.4673737 3
+##  9999: 1.0253863 0.1857581 2
+## 10000: 2.5900500 0.1089549 1</code></pre>
 <p><strong>La fonction fondamentale de <code>{data.table}</code> est l’opérateur <code>[...]</code> (crochets).</strong> Dans un <code>data.frame</code> de base, les crochets <code>df[...]</code> servent uniquement à sélectionner des lignes ou des colonnes. Dans un <code>data.table</code>, les crochets <code>dt[...]</code> permettent de faire beaucoup plus de choses (quasiment tout, en pratique). En fait, les instructions à l’intérieur des crochets peuvent être envisagées comme des requêtes <code>SQL</code> mises en forme différemment.</p>
 <p><strong>La forme générale de l’opérateur <code>[...]</code> est la suivante: <code>DT[i, j, by]</code></strong>. Si on fait un parallèle avec <code>SQL</code>, <code>i</code> correspond au <code>WHERE</code>, <code>j</code> au <code>SELECT</code> et <code>by</code> au <code>GROUP BY</code>. Cette manipulation peut se lire comme ceci: &quot;on part du <code>data.table</code> <code>DT</code>, on sélectionne certaines lignes avec <code>i</code>, puis on calcule <code>j</code> pour chaque groupe défini par <code>by</code>. La fonction <code>[...]</code> présente deux grands avantages:</p>
 <ul>
