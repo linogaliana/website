@@ -1,15 +1,16 @@
 ---
 title: '2016-2019: Urban Economics'
 author: ~
-date: '2020-03-28 17:56:33'
+date: '2018-01-01'
 slug: UrbanEco
 categories: ["Urban Economics","Sciences Po"]
 tags: ["Microeconomics","Urban Economics"]
 image:
   caption: ''
   focal_point: ''
+output:
+  html_document:
+    keep_md: yes
 ---
 
-
-
-<p>Urban Economics course at Sciences Po. Program available <a href="/doc/syllabus.pdf">here</a></p>
+Urban Economics course at Sciences Po. Program available [here](/doc/syllabus.pdf)

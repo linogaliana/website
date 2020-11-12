@@ -8,7 +8,7 @@ authors:
 doi: ""
 featured: false
 image:
-  caption: "Retour partiel des mouvements de population avec le déconfinement"
+  caption: "Évolution entre un jour de la période confinée et un jour de la première phase de déconfinement du nombre de métropolitains présents dans le département"
   focal_point: ""
   preview_only: false
 links:

@@ -8,8 +8,9 @@ tags: ["Macroeconomics"]
 image:
   caption: ''
   focal_point: ''
+output:
+  html_document:
+    keep_md: yes
 ---
 
-
-
-<p>Undergraduate macroeconomics course for exam preparation at INSEE</p>
+Undergraduate macroeconomics course for exam preparation at INSEE

@@ -12,11 +12,10 @@ links:
 summary: A docker container integrating together R and Python (anaconda environment) that can be used in gitlab CI/CD
 tags:
 - docker
-- R
 - Python
 - CI/CD
 title: PockeR
-url_code: ""
+url_code: "https://github.com/linogaliana/pocker"
 url_pdf: ""
 url_slides: ""
 url_video: ""
