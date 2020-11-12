@@ -9,8 +9,7 @@ links:
   icon_pack: fab
   name: Github
   url: https://github.com/linogaliana
-summary: I explore the evolution of segregation in the three French biggest
-cities within a typical day using individual mobile phone data combined with traditional data sources. I propose an innovative methodology to build within-day segregation indices and study segregation dynamics at fine spatial granularity
+summary: I explore the evolution of segregation in the three French biggest cities within a typical day using individual mobile phone data combined with traditional data sources. I propose an innovative methodology to build within-day segregation indices and study segregation dynamics at fine spatial granularity
 tags:
 - Big data
 - Phone data
