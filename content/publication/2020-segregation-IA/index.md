@@ -10,9 +10,9 @@ abstract: |
 authors:
 - admin
 doi: ""
-featured: true
+featured: false
 image:
-  caption: "Low-income distribution at 6am"
+  caption: "Typologie des espaces à partir de la téléphonie mobile"
   focal_point: ""
   preview_only: false
 links:
@@ -57,12 +57,12 @@ slides: example
 ------>
 
 {{% alert note %}}
-Publication can be downloaded [there](https://www.insee.fr/en/statistiques/fichier/version-html/4925202/G2020-12.pdf)
+Publication can be downloaded [there](https://www.insee.fr/fr/statistiques/fichier/4930403/ia59.pdf)
 {{% /alert %}}
 
-<object data="/pdf/WPsegregation/G2020-12.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/pdf/WPsegregation/G2020-12.pdf">
-        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="https://www.insee.fr/en/statistiques/fichier/version-html/4925202/G2020-12.pdf">Download PDF</a>.</p>
+<object data="/pdf/WPsegregation/ia59.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/pdf/WPsegregation/ia59.pdf">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="https://www.insee.fr/fr/statistiques/fichier/4930403/ia59.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 
