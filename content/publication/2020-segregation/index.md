@@ -8,7 +8,7 @@ authors:
 doi: ""
 featured: true
 image:
-  caption: "Residential segregation, daytime segregation and spatial frictions: an analysis from mobile phone data"
+  caption: "Low-income distribution at 6am"
   focal_point: ""
   preview_only: false
 links:
