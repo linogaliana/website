@@ -34,11 +34,24 @@ date_format = "Jan 2006"
 
 [[experience]]
   title = "Professor"
+  company = "ENSAE Paris Tech"
+  company_url = "https://www.ensae.fr/"
+  location = "Paris"
+  date_start = "2020-09-01"
+  date_end = ""
+  description = """
+<img src="/img/logo/LOGO-ENSAE-2.png" align="right" width="200" />  
+  Python for data scientists and economists
+  """
+
+
+[[experience]]
+  title = "Professor"
   company = "Sciences Po Paris"
   company_url = "http://www.sciencespo.fr/"
   location = "Paris"
   date_start = "2016-01-01"
-  date_end = ""
+  date_end = "2020-05-01"
   description = """
 <img src="/img/logo/logo_sciencespo.png" align="right" width="200" />  
   Urban Economics: Master 1 in geography (since 2016)
