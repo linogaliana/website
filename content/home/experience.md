@@ -42,6 +42,10 @@ date_format = "Jan 2006"
   description = """
 <img src="/img/logo/LOGO-ENSAE-2.png" align="right" width="200" />  
   Python for data scientists and economists
+  
+  Website: https://linogaliana-teaching.netlify.app/
+  
+  <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/python-datascientist)
   """
 
 
