@@ -9,8 +9,7 @@ links:
   icon_pack: fab
   name: Github
   url: https://github.com/inseefrlab/utilitR
-summary: |
-  Le projet utilitR est une documentation opensource sur l'usage de R pour la manipulation de données
+summary: Le projet utilitR est une documentation opensource sur le logiciel R pour la manipulation de données
 tags:
 - utilitR
 - opensource
