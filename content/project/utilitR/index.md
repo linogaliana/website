@@ -26,7 +26,7 @@ toute personne intéressée par le traitement de données, quel que soit le nive
 
 Je coordonne, avec Olivier Meslin, cette documentation *opensource*. L'ensemble du 
 contenu est disponible sur le
-[Github <i class="fab fa-github"></i> InseeFrLab](https://github.com/inseefrlab/utilitR)
+[Github <i class="fab fa-github"></i> InseeFrLab](https://github.com/inseefrlab/utilitR).
 
 
 [Plus de détails ici](https://www.utilit.org/post/about-utilitr/)
