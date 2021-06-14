@@ -30,7 +30,7 @@ slug: utilitr-datatable
 
 Présentation disponible [ici](https://www.presentations.utilitr.org/ateliers/datatable.html#1)
 
-{{< tweet 1403828805165367297 >}}
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Hi <a href="https://twitter.com/MattDowle?ref_src=twsrc%5Etfw">@MattDowle</a>, I made an introduction a few days ago to the <a href="https://twitter.com/hashtag/rdatatable?src=hash&amp;ref_src=twsrc%5Etfw">#rdatatable</a> framework using some real world data. This is here (<a href="https://t.co/VLxOKTXyc8">https://t.co/VLxOKTXyc8</a>).<br>This might interest some of your (French speaking) datatable folks. Associated book chapter here: <a href="https://t.co/1PJQb1wnOM">https://t.co/1PJQb1wnOM</a> <a href="https://twitter.com/hashtag/RStats?src=hash&amp;ref_src=twsrc%5Etfw">#RStats</a></p>&mdash; Lino Galiana (@LinoGaliana) <a href="https://twitter.com/LinoGaliana/status/1403828805165367297?ref_src=twsrc%5Etfw">June 12, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 
 <!-----------
