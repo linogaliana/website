@@ -22,7 +22,7 @@ math: true
 projects:
 - utilitR
 publishDate: "2021-06-08"
-summary: Atelier utilitR pour découvrir le package et l'écosystème data.table
+summary: Présentation de la démarche collaborative utilitR
 tags: ['utilitR','ateliers', "datatable"]
 title: Présentation de la démarche collaborative utilitR [utilitR]
 slug: utilitr-collaboratif
