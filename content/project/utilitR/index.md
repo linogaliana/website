@@ -24,9 +24,9 @@ url_video: ""
 Le projet `utilitR` est une documentation sur l'usage de <i class="fab fa-r-project"></i>, destinée à
 toute personne intéressée par le traitement de données, quel que soit le niveau de connaissance du logiciel <i class="fab fa-r-project"></i>.
 
-Je coordonne, avec Olivier Meslin, cette documentation *opensource*. L'ensemble du 
+Je coordonne, avec Olivier Meslin et Pierre-Yves Berrard, cette documentation *opensource*. L'ensemble du 
 contenu est disponible sur le
 [Github <i class="fab fa-github"></i> InseeFrLab](https://github.com/inseefrlab/utilitR).
 
 
-[Plus de détails ici](https://www.utilit.org/post/about-utilitr/)
+[Plus de détails ici](https://www.utilitr.org/post/about-utilitr/)

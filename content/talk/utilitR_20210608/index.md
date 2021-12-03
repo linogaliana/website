@@ -10,7 +10,7 @@ event: Matinées de découverte utilitR
 event_url: https://www.utilitr.org/conferences/decouverte-utilitr/
 featured: true
 image:
-  caption: "Atelier utilitR pour découvrir le package et l'écosystème data.table"
+  caption: "Atelier utilitR pour découvrir le package et l'écosystème data.table [utilitR]"
   focal_point: Right
 links:
 - icon: twitter
@@ -24,7 +24,7 @@ projects:
 publishDate: "2021-06-08"
 summary: Atelier utilitR pour découvrir le package et l'écosystème data.table
 tags: ['utilitR','ateliers', "datatable"]
-title: Atelier utilitR pour découvrir le package et l'écosystème data.table
+title: Atelier utilitR pour découvrir le package et l'écosystème data.table [utilitR]
 slug: utilitr-datatable
 ---
 
