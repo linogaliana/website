@@ -1,5 +1,5 @@
 ---
-title: '2020: Python pour les data scientists et économistes'
+title: 'Python pour les data scientists et économistes'
 author: ~
 date: '2020-09-01'
 slug: pythonDSclass

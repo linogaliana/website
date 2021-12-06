@@ -1,10 +1,10 @@
 ---
-title: '2020: Python pour les data scientists et économistes'
+title: 'Travail collaboratif avec R'
 author: ~
-date: '2020-09-01'
-slug: pythonDSclass
-categories: ["python","ENSAE"]
-tags: ["python","data science"]
+date: '2020-08-01'
+slug: collaboratifR
+categories: ["R","git"]
+tags: ["R","data science", "git"]
 image:
   caption: ''
   focal_point: ''
