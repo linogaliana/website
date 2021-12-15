@@ -22,7 +22,7 @@ math: true
 projects:
 - RelevanC
 publishDate: "2021-12-09"
-summary: Présentation des ressources R et Python pour s'autoformer à la data science
+summary: Une présentation de mon travail actuel pour apparier les noms de produits dans des données de caisse de grande dimension avec ceux disponibles dans l'OpenFoodFacts
 tags: ['Elastic','python', "relevanC"]
 title: Appariements flous de données textuelles en grande dimension.
 slug: dsm-relevanc

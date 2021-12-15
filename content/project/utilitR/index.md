@@ -15,7 +15,7 @@ tags:
 - opensource
 - documentation
 title: utilitR
-url_code: ""
+url_code: "https://github.com/InseeFrLab/utilitR"
 url_pdf: ""
 url_slides: ""
 url_video: ""

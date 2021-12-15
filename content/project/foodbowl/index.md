@@ -11,13 +11,14 @@ links:
   url: https://github.com/linogaliana/prez-relevanc-dms
 summary: foodbowl est un package Python visant à simplifier l'utilisation d'ElasticSearch pour effectuer des appariements flous
 tags:
-- utilitR
-- opensource
-- documentation
-title: utilitR
+- foodbowl
+- python
+- package
+- ElasticSearch
+title: foodbowl
 url_code: ""
 url_pdf: ""
-url_slides: ""
+url_slides: "https://epic-davinci-acb57b.netlify.app/#1"
 url_video: ""
 ---
 
