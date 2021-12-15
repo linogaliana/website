@@ -1,38 +1,48 @@
 ---
-abstract: The purpose of our project is to better understand the mechanisms underlying aggregated segregation results at city level. Marseille municipality with its fascinating social organization is a perfect case study for this purpose.
+abstract: |
+  Appariements flous de données textuelles en grande dimension. 
+  Présentation au séminaire de la méthodologie à l'Insee
 all_day: false
 authors: ~
-date: "2019-07-09"
-date_end: "2019-07-11"
-event: Netmob 2019
-event_url: http://netmob.org/
+date: "2021-12-09"
+date_end: "2021-12-09"
+event: Séminaire de la méthodologie à l'Insee
+#event_url: https://www.spyrales.fr/
 featured: true
 image:
-  caption: 'Dynamic approach of spatial segregation, a framework with mobile phone data'
+  caption: "Appariements flous de données textuelles en grande dimension"
   focal_point: Right
 links:
 - icon: twitter
   icon_pack: fab
   name: Follow
   url: https://twitter.com/linogaliana
-location: Oxford, UK
+location: Paris
 math: true
 projects:
-- internal-project
-publishDate: "2019-07-09"
-slides: example
-summary: Communication at netmob conference
-tags: ['segregation','big data']
-title: Netmob 2019 poster [segregation]
+- RelevanC
+publishDate: "2021-12-09"
+summary: Présentation des ressources R et Python pour s'autoformer à la data science
+tags: ['Elastic','python', "relevanC"]
+title: Appariements flous de données textuelles en grande dimension.
+slug: dsm-relevanc
 ---
 
-You can find here the poster we presented with François Sémécurbe in `netmob` conference:
+L'objectif de cette étude est de proposer une cartographie fine des
+comportements de consommation d'aliments gras, sucrés et salés. 
 
-<object data="/pdf/netmob2019/Poster_NETMOB.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/pdf/netmob2019/Poster_NETMOB.pdf">
-        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="/pdf/netmob2019/Poster_NETMOB.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+Pour cela, il est nécessaire d'utiliser des méthodes d'appariement
+flous pour trouver, à partir de noms de produits dans les données
+de supermarchés, le même produit dans
+l'[`OpenFoodFacts`](https://fr.openfoodfacts.org/data).
+Nous utilisons `ElasticSearch` pour effectuer ce travail.
+
+La présentation est disponible [ici](https://epic-davinci-acb57b.netlify.app/#1).
+
+Voici une vision partielle du *pipeline* mis en oeuvre pour mettre en 
+relation les différentes sources:
+
+![](pipeline-relevanc.png)
 
 <!-----------
 url_code: ""
