@@ -1,7 +1,7 @@
 ---
 authors:
 - Lino Galiana
-bio: I am data scientist in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study Big Data and computational methods related to microeconometric and data science fields. 
+bio: I am data scientist in French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study how emerging data or new computational methods help to renew the production of statistical knowledge. 
 education:
   courses:
   - course: Msc Statistics and Data Science
@@ -17,8 +17,9 @@ email: "lino.galiana@insee.fr"
 interests:
 - Big data
 - Statistics
-- Econometrics
 - Machine Learning
+- NLP
+- Econometrics
 name: Lino Galiana
 organizations:
 - name: INSEE
@@ -58,10 +59,32 @@ user_groups:
 ---
 
 
-I am data scientist in the Department of Economic Studies at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I use Big Data and computational methods in microeconometric and data science fields. 
+I am data scientist 
+at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil).
+I study how emerging data or new computational methods help to renew
+the production of statistical knowledge. 
 
-I work with <i class="fab fa-r-project"></i> and sometimes use `C++` to improve performance. I also use `Spark` and `Python` <i class="fab fa-python"></i> for big data analysis. I am a huge `Git` <i class="fas fa-code-branch"></i> fan. Most of my work is available on my <a href="https://github.com/linogaliana" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana) or <a href="https://gitlab.com/linogaliana" class="github"><i class="fab fa-gitlab"></i></a> [Gitlab page](https://gitlab.com/linogaliana) page. I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
+I mostly work with `Python` <i class="fab fa-python"></i> 
+and <i class="fab fa-r-project"></i>. I sometimes use `C++` to improve performance
+or `Spark` for big data analysis.
+I am a huge `Git` <i class="fas fa-code-branch"></i> fan.
+I also like a lot 
+the possibilities offered by state-of-the-art _data-science_ tools to
+reduce the cost of exploring new datasets or producing new output from
+a statistical project.
 
-I currently teach *Python for Data Scientists and Economists* at ENSAE Paris Tech.
-You can find the [course website here](https://linogaliana-teaching.netlify.app/) and the
-underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. I used to teach urban economics for Master students at Sciences Po Paris. See [teaching](teaching) section for more details.
+Most of my work is available on my <a href="https://github.com/linogaliana" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana) or
+the [Github page](<a href="https://github.com/inseefrlab" class="github"><i class="fab fa-github"></i></a>)
+of the Insee's Lab. 
+I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
+
+I currently teach *Python for Data Scientists* at ENSAE Paris Tech,
+one of the top French engineering school.
+You can find the [course website here](https://pythonds.linogaliana.fr/) and the
+underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. 
+I also teach a course, with [Romain Avouac](https://github.com/avouacr),
+on how to get successful _data-science_ projects in the stage
+of production ([_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/)). This course explores good practices, dockerisation, API
+devlopment, reproducible productions, etc.
+I used to teach urban economics for Master students at Sciences Po Paris and 
+macroeconomics for candidates to the Insee exam. See [teaching](teaching) section for more details.
