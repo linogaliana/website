@@ -81,10 +81,9 @@ I currently teach *Python for Data Scientists* at ENSAE Paris Tech,
 one of the top French engineering school.
 You can find the [course website here](https://pythonds.linogaliana.fr/) and the
 underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. 
-I also teach a course, 
-[_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/),
+I also teach a course [_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/),
 ([Github repository](https://github.com/linogaliana/ensae-reproductibilite-website) <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>)
 that explores good practices, dockerisation, API
 devlopment, reproducible productions, etc.
-I used to teach urban economics for Master students at Sciences Po Paris and 
-macroeconomics for candidates to the Insee exam. See [teaching](teaching) section for more details.
+I used to teach urban economics at [Sciences Po Paris](https://www.sciencespo.fr/en/) and 
+macroeconomics for candidates to the Insee exam. See [Teaching](teaching) section for more details.
