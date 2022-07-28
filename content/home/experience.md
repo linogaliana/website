@@ -18,7 +18,7 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "Statistician"
+  title = "Data Scientist"
   company = "INSEE"
   company_url = "https://www.insee.fr/fr/accueil"
   location = "Paris"
@@ -41,11 +41,18 @@ date_format = "Jan 2006"
   date_end = ""
   description = """
 <img src="/img/logo/LOGO-ENSAE-2.png" align="right" width="200" />  
-  Python for data scientists and economists
+  __Python for data scientists__
   
-  Website: https://linogaliana-teaching.netlify.app/
+  Website: https://pythonds.linogaliana.fr/
   
   <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/python-datascientist)
+  
+  __Reproductibility and good practices in data-science projects__
+  
+  Website: https://ensae-reproductibilite.netlify.app/
+
+  <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/ensae-reproductibilite-website)
+
   """
 
 
