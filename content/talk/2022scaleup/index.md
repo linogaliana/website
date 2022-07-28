@@ -6,7 +6,7 @@ authors: ~
 date: "2022-03-11"
 date_end: "2022-03-11"
 event: Onyxia Scale Up #1
-#event_url: https://www.spyrales.fr/
+event_url: https://docs.sspcloud.fr/actualites/onyxia-scaleup-les-rendez-vous-communautaires-onyxia
 featured: true
 image:
   caption: "Ressources Python pour s’autoformer sur le SSPCloud"
@@ -26,6 +26,8 @@ summary: Une présentation des ressources disponibles sur le portail de la forma
 tags: ['onyxia','python', "ENSAE"]
 title: Les ressources `Python` pour s’autoformer sur le SSPCloud
 slug: scaleup-mars-2022
+url_slides: https://linogaliana-scaleup-onyxia.netlify.app/#1
+url_video: https://minio.lab.sspcloud.fr/projet-onyxia/diffusion/scaleup/20220311-formations.mp4
 ---
 
 L'objectif de cette présentation est de présenter
@@ -33,6 +35,12 @@ les multiples ressources disponibles sur le portail de la
 formation du SSPCloud:
 
 https://linogaliana-scaleup-onyxia.netlify.app/#1
+
+L'ensemble de la session, particulièrement intéressante, a été enregistrée
+est peut être visionnée en _replay_:
+
+
+{{< video src="https://minio.lab.sspcloud.fr/projet-onyxia/diffusion/scaleup/20220311-formations.mp4" controls="yes" >}}
 
 
 <!-----------
