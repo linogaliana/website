@@ -24,7 +24,7 @@ projects:
 publishDate: "2022-03-11"
 summary: Une présentation des ressources disponibles sur le portail de la formation du SSPCloud pour s'autoformer en Python, notamment les notebooks du cours que je donne à l'ENSAE. 
 tags: ['onyxia','python', "ENSAE"]
-title: Les ressources `Python` pour s’autoformer sur le SSPCloud
+title: Les ressources Python pour s’autoformer sur le SSPCloud
 slug: scaleup-mars-2022
 url_slides: https://linogaliana-scaleup-onyxia.netlify.app/#1
 url_video: https://minio.lab.sspcloud.fr/projet-onyxia/diffusion/scaleup/20220311-formations.mp4
