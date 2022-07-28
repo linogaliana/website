@@ -70,11 +70,10 @@ or `Spark` for big data analysis.
 I am a huge `Git` <i class="fas fa-code-branch"></i> fan.
 I also like a lot 
 the possibilities offered by state-of-the-art _data-science_ tools to
-reduce the cost of exploring new datasets or producing new output from
-a statistical project.
+reduce the cost of exploring new datasets or new questions.
 
 Most of my work is available on my <a href="https://github.com/linogaliana" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana) or
-the [Github page](<a href="https://github.com/inseefrlab" class="github"><i class="fab fa-github"></i></a>)
+the <a href="https://github.com/inseefrlab" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/inseefrlab)
 of the Insee's Lab. 
 I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
 
@@ -82,9 +81,10 @@ I currently teach *Python for Data Scientists* at ENSAE Paris Tech,
 one of the top French engineering school.
 You can find the [course website here](https://pythonds.linogaliana.fr/) and the
 underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. 
-I also teach a course, with [Romain Avouac](https://github.com/avouacr),
-on how to get successful _data-science_ projects in the stage
-of production ([_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/)). This course explores good practices, dockerisation, API
+I also teach a course, 
+[_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/),
+([Github repository](https://github.com/linogaliana/ensae-reproductibilite-website) <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>)
+that explores good practices, dockerisation, API
 devlopment, reproducible productions, etc.
 I used to teach urban economics for Master students at Sciences Po Paris and 
 macroeconomics for candidates to the Insee exam. See [teaching](teaching) section for more details.
