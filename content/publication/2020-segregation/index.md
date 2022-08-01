@@ -5,6 +5,9 @@ abstract: |
   Residential segregation represents the acme of segregation. Low-income people spread more than high-income people during the day. Distance plays a key role to limit population flows. Low-income people live in neighbourhoods where the spatial frictions are strongest.
 authors:
 - admin
+- Benjamin Sakarovitch
+- François Sémécurbe
+- Zbigniew Smoreda
 doi: ""
 featured: true
 image:
@@ -48,9 +51,9 @@ url_video: '#'
 slides: example
 ------>
 
-{{% alert note %}}
+{{% callout note %}}
 Publication can be downloaded [there](https://www.insee.fr/en/statistiques/fichier/version-html/4925202/G2020-12.pdf)
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/WPsegregation/G2020-12.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/WPsegregation/G2020-12.pdf">

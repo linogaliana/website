@@ -9,6 +9,7 @@ image:
   caption: A docker container integrating together R and Python
   focal_point: Smart
 draft: no
+keep_md: true
 ---
 
 ![](/img/pocker/pocker.png)

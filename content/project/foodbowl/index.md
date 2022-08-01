@@ -20,6 +20,10 @@ url_code: ""
 url_pdf: ""
 url_slides: "https://epic-davinci-acb57b.netlify.app/#1"
 url_video: ""
+summary: |
+  `foodbowl` est un package `Python` conçu pour réaliser des appariements flous en s'appuyant sur `ElasticSearch`.
+
+  Plus de détails sont disponibles dans la présentation faite en décembre 2021 sur le sujet qui est [disponible ici](https://epic-davinci-acb57b.netlify.app/#1)
 ---
 
 `foodbowl` est un package `Python` conçu pour réaliser des appariements

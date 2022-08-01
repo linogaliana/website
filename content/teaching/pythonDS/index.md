@@ -1,20 +1,35 @@
 ---
-title: 'Python pour les data scientists et économistes'
-author: ~
-date: '2020-09-01'
+title: 'Python pour la data science'
+author: admin
+date: '2022-08-01'
 slug: pythonDSclass
 categories: ["python","ENSAE"]
 tags: ["python","data science"]
 image:
   caption: ''
   focal_point: ''
-output:
-  html_document:
-    keep_md: yes
+summary: Cours en 2e année d'`ENSAE` (M1) disponible sur https://pythonds.linogaliana.fr/
+links:
+  - icon_pack: fa
+    icon: blog
+    name: Course website
+    url: 'https://pythonds.linogaliana.fr/'
+  - icon_pack: fab
+    icon: github
+    name: Source code on Github
+    url: 'https://github.com/linogaliana/python-datascientist'
+  - icon_pack: fab
+    icon: twitter
+    name: Follow me on Twitter !
+    url: 'https://twitter.com/linogaliana'
+  - icon_pack: fab
+    icon: github
+    name: Follow me on Github !
+    url: 'https://github.com/linogaliana'
 ---
 
 Le contenu du cours est disponible sur le site web
-<https://linogaliana-teaching.netlify.app/>. Le code source est disponible sur
+<https://pythonds.linogaliana.fr/>. Le code source est disponible sur
 <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>
 
 Il s'agit d'un cours
@@ -32,6 +47,7 @@ propose les chapitres suivants:
 3. Modéliser (*machine learning* et économétrie)
 4. Traitement automatisé du langage
 5. Utiliser `Git` et `Github`
+6. Présentation de l'état de l'art en _data-science_
 
 Plusieurs méthodes sont possibles pour disposer du cours au format notebook
 plutôt que sous forme de site web. Chaque page du site web propose un
