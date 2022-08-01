@@ -25,14 +25,20 @@ image:
 links:
 - name: Proceedings
   url: http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf
-- name: Paper and talk on the website
-  url: http://jms-insee.fr/jms2022s28_2/
+- name: Oral presentation
+  url: http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf
+- name: Paper and talk on the conference website
+  url: http://www.jms-insee.fr/2022/S28_2_PPT_GALIANA_JMS2022.pdf
 projects:
+- RelevanC
+tags:
+- NLP
+- Deep Learning
 - RelevanC
 publication: ""
 publication_short: ""
 publication_types:
-- "2"
+- "1"
 publishDate: "2022-03-31"
 summary: |
 
