@@ -56,9 +56,9 @@ A temporary version of the research I lead with Milena Suarez-Castillo
 on the way we can use state-of-the-art NLP techniques to bring
 together sources using food product names.
 
-{{% alert note %}}
+{{% callout note %}}
 Working paper can be downloaded [there](http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf)
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/JMS2022/S28_2_ACTE_GALIANA_JMS2022.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/JMS2022/S28_2_ACTE_GALIANA_JMS2022.pdf">

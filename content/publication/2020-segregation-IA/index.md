@@ -59,9 +59,9 @@ url_video: '#'
 slides: example
 ------>
 
-{{% alert note %}}
+{{% callout note %}}
 Publication can be downloaded [there](https://www.insee.fr/fr/statistiques/fichier/4930403/ia59.pdf)
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/WPsegregation/ia59.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/WPsegregation/ia59.pdf">

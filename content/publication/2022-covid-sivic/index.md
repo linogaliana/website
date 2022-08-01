@@ -54,9 +54,9 @@ url_video: '#'
 slides: example
 ------>
 
-{{% alert note %}}
+{{% callout note %}}
 Publication can be downloaded [there](https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-03/dd96.pdf)
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/DD2022/dd96.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/DD2022/dd96.pdf">

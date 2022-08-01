@@ -48,9 +48,9 @@ url_video: '#'
 slides: example
 ------>
 
-{{% alert note %}}
+{{% callout note %}}
 Publication accessible sur le site Insee
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/IAcovid/IA-54.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/IAcovid/IA-54.pdf">

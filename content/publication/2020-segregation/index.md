@@ -51,9 +51,9 @@ url_video: '#'
 slides: example
 ------>
 
-{{% alert note %}}
+{{% callout note %}}
 Publication can be downloaded [there](https://www.insee.fr/en/statistiques/fichier/version-html/4925202/G2020-12.pdf)
-{{% /alert %}}
+{{% /callout %}}
 
 <object data="/pdf/WPsegregation/G2020-12.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/pdf/WPsegregation/G2020-12.pdf">

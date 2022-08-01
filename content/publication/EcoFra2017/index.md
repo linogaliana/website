@@ -39,8 +39,8 @@ url_source: '#'
 url_video: '#'
 ----->
 
-{{% alert note %}}
+{{% callout note %}}
 Publication disponible sur le site de l'INSEE
-{{% /alert %}}
+{{% /callout %}}
 
 Publication disponible sur le site de l'INSEE
