@@ -53,6 +53,9 @@ social:
 - icon: r-project
   icon_pack: fab
   link: https://www.r-bloggers.com/
+- icon: python
+  icon_pack: fab
+  link: https://pythonds.linogaliana.fr/
 superuser: true
 user_groups:
 - Researchers
