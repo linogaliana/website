@@ -22,7 +22,6 @@ links:
     icon: twitter
     name: Follow me on Twitter !
     url: 'https://twitter.com/linogaliana'
-
 ---
 
 Le contenu du cours est disponible sur le site web

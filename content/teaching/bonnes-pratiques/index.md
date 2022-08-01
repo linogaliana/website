@@ -1,6 +1,8 @@
 ---
 title: 'Reproductibilité et bonnes pratiques pour les projets de data science'
-author: ~
+authors:
+- admin
+- Romain Avouac
 date: '2022-04-01'
 slug: bonnespratiques
 categories: ["python","ENSAE"]
