@@ -44,5 +44,3 @@ This homepage section is an example of adding [elements](https://sourcethemes.co
 Backgrounds can be applied to any section. Here, the *background* option is set give an *image parallax* effect.
 {{% /callout %}}
 ---------------->
-
-I gave the following courses:
