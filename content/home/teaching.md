@@ -24,10 +24,6 @@ content:
 design:
   # Use a 1-column layout
   columns: "3"
-  # Use a dark navy background with light text.
-  background:
-    color: 'navy'
-    text_color_light: true
   spacing:
     # Customize the section spacing. Order is top, right, bottom, left.
     padding: ["20px", "0", "20px", "0"]
