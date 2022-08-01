@@ -14,8 +14,8 @@ image:
 links:
 - name: Papier sur le site Insee
   url: https://www.insee.fr/fr/statistiques/4635407
-projects:
-- internal-project
+#projects:
+#- internal-project
 publication: ""
 publication_short: ""
 publication_types:
