@@ -20,7 +20,7 @@ links:
 - name: Publication sur le site de la DREES
   url: https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/les-dossiers-de-la-drees/caracteristiques-socio-economiques-des
 projects:
-- PhoneSegregation
+- covid
 publication: ""
 publication_short: ""
 publication_types:
@@ -29,12 +29,12 @@ publishDate: "2022-03-17"
 summary: |
   Les résultats principaux de l'étude sont les suivants:
   
-- Si l’étude confirme que l'âge est le facteur de risque prépondérant d’hospitalisation, elle met en évidence d'autres facteurs de risque ;
-- La population hospitalisée réside dans des logements plus densément occupés et appartenant plus fréquemment au parc social ;
-- Un risque d’hospitalisation décroissant avec le niveau de vie ;
-- Une population hospitalisée plus souvent née à l’étranger ;
-- La quatrième vague se distingue des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
-- Le risque de décéder à l’hôpital reste légèrement moins élevé chez les personnes aux plus hauts revenus ;
+  - Si l’étude confirme que l'âge est le facteur de risque prépondérant d’hospitalisation, elle met en évidence d'autres facteurs de risque ;
+  - La population hospitalisée réside dans des logements plus densément occupés et appartenant plus fréquemment au parc social ;
+  - Un risque d’hospitalisation décroissant avec le niveau de vie ;
+  - Une population hospitalisée plus souvent née à l’étranger ;
+  - La quatrième vague se distingue des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
+  - Le risque de décéder à l’hôpital reste légèrement moins élevé chez les personnes aux plus hauts revenus ;
 
   Plus de détails ci-dessous !
 
