@@ -1,4 +1,5 @@
 ---
+title: Lino Galiana
 authors:
 - Lino Galiana
 bio: I am data scientist in French national statistical institute, [Insee](https://www.insee.fr/fr/accueil). I study how emerging data or new computational methods help to renew the production of statistical knowledge. 
