@@ -1,9 +1,9 @@
 ---
 abstract: |
 
-  La Direction de la recherche, des études, de l’évaluation et des statistiques (DREES), en collaboration avec l’Institut national de la statistique et des études économiques (Insee), publie une étude originale sur les caractéristiques socio-économiques des personnes qui ont développé une forme sévère de Covid-19, définie par une hospitalisation, parfois suivie de complications à l’hôpital (admission en soins critiques ou décès).
+  La Direction de la recherche, des études, de l’évaluation et des statistiques (DREES), en collaboration avec l’Institut national de la statistique et des études économiques (Insee), publie une étude originale sur les __caractéristiques socio-économiques des personnes qui ont développé une forme sévère de Covid-19__, définie par une hospitalisation, parfois suivie de complications à l’hôpital (admission en soins critiques ou décès).
   
-  Cette analyse a été rendue possible grâce à l’appariement inédit des données SI-VIC, relatives aux patients hospitalisés et atteints du Covid-19 et des données de Fidéli, le fichier démographique de l’Insee sur les logements et les individus. Cette analyse couvre la période de mars 2020 à novembre 2021, soit les quatre premières vagues de l’épidémie de Covid-19 et s’appuie sur les données de 67,32 millions d’individus résidant en France métropolitaine, dont 382 000 ont été hospitalisés avec Covid-19.
+  Cette analyse a été rendue possible grâce à l’appariement inédit des données `SI-VIC`, relatives aux patients hospitalisés et atteints du Covid-19 et des données de `Fidéli`, le fichier démographique de l’Insee sur les logements et les individus. Cette analyse couvre la période de __mars 2020 à novembre 2021__, soit les quatre premières vagues de l’épidémie de Covid-19 et s’appuie sur les données de __67,32 millions d’individus__ résidant en France métropolitaine, __dont 382 000 ont été hospitalisés avec Covid-19__.
   
 authors:
 - admin
@@ -29,12 +29,12 @@ publishDate: "2022-03-17"
 summary: |
   Les résultats principaux de l'étude sont les suivants:
   
-  - Si l’étude confirme que l'âge est le facteur de risque prépondérant d’hospitalisation, elle met en évidence d'autres facteurs de risque ;
-  - La population hospitalisée réside dans des logements plus densément occupés et appartenant plus fréquemment au parc social ;
-  - Un risque d’hospitalisation décroissant avec le niveau de vie ;
-  - Une population hospitalisée plus souvent née à l’étranger ;
-  - La quatrième vague se distingue des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
-  - Le risque de décéder à l’hôpital reste légèrement moins élevé chez les personnes aux plus hauts revenus ;
+  - Si l’étude confirme que l'__âge est le facteur de risque prépondérant d’hospitalisation__, elle met en évidence d'autres facteurs de risque ;
+  - La population hospitalisée réside dans des __logements plus densément occupés et appartenant plus fréquemment au parc social__ ;
+  - Un __risque d’hospitalisation décroissant avec le niveau de vie__ ;
+  - Une population hospitalisée __plus souvent née à l’étranger__ ;
+  - La __quatrième vague se distingue__ des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
+  - Le risque de décéder à l’hôpital reste légèrement __moins élevé chez les personnes aux plus hauts revenus__ ;
 
   Plus de détails ci-dessous !
 
@@ -64,7 +64,7 @@ Publication can be downloaded [there](https://drees.solidarites-sante.gouv.fr/si
     </embed>
 </object>
 
-
+<p>
 
 __Si l’étude confirme que l'âge est le facteur de risque prépondérant d’hospitalisation, elle met en évidence d'autres facteurs de risque__
 
