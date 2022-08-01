@@ -5,10 +5,14 @@ image:
   caption: utilitR, une documentation collaborative sur R
   focal_point: Smart
 links:
-- icon: github
-  icon_pack: fab
-  name: Github
-  url: https://github.com/inseefrlab/utilitR
+  - icon_pack: fa
+    icon: blog
+    name: Website
+    url: 'https://www.utilitr.org/'
+  - icon_pack: fab
+    icon: github
+    name: Source code on Github
+    url: 'https://github.com/inseefrlab/utilitR'
 summary: Le projet `utilitR` est une documentation _open-source_ sur le logiciel <i class="fab fa-r-project"></i> pour la manipulation de données
 tags:
 - utilitR
