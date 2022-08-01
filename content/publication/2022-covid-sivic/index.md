@@ -36,8 +36,10 @@ summary: |
 - La quatrième vague se distingue des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
 - Le risque de décéder à l’hôpital reste légèrement moins élevé chez les personnes aux plus hauts revenus ;
 
-title: "La mixité sociale est plus forte en journée sur les lieux d’activité que pendant la nuit dans les quartiers de résidence"
-url_pdf: "https://www.insee.fr/fr/statistiques/fichier/4930403/ia59.pdf"
+  Plus de détails ci-dessous !
+
+title: "Caractéristiques socioéconomiques des individus aux formes sévères de Covid-19 au fil des vagues épidémiques"
+url_pdf: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-03/dd96.pdf"
 ---
 
 <!------ AUTRES OPTIONS POSSIBLES
