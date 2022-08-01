@@ -4,7 +4,7 @@ headless: true
 active: true
 weight: 65
 title: Projects
-subtitle: ''
+subtitle: 'A list of open-source or research projects I participated in'
 content:
   page_type: project
   filter_default: 0
@@ -13,7 +13,7 @@ content:
       tag: '*'
 design:
   columns: '2'
-  view: 5
-  flip_alt_rows: true
+  view: 3
+  flip_alt_rows: false
 ---
 
