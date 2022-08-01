@@ -34,11 +34,13 @@ experience:
         
         <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/python-datascientist) <br> <br>
         
-        __Reproductibility and good practices in data-science projects__
+        __Reproductibility and good practices in data-science projects__ <br>
         
-        Website: https://ensae-reproductibilite.netlify.app/
+        Website: https://ensae-reproductibilite.netlify.app/ <br>
 
-        <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/ensae-reproductibilite-website)
+        <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/ensae-reproductibilite-website) <br><br>
+        
+        See [Teaching :point_down:](#teaching) section for more details.
 
         
   - title: Professor
@@ -51,8 +53,10 @@ experience:
     description: >-
         Past courses:
         
-        * Urban Economics: Master 1 in geography (2016-2020)
-        * Microeconomics: undergraduate, 2016-2017
-        * Mathematics for economists: undergraduate, 2016-2017
+        - Urban Economics: Master 1 in geography (2016-2020) ;
+        - Microeconomics: undergraduate, 2016-2017 ;
+        - Mathematics for economists: undergraduate, 2016-2017.
+        <br><br>
         
+        See [Teaching :point_down:](#teaching) section for more details.
 ---
