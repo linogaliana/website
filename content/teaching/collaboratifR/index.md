@@ -29,8 +29,7 @@ links:
 summary: |
   Cours pour découvrir la manière d'utiliser `R` dans un projet collaboratif avec `Git`. 
 
-  Le contenu du cours est disponible sur le site web
-<https://collaboratif-git-formation-insee.netlify.app/>. Le code source est disponible sur [le compte `Github` InseeFrLab](https://github.com/InseeFrLab/formation-git) <a href="https://github.com/InseeFrLab/formation-git" class="gitlab"><i class="fab fa-gitlab"></i></a>
+  Le contenu du cours est disponible sur le site web <https://collaboratif-git-formation-insee.netlify.app/>. Le code source est disponible sur [le compte `Github` InseeFrLab](https://github.com/InseeFrLab/formation-git) <a href="https://github.com/InseeFrLab/formation-git" class="gitlab"><i class="fab fa-gitlab"></i></a>
 ---
 
 
