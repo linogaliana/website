@@ -7,7 +7,7 @@ active: true  # Activate this widget? true/false
 weight: 45  # Order that this section will appear.
 
 title : "Teaching"
-subtitle : "List of the courses I gave over the recent years"
+subtitle : "List of some courses I gave recently"
 
 content:
   page_type: teaching
