@@ -20,15 +20,15 @@ links:
     url: 'https://collaboratif-git-formation-insee.netlify.app/'
   - icon_pack: fab
     icon: github
-    name: Source code on `Github`
+    name: Source code on Github
     url: 'https://github.com/InseeFrLab/formation-git'
   - icon_pack: fab
     icon: twitter
-    name: Follow me on `Twitter` !
+    name: Follow me on Twitter !
     url: 'https://twitter.com/linogaliana'
   - icon_pack: fab
     icon: github
-    name: Follow me on `Github` !
+    name: Follow me on Github !
     url: 'https://github.com/linogaliana'
 summary: |
   Cours pour découvrir la manière d'utiliser `R` dans un projet collaboratif avec `Git` créé à l'`Insee` avec Mathias André, Romain Lesur, Annie Moineau et Olivier Meslin. 

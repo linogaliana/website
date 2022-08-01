@@ -16,15 +16,15 @@ links:
     url: 'https://pythonds.linogaliana.fr/'
   - icon_pack: fab
     icon: github
-    name: Source code on `Github`
+    name: Source code on Github
     url: 'https://github.com/linogaliana/python-datascientist'
   - icon_pack: fab
     icon: twitter
-    name: Follow me on `Twitter` !
+    name: Follow me on Twitter !
     url: 'https://twitter.com/linogaliana'
   - icon_pack: fab
     icon: github
-    name: Follow me on `Github` !
+    name: Follow me on Github !
     url: 'https://github.com/linogaliana'
 ---
 
