@@ -1,7 +1,7 @@
 ---
 title: 'Python pour la data science'
 author: admin
-date: '2020-09-01'
+date: '2022-08-01'
 slug: pythonDSclass
 categories: ["python","ENSAE"]
 tags: ["python","data science"]
@@ -16,12 +16,16 @@ links:
     url: 'https://pythonds.linogaliana.fr/'
   - icon_pack: fab
     icon: github
-    name: Source code on Github
+    name: Source code on `Github`
     url: 'https://github.com/linogaliana/python-datascientist'
   - icon_pack: fab
     icon: twitter
-    name: Follow me on Twitter !
+    name: Follow me on `Twitter` !
     url: 'https://twitter.com/linogaliana'
+  - icon_pack: fab
+    icon: github
+    name: Follow me on `Github` !
+    url: 'https://github.com/linogaliana'
 ---
 
 Le contenu du cours est disponible sur le site web

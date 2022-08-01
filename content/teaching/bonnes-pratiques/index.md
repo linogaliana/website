@@ -22,12 +22,16 @@ links:
     url: 'https://ensae-reproductibilite.netlify.app/'
   - icon_pack: fab
     icon: github
-    name: Source code on Github
+    name: Source code on `Github`
     url: 'https://github.com/linogaliana/ensae-reproductibilite-website'
   - icon_pack: fab
     icon: twitter
-    name: Follow me on Twitter !
+    name: Follow me on `Twitter` !
     url: 'https://twitter.com/linogaliana'
+  - icon_pack: fab
+    icon: github
+    name: Follow me on `Github` !
+    url: 'https://github.com/linogaliana'
 ---
 
   Ce cours part du constat que les formations académiques dans ce domaine adoptent souvent une orientation essentiellement technique, visant une compréhension fine des modèles manipulés, mais ne discutent que rarement des problèmes pratiques qui forment le quotidien du data scientist dans un contexte professionnel. Ce cours vise à combler ce manque en proposant des pistes de solution à diverses questions que peuvent se poser les data scientists lorsqu’ils transitionnent du contexte de la formation initiale à des projets réels :
