@@ -36,7 +36,7 @@ summary: |
   - La __quatrième vague se distingue__ des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
   - Le risque de décéder à l’hôpital reste légèrement __moins élevé chez les personnes aux plus hauts revenus__ ;
 
-  Plus de détails ci-dessous !
+  Plus de détails ci-dessous ! :point_down:
 
 title: "Caractéristiques socioéconomiques des individus aux formes sévères de Covid-19 au fil des vagues épidémiques"
 url_pdf: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-03/dd96.pdf"
