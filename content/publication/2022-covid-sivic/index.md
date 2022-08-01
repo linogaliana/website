@@ -7,6 +7,9 @@ abstract: |
   
 authors:
 - admin
+- Olivier Meslin
+- Simon Delage
+- Noémie Courtejoie
 doi: ""
 featured: true
 image:
