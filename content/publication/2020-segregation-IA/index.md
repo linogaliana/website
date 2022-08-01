@@ -9,6 +9,9 @@ abstract: |
   Dans les villes, l’organisation des infrastructures de transport entre le centre et la périphérie facilite ou, au contraire, freine les déplacements. Les personnes à bas revenus habitent plus souvent dans les espaces où il est plus difficile de se déplacer (centre à Marseille, périphérie à Lyon et Paris).
 authors:
 - admin
+- Benjamin Sakarovitch
+- François Sémécurbe
+- Zbigniew Smoreda
 doi: ""
 featured: false
 image:
