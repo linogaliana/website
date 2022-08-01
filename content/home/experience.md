@@ -27,12 +27,11 @@ experience:
     date_start: '2020-09-01'
     date_end: ''
     description: >-
-
-        __Python for data scientists__
+        __Python for data scientists__ <br>
         
-        Website: https://pythonds.linogaliana.fr/
+        Website: https://pythonds.linogaliana.fr/ <br>
         
-        <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/python-datascientist)
+        <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana/python-datascientist) <br> <br>
         
         __Reproductibility and good practices in data-science projects__
         
@@ -49,7 +48,6 @@ experience:
     date_start: '2016-01-01'
     date_end: '2020-05-01'
     description: >-
-
         Past courses:
         
         * Urban Economics: Master 1 in geography (2016-2020)
