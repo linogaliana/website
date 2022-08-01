@@ -11,13 +11,13 @@ image:
   alt_text: Enjeu de la reproductibilité illustrée
 summary: |
 
-  Ce cours de l'`ENSAE` que je donne avec [Romain Avouac](https://github.com/avouacr) est disponible sur le site web https://ensae-reproductibilite.netlify.app/ (dépôt <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>).
+  Ce cours donné en dernière année de l'`ENSAE` et construit avec [Romain Avouac](https://github.com/avouacr) est disponible sur le site web https://ensae-reproductibilite.netlify.app/ (dépôt <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>).
   
 links:
   - icon_pack: fa
     icon: blog
     name: Course website
-    url: 'https://github.com/linogaliana/ensae-reproductibilite-website'
+    url: 'https://ensae-reproductibilite.netlify.app/'
   - icon_pack: fab
     icon: github
     name: Source code on Github
