@@ -77,13 +77,14 @@ Most of my work is available on my <a href="https://github.com/linogaliana" clas
 the <a href="https://github.com/inseefrlab" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/inseefrlab)
 of the Insee's Lab. 
 I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
+See [Projects :point_down:](#projects) and [Publications :point_down:](#publications) and [Talks :point_down:](#talks) sections for more details.
 
-I currently teach *Python for Data Scientists* at ENSAE Paris Tech,
+I currently teach [*Python for Data Scientists*](https://pythonds.linogaliana.fr/) 
+([Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>)
+at `ENSAE Paris Tech`,
 one of the top French engineering school.
-You can find the [course website here](https://pythonds.linogaliana.fr/) and the
-underlying [Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>. 
-I also teach a course [_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/),
-([Github repository](https://github.com/linogaliana/ensae-reproductibilite-website) <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>)
+I also teach a course [_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/)
+([`Github` repository](https://github.com/linogaliana/ensae-reproductibilite-website) <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>)
 that brings student to the question of MLops.
 I used to teach urban economics at [Sciences Po Paris](https://www.sciencespo.fr/en/) and 
 macroeconomics for candidates to the Insee exam. See [Teaching](teaching) section for more details.
