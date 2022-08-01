@@ -9,8 +9,6 @@ links:
   icon_pack: fab
   name: Github
   url: https://github.com/EpidemiumOpenCancer/OpenCancer
-slides: example
-summary: Projet OpenCancer
 tags:
 - OpenCancer
 - Health Data
@@ -19,6 +17,7 @@ url_code: ""
 url_pdf: ""
 url_slides: ""
 url_video: ""
+summary: A student project to ease the analysis of world cancer datasets
 ---
 
 R Package aiming to help anyone working with cancer data to import Epidemium dataset and build robust statistical models (LASSO feature selection)
