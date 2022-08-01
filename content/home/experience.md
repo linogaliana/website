@@ -12,7 +12,7 @@ experience:
     company: INSEE
     company_url: 'https://www.insee.fr/fr/accueil'
     location: Paris
-    company_logo: insee.svg
+    company_logo: insee
     date_start: '2018-09-01'
     date_end: ''
     description: >-
@@ -23,7 +23,7 @@ experience:
     company: ENSAE Paris Tech
     company_url: 'https://www.ensae.fr/'
     location: Paris
-    company_logo: ensae.svg
+    company_logo: ensae
     date_start: '2020-09-01'
     date_end: ''
     description: >-
@@ -45,7 +45,7 @@ experience:
     company: Sciences Po Paris
     company_url: 'http://www.sciencespo.fr/'
     location: Paris
-    company_logo: sciencespo.svg
+    company_logo: sciencespo
     date_start: '2016-01-01'
     date_end: '2020-05-01'
     description: >-
