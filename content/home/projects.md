@@ -1,4 +1,4 @@
-+++
+---
 widget: portfolio
 headless: true
 active: true
@@ -13,11 +13,7 @@ content:
       tag: '*'
 design:
   columns: '2'
-  view: 3
-  flip_alt_rows: false
-  background: {}
-advanced:
-  css_style: ''
-  css_class: ''
-+++
+  view: 5
+  flip_alt_rows: true
+---
 
