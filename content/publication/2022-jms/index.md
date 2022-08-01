@@ -19,7 +19,7 @@ author_notes:
 doi: ""
 featured: true
 image:
-  caption: "Low-income distribution at 6am"
+  caption: "Similarity between products"
   focal_point: ""
   preview_only: false
 links:
@@ -38,9 +38,9 @@ summary: |
 
   Food retailers’ scanner data provide unprecedented details on local consumption, provided that product identifiers allow a linkage with features of interest, such as nutritional information.
 
-  In this paper, we enrich a large retailer dataset with nutritional information extracted from Open Food Facts, completed with the ANSES Ciqual dataset. To compensate for imperfect matching through the bar code, we develop a methodology to efficiently match short textual descriptions. After a preprocessing step to normalize short labels, we resort to fuzzy matching based on several tokenizers (including n-grams) by querying an ElasticSearch customized index and validate candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several steps successively relaxing constraints to find relevant matching candidates.
+  In this paper, we enrich a large retailer dataset with nutritional information extracted from Open Food Facts, completed with the `ANSES Ciqual` dataset. To compensate for imperfect matching through the bar code, we develop a methodology to efficiently match short textual descriptions. After a preprocessing step to normalize short labels, we resort to fuzzy matching based on several tokenizers (including n-grams) by querying an `ElasticSearch` customized index and validate candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several steps successively relaxing constraints to find relevant matching candidates.
 
-  We finally develop a similarity based on a word embedding obtained by training a siamese network on bar code matches. This alternative measure is used to evaluate our final matching.
+  We finally develop a similarity based on a word embedding obtained by training a Siamese neural network on bar code matches. This alternative measure is used to evaluate our final matching.
 
 title: "Fuzzy matching on big-data : an illustration with scanner data and crowd-sourced nutritional data"
 url_pdf: "http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf"
@@ -58,7 +58,7 @@ url_video: '#'
 slides: example
 ------>
 
-A temporary version of the research I lead with Milena Suarez-Castillo 
+A temporary version of the research I lead with [Milena Suarez-Castillo](https://milenasuarezcastillo.netlify.app/) 
 on the way we can use state-of-the-art NLP techniques to bring
 together sources using food product names.
 
