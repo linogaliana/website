@@ -17,7 +17,8 @@ experience:
     date_end: ''
     description: >-
     
-        Academic research in the Department of Economic Studies.
+        Academic research in the Department of Economic Studies. <br>
+        See [Projects :point_down:](#projects) and [Publications :point_down:](#publications) and [Talks :point_down:](#talks) sections for more details. 
         
   - title: Professor
     company: ENSAE Paris Tech
