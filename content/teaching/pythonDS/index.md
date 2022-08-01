@@ -1,6 +1,6 @@
 ---
-title: 'Python pour les data scientists et économistes'
-author: ~
+title: 'Python pour la data science'
+author: admin
 date: '2020-09-01'
 slug: pythonDSclass
 categories: ["python","ENSAE"]
@@ -11,6 +11,7 @@ image:
 output:
   html_document:
     keep_md: yes
+summary: Cours en 2e année d'`ENSAE` (M1) disponible sur https://pythonds.linogaliana.fr/
 ---
 
 Le contenu du cours est disponible sur le site web
