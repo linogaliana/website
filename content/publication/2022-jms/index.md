@@ -3,13 +3,19 @@ abstract: |
 
   Food retailers’ scanner data provide unprecedented details on local consumption, provided that product identifiers allow a linkage with features of interest, such as nutritional information.
 
-  In this paper, we enrich a large retailer dataset with nutritional information extracted from Open Food Facts, completed with the ANSES Ciqual dataset. To compensate for imperfect matching through the bar code, we develop a methodology to efficiently match short textual descriptions. After a preprocessing step to normalize short labels, we resort to fuzzy matching based on several tokenizers (including n-grams) by querying an ElasticSearch customized index and validate candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several steps successively relaxing constraints to find relevant matching candidates.
+  In this paper, we enrich a large retailer dataset with nutritional information extracted from `Open Food Facts`, completed with the `ANSES Ciqual` dataset. To compensate for imperfect matching through the bar code, we develop a methodology to efficiently match short textual descriptions. After a preprocessing step to normalize short labels, we resort to fuzzy matching based on several tokenizers (including n-grams) by querying an `ElasticSearch` customized index and validate candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several steps successively relaxing constraints to find relevant matching candidates.
 
-  We finally develop a similarity based on a word embedding obtained by training a siamese network on bar code matches. This alternative measure is used to evaluate our final matching.
+  We finally develop a similarity based on a word embedding obtained by training a Siamese network on bar code matches. This alternative measure is used to evaluate our final matching.
 
 authors:
 - admin
 - Milena Suarez-Castillo
+
+# Author notes (optional)
+author_notes:
+  - 'Equal contribution'
+  - 'Equal contribution'
+
 doi: ""
 featured: true
 image:
@@ -22,7 +28,7 @@ links:
 - name: Paper and talk on the website
   url: http://jms-insee.fr/jms2022s28_2/
 projects:
-- PhoneSegregation
+- RelevanC
 publication: ""
 publication_short: ""
 publication_types:
