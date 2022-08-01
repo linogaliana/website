@@ -1,18 +1,11 @@
 ---
 abstract: |
-  Food retailers’ scanner data provide unprecedented details on local consumption, provided that
-product identifiers allow a linkage with features of interest, such as nutritional information.
 
-  In this paper, we enrich a large retailer dataset with nutritional information extracted from Open Food
-Facts, completed with the ANSES Ciqual dataset. To compensate for imperfect matching through
-the bar code, we develop a methodology to efficiently match short textual descriptions. After a
-preprocessing step to normalize short labels, we resort to fuzzy matching based on several
-tokenizers (including n-grams) by querying an ElasticSearch customized index and validate
-candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several
-steps successively relaxing constraints to find relevant matching candidates.
+  Food retailers’ scanner data provide unprecedented details on local consumption, provided that product identifiers allow a linkage with features of interest, such as nutritional information.
 
-  We finally develop a similarity based on a word embedding obtained by training a siamese network on bar code matches.
-This alternative measure is used to evaluate our final matching.
+  In this paper, we enrich a large retailer dataset with nutritional information extracted from Open Food Facts, completed with the ANSES Ciqual dataset. To compensate for imperfect matching through the bar code, we develop a methodology to efficiently match short textual descriptions. After a preprocessing step to normalize short labels, we resort to fuzzy matching based on several tokenizers (including n-grams) by querying an ElasticSearch customized index and validate candidates echos as matches with a Levenstein edit-distances. The pipeline is composed of several steps successively relaxing constraints to find relevant matching candidates.
+
+  We finally develop a similarity based on a word embedding obtained by training a siamese network on bar code matches. This alternative measure is used to evaluate our final matching.
 
 authors:
 - admin
