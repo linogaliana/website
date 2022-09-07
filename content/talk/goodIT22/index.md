@@ -25,7 +25,12 @@ math: true
 projects:
 - RelevanC
 publishDate: "2022-09-07"
-summary: Presentation I made at the [GoodIT 2022 conference](https://cyprusconferences.org/goodit2022/). 
+summary: |
+  I presented the research I make with Milena Suarez Castillo
+  in [GoodIT 2022 conference](https://cyprusconferences.org/goodit2022/). 
+  The associated proceeding paper edited by the ACM
+  is [here](https://dl.acm.org/doi/10.1145/3524458.3547244). My presentation
+  is available online at https://linogaliana.github.io/relevanc-goodIT22
 tags: ['relevanc','python', "elasticsearch"]
 title: "GoodIT 2022: Fuzzy matching on big-data"
 slug: goodit22
