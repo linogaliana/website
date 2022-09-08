@@ -41,7 +41,7 @@ publication: ""
 publication_short: ""
 publication_types:
 - "1"
-publishDate: "2022-03-31"
+publishDate: "2022-09-08"
 summary: |
 
   Food retailers’ scanner data provide unprecedented details on local consumption, provided that product identifiers allow a linkage with features of interest, such as nutritional information.
