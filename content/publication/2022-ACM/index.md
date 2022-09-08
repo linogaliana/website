@@ -50,7 +50,7 @@ summary: |
 
   We finally develop a similarity based on a word embedding obtained by training a Siamese neural network on bar code matches. This alternative measure is used to evaluate our final matching.
 
-title: "Fuzzy matching on big-data : an illustration with scanner data and crowd-sourced nutritional data"
+title: "Short version of \"Fuzzy matching on big-data\" in GoodIT22 ACM Proceedings"
 url_pdf: "https://dl.acm.org/doi/pdf/10.1145/3524458.3547244"
 url_slides: https://linogaliana.github.io/relevanc-goodIT22
 ---
