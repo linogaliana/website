@@ -23,12 +23,14 @@ image:
   focal_point: ""
   preview_only: false
 links:
+- icon: twitter
+  icon_pack: fab
+  name: Follow
+  url: https://twitter.com/linogaliana
 - name: Proceedings
-  url: http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf
+  url: https://dl.acm.org/doi/10.1145/3524458.3547244
 - name: Oral presentation
-  url: http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf
-- name: Paper and talk on the conference website
-  url: http://www.jms-insee.fr/2022/S28_2_PPT_GALIANA_JMS2022.pdf
+  url: https://linogaliana.github.io/relevanc-goodIT22
 projects:
 - RelevanC
 tags:
@@ -49,8 +51,26 @@ summary: |
   We finally develop a similarity based on a word embedding obtained by training a Siamese neural network on bar code matches. This alternative measure is used to evaluate our final matching.
 
 title: "Fuzzy matching on big-data : an illustration with scanner data and crowd-sourced nutritional data"
-url_pdf: "http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf"
+url_pdf: "https://dl.acm.org/doi/pdf/10.1145/3524458.3547244"
+url_slides: https://linogaliana.github.io/relevanc-goodIT22
 ---
+
+Paper in the Association for Computing Machinery (ACM) Proceedings
+is available at https://dl.acm.org/doi/10.1145/3524458.3547244 
+
+## Purpose
+
+To make the most of automatically collected scanner data for consumption studies, we link these products with crowd-sourced nutritional databases using textual search techniques. This approach requires the application of state-of-the-art textual analysis methods, including word embeddings, as well as efficient search tools to scale up.
+
+Understand what is the nature, nutritional or environmental quality of food products consumed in supermarket will help to develop a sustainable and healthy consumption. The development of applications that provide information on products (nutritional characteristics, packaging, carbon footprint, etc.) opens up new perspectives on the analysis of scanner data at population scale once they have been matched. It is thus important to propose a method to associate these data sources that is reliable, flexible and efficient.
+
+This work allowed us to evaluate the contributions and limitations of some NLP methods in a context where the textual data are noisy. In addition to the constructed database which can be used for multiple applications, one of the possibilities is to make available to the community the most efficient textual processing and matching models.
+
+<object data="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244" type="application/pdf" width="700px" height="700px">
+    <embed src="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244">Download PDF</a>.</p>
+    </embed>
+</object>
 
 <!------ AUTRES OPTIONS POSSIBLES
 url_code: '#'
@@ -64,22 +84,3 @@ url_video: '#'
 slides: example
 ------>
 
-A temporary version of the research I lead with [Milena Suarez-Castillo](https://milenasuarezcastillo.netlify.app/) 
-on the way we can use state-of-the-art NLP techniques to bring
-together sources using food product names.
-
-{{% callout note %}}
-Working paper can be downloaded [there](http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf)
-{{% /callout %}}
-
-<object data="/pdf/JMS2022/S28_2_ACTE_GALIANA_JMS2022.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/pdf/JMS2022/S28_2_ACTE_GALIANA_JMS2022.pdf">
-        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="http://www.jms-insee.fr/2022/S28_2_ACTE_GALIANA_JMS2022.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
-
-
-
-<!----
-Supplementary notes can be added here, including [code and math](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
------->
