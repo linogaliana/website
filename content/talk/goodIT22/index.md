@@ -43,3 +43,13 @@ is an ACM International Conference on Information Technologyfor Social Good.
 
 My presentation is available 
 at https://linogaliana.github.io/relevanc-goodIT22
+Source code is on `Github` [here](https://github.com/linogaliana/relevanc-goodIT22)
+
+The associated paper in [ACM Proceedings is here](https://dl.acm.org/doi/10.1145/3524458.3547244). You can also get the
+PDF version below:
+
+<object data="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244" type="application/pdf" width="700px" height="700px">
+    <embed src="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244">
+        <p>This browser does not support PDFs embedding. Please download the PDF to view it: <a href="https://dl.acm.org/doi/pdf/10.1145/3524458.3547244">Download PDF</a>.</p>
+    </embed>
+</object>
