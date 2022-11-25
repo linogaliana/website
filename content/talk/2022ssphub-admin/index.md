@@ -26,7 +26,7 @@ summary: Présentation du [réseau des _data-scientists_ de la statistique publi
 tags: ['INSEE','SSPHub', "ENSAE"]
 title: "Présentation du réseau des datascientists au nouveaux administrateurs de l'INSEE"
 slug: "ssphub-integration-admin"
-#url_slides: https://linogaliana-scaleup-onyxia.netlify.app/#1
+url_slides: https://prez-nouveaux-admin-ssphub-20221125.netlify.app
 #url_video: https://minio.lab.sspcloud.fr/projet-onyxia/diffusion/scaleup/20220311-formations.mp4
 external_link : https://prez-nouveaux-admin-ssphub-20221125.netlify.app
 ---
