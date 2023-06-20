@@ -5,6 +5,10 @@ page-layout: full
 image: /photoCV.png
 resources:
     - "photoCV.png"
+listing: 
+  - id: teaching
+    contents: "teaching/*.qmd"
+    type: grid
 ---
 
 ::: {.column-page-inset}
@@ -63,4 +67,11 @@ macroeconomics for candidates to the Insee exam. See [Teaching :point_down:](#te
     <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
 </a>
 ```
+:::
+
+## Teaching
+
+Liste des cours que je donne en ce moment
+
+:::{#teaching}
 :::

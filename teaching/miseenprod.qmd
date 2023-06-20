@@ -1,0 +1,11 @@
+---
+title: 'Mise en production de projets data science'
+author: "Lino Galiana"
+date: '2023-04-01'
+categories: ["python","ENSAE"]
+tags: ["python","data science"]
+summary: Cours en 3e année d'`ENSAE` (M2) disponible sur https://pythonds.linogaliana.fr/
+url: https://ensae-reproductibilite.github.io/website/
+github: https://github.com/ensae-reproductibilite/website
+image: python.png
+---
