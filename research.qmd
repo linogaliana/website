@@ -40,7 +40,7 @@ pub_strs = {"pubs": {}, "wps": {}}
 for _, data in yaml_data.items():
     title_str = data["title"]
     authors = data.get("authors", ["me"])
-    authors = [aut if aut != "me" else "<strong>Drew Dimmery</strong>" for aut in authors]
+    authors = [aut if aut != "me" else "<strong>Lino Galiana</strong>" for aut in authors]
     author_str = readable_list(authors)
     year_str = data["year"]
 
