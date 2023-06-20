@@ -19,30 +19,27 @@ at the French national statistical institute, [Insee](https://www.insee.fr/fr/ac
 I study how emerging data or new computational methods help to renew
 the production of statistical knowledge. 
 
-I mostly work with `Python` <i class="fab fa-python"></i> 
-and <i class="fab fa-r-project"></i>. I sometimes use `C++` to improve performance
-or `Spark` for big data analysis.
-I am a huge `Git` <i class="fas fa-code-branch"></i> fan.
+I mostly work with `Python` {{< fa brands python >}}
+and {{< fa brands r-project >}}. 
+I am a huge `Git` {{< fa brands git-alt >}} fan.
 I also like a lot 
 the possibilities offered by state-of-the-art _data-science_ tools to
 reduce the cost of exploring new datasets or new questions.
 
-Most of my work is available on my <a href="https://github.com/linogaliana" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/linogaliana) or
-the <a href="https://github.com/inseefrlab" class="github"><i class="fab fa-github"></i></a> [Github page](https://github.com/inseefrlab)
+Most of my work is available on my {{< fa brands github >}} [Github page](https://github.com/linogaliana) or
+the {{< fa brands github >}} [Github page](https://github.com/inseefrlab)
 of the Insee's Lab. 
-I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding <i class="fab fa-r-project"></i> software.
-See [Projects :point_down:](#projects) and [Publications :point_down:](#publications) and [Talks :point_down:](#talks) sections for more details.
+I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding {{< fa brands r-project >}} software.
 
 I currently teach [*Python for Data Scientists*](https://pythonds.linogaliana.fr/) 
-([Github repository](https://github.com/linogaliana/python-datascientist) <a href="https://github.com/linogaliana/python-datascientist" class="github"><i class="fab fa-github"></i></a>)
+([Github repository](https://github.com/linogaliana/python-datascientist) {{< fa brands github >}})
 at `ENSAE Paris Tech`,
 one of the top French engineering school.
 I also teach a course [_"Reproductibility and good practices in data science projets"_](https://ensae-reproductibilite.netlify.app/)
-([`Github` repository](https://github.com/linogaliana/ensae-reproductibilite-website) <a href="https://github.com/linogaliana/ensae-reproductibilite-website" class="github"><i class="fab fa-github"></i></a>)
-that brings student to the question of MLops.
+([`Github` repository](https://github.com/linogaliana/ensae-reproductibilite-website) {{< fa brands github >}})
+that brings student to the question of MLOps.
 I used to teach urban economics at [Sciences Po Paris](https://www.sciencespo.fr/en/) and 
-macroeconomics for candidates to the Insee exam. See [Teaching :point_down:](#teaching) section for more details.
-
+macroeconomics for candidates to the Insee exam. 
 
 :::
 

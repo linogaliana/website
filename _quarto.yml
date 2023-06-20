@@ -13,7 +13,7 @@ website:
     site: "@linogaliana"
     card-style: "summary_large_image"
   navbar:
-    background: dark
+    background: "#8bdb51"
     foreground: light
     left:
       - href: index.qmd
