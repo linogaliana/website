@@ -44,7 +44,7 @@ iacovid:
         - Elise Coudin
         - Marie Pierre de Bellefon
     year: 2020
-    preprint: https://www.insee.fr/fr/statistiques/4635407
+    preprint: 
     published_url: https://www.insee.fr/fr/statistiques/4635407
     venue: Insee Analyses
     github:
@@ -74,5 +74,28 @@ iacovid:
         en particulier en semaine et il s'agit essentiellement de non-Parisiens.
         Plus généralement, les mouvements hebdomadaires entre pôles urbains
         en semaine et départements plus ruraux et littoraux le week-end reprennent.
+segregation:
+    title: "Residential segregation, daytime segregation and spatial frictions: an analysis from mobile phone data"
+    authors:
+        - me
+        - Benjamin Sakarovitch
+        - François Sémécurbe
+        - Zbigniew Smoreda
+    year: 2020
+    published_url: https://www.insee.fr/en/statistiques/4925202
+    venue: Working Paper INSEE
+    github:
+    cite: "segregation2020.bib"
+    abstract: |
+        We bring together mobile phone and geocoded tax data on the three biggest
+        French cities to shed a new light on segregation that accounts for population flows.
+        Mobility being a key factor to reduce spatial segregation,
+        we build a gravity model on an unprecedent scale to estimate the heterogeneity
+        in travel costs.
+        
+        Residential segregation represents the acme of segregation.
+        Low-income people spread more than high-income people during the day.
+        Distance plays a key role to limit population flows.
+        Low-income people live in neighbourhoods where the spatial frictions are strongest.
 
 
