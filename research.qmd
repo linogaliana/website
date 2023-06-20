@@ -28,6 +28,13 @@ def cite_button(cite_file):
         Cite
     </a>"""
 
+def details_section(abstract):
+    return f"""<details>
+        <summary>Abstract</summary>
+        <div class="abstract">{abstract}</div>
+    </details>"""
+
+
 yaml_data = yaml.safe_load(open("./research/papers.yaml"))
 pub_strs = {"pubs": {}, "wps": {}}
 for _, data in yaml_data.items():
@@ -54,6 +61,11 @@ for _, data in yaml_data.items():
 
     if venue is not None:
         pub_str += f" <em>{venue}</em>"
+
+    # Add the details section with the abstract
+    abstract = data.get("abstract")
+    if abstract is not None:
+        pub_str += details_section(abstract)
 
     if working_paper:
         if year_str not in pub_strs["wps"]:
