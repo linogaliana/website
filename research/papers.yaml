@@ -1,0 +1,16 @@
+iacovid:
+    title: "Retour partiel des mouvements de population avec le déconfinement"
+    authors:
+        - Lino Galiana
+        - Milena Suarez-Castillo
+        - François Sémécurbe
+        - Elise Coudin
+        - Marie Pierre de Bellefon
+    year: 2020
+    preprint: https://www.insee.fr/fr/statistiques/4635407
+    published_url: https://www.insee.fr/fr/statistiques/fichier/version-html/4635407/IA-54.pdf
+    venue: Insee Analyses
+    github:
+    cite: "iacovid.bib
+
+
