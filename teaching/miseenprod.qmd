@@ -7,5 +7,5 @@ tags: ["python","data science"]
 summary: Cours en 3e année d'`ENSAE` (M2) disponible sur https://pythonds.linogaliana.fr/
 url: https://ensae-reproductibilite.github.io/website/
 github: https://github.com/ensae-reproductibilite/website
-image: python.png
+image: https://ensae-reproductibilite.github.io/website/cards/quality/snake.png
 ---
