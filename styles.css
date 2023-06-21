@@ -1,8 +1,10 @@
 /* css styles */
 
-/*
 a {
-    color: #eb6864 !important;
+    color: #eb6864 ;
 }
-*/
-  
+
+
+.navbar a {
+    color: "white" !important;
+  }
