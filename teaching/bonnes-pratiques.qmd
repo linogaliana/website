@@ -1,0 +1,11 @@
+---
+title: 'Bonnes pratiques en `R` et `Git`'
+author: "Lino Galiana"
+date: '2023-04-01'
+categories: ["R","INSEE"]
+tags: ["R","data science"]
+summary: Cours sur les bonnes pratiques
+url: https://ensae-reproductibilite.github.io/website/
+github: https://github.com/ensae-reproductibilite/website
+image: https://inseefrlab.github.io/formation-bonnes-pratiques-git-R/cards/version-light/cheetah.png
+---
