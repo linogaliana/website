@@ -1,0 +1,51 @@
+---
+title: "About"
+---
+
+I am data scientist 
+at the French national statistical institute, [Insee](https://www.insee.fr/fr/accueil).
+I study how emerging data or new computational methods help to renew
+the production of statistical knowledge. 
+
+
+### Research Interests
+
+- Data Science
+- Sofware engineering
+
+### Education
+
+::: {.d-flex .justify-content-between}
+::: {}
+**ENSAE**  
+Msc Statistics and Data Science
+:::
+::: {.text-end}
+Paris
+:::
+:::
+- Computational statistics, data science, applied mathematics
+
+::: {.d-flex .justify-content-between}
+::: {}
+**ENS Lyon & Paris School of Economics**  
+Msc Econometrics
+:::
+::: {.text-end}
+Normalien, concours d'entrée 2013
+:::
+:::
+
+### Experience
+
+::: {.d-flex .justify-content-between}
+::: {}
+**INSEE**  
+:::
+::: {.text-end}
+2018 - present
+:::
+:::
+*Data scientist*
+
+

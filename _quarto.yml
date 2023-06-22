@@ -1,0 +1,35 @@
+project:
+  type: website
+
+website:
+  title: "Lino Galiana"
+  description: "Personal website of Lino Galiana"
+  site-url: https://linogaliana.fr
+  repo-url: https://github.com/linogaliana/website
+  open-graph: true
+  #favicon: favicon.png
+  twitter-card: 
+    creator: "@linogaliana"
+    site: "@linogaliana"
+    card-style: "summary_large_image"
+  navbar:
+    background: "#7ebd51"
+    foreground: light
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+      - href: research.qmd
+      #- href: software.qmd
+      #- href: blog.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 4
+    toc-title: "Contents"
+    html-math-method: katex
+    highlight-style: tango
+

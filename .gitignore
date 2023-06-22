@@ -8,3 +8,6 @@
 !content/post/datatable/2020-04-01-introdt.html
 
 !themes/hugo-academic/layouts/partials/toc.html
+/.quarto/
+
+_site/

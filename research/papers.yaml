@@ -1,0 +1,120 @@
+covidhospit:
+    title: "Caractéristiques socioéconomiques des individus aux formes sévères de Covid-19 au fil des vagues épidémiques"
+    authors:
+        - me
+        - Olivier Meslin
+        - Simon Delage
+        - Noémie Courtejoie
+    year: 2022
+    published_url: https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-03/dd96.pdf
+    venue: Etudes et Résultats (DREES)
+    summary: |
+        Les résultats principaux de l'étude sont les suivants:
+        
+        - Si l'étude confirme que l'__âge est le facteur de risque prépondérant d'hospitalisation__, elle met en évidence d'autres facteurs de risque ;
+        - La population hospitalisée réside dans des __logements plus densément occupés et appartenant plus fréquemment au parc social__ ;
+        - Un __risque d'hospitalisation décroissant avec le niveau de vie__ ;
+        - Une population hospitalisée __plus souvent née à l'étranger__ ;
+        - La __quatrième vague se distingue__ des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
+        - Le risque de décéder à l'hôpital reste légèrement __moins élevé chez les personnes aux plus hauts revenus__ ;
+iasegregation:
+    title: "La mixité sociale est plus forte en journée sur les lieux d'activité que pendant la nuit dans les quartiers de résidence"
+    authors:
+        - me
+        - Benjamin Sakarovitch
+        - François Sémécurbe
+        - Zbigniew Smoreda
+    year: 2020
+    preprint: 
+    published_url: https://www.insee.fr/fr/statistiques/4930403
+    venue: Insee Analyses
+    github:
+    cite: "dreescovid.bib"
+    abstract: |
+        Les données de mobilité issues de la téléphonie mobile permettent
+        d'analyser la mixité sociale au-delà des seuls lieux de résidence.
+        En effet, les personnes à hauts revenus et à bas revenus se déplacent et
+        ainsi se côtoient pendant la journée.
+        
+        La mixité sociale est plus importante en journée
+        lorsque les personnes sont en dehors de leur lieu de résidence dans
+        les agglomérations de Paris, Lyon et Marseille.
+        La ségrégation est minimale entre 10 heures et 18 heures quand
+        la plupart des gens ont rejoint leur lieu de travail, alors qu'elle est maximale la nuit.
+        
+        Bien que la mixité sociale augmente avec les déplacements en journée,
+        les personnes à bas revenus restent majoritaires dans le nord-est de
+        l'agglomération parisienne et les personnes à hauts revenus dans l'ouest.
+        La différence entre le jour et la nuit est plus marquée à l'ouest qu'à l'est.
+        
+        Dans les villes, l'organisation
+        des infrastructures de transport entre
+        le centre et la périphérie facilite ou, au contraire,
+        freine les déplacements.
+        Les personnes à bas revenus habitent plus souvent dans les espaces
+        où il est plus difficile de se déplacer (centre à Marseille, périphérie à Lyon et Paris).
+
+iacovid:
+    title: "Retour partiel des mouvements de population avec le déconfinement"
+    authors:
+        - me
+        - Milena Suarez-Castillo
+        - François Sémécurbe
+        - Elise Coudin
+        - Marie Pierre de Bellefon
+    year: 2020
+    preprint: 
+    published_url: https://www.insee.fr/fr/statistiques/4635407
+    venue: Insee Analyses
+    github:
+    cite: "iacovid.bib"
+    abstract: |
+        D'après ses estimations construites à partir de comptages issus de la téléphonie mobile,
+        l'Insee estime que 1,4 million de résidents de France métropolitaine ont
+        rejoint leur département de résidence
+        à la mise en place du confinement le 17 mars 2020 (solde des arrivées et des départs).
+        
+        Lors de la première phase de déconfinement
+        pendant laquelle les déplacements étaient limités à 100 kilomètres
+        (entre le 11 mai et le 2 juin), la répartition de la population
+        sur le territoire est restée proche de celle observée pendant le confinement.
+        Toutefois, le déconfinement s'est traduit par un retour
+        partiel de population en dehors de son lieu de résidence.
+        Ainsi, par rapport à la période avant confinement,
+        le surcroît de résidents de France métropolitaine dans
+        leur département de résidence n'est plus que de 646 000 personnes,
+        contre 1,4 million de personnes pendant le confinement.
+        À Paris, la mise en place du confinement avait
+        engendré de nombreux départs qui concernaient autant le retour
+        de « non-Parisiens » vers leur lieu de résidence que le
+        départ de Parisiens quittant la capitale. 
+        
+        Avec le déconfinement, la population revient partiellement à Paris,
+        en particulier en semaine et il s'agit essentiellement de non-Parisiens.
+        Plus généralement, les mouvements hebdomadaires entre pôles urbains
+        en semaine et départements plus ruraux et littoraux le week-end reprennent.
+segregation:
+    title: "Residential segregation, daytime segregation and spatial frictions: an analysis from mobile phone data"
+    authors:
+        - me
+        - Benjamin Sakarovitch
+        - François Sémécurbe
+        - Zbigniew Smoreda
+    year: 2020
+    published_url: https://www.insee.fr/en/statistiques/4925202
+    venue: Working Paper INSEE
+    github:
+    cite: "segregation2020.bib"
+    abstract: |
+        We bring together mobile phone and geocoded tax data on the three biggest
+        French cities to shed a new light on segregation that accounts for population flows.
+        Mobility being a key factor to reduce spatial segregation,
+        we build a gravity model on an unprecedent scale to estimate the heterogeneity
+        in travel costs.
+        
+        Residential segregation represents the acme of segregation.
+        Low-income people spread more than high-income people during the day.
+        Distance plays a key role to limit population flows.
+        Low-income people live in neighbourhoods where the spatial frictions are strongest.
+
+
