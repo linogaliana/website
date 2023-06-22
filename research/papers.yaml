@@ -1,3 +1,22 @@
+covidhospit:
+    title: "Caractéristiques socioéconomiques des individus aux formes sévères de Covid-19 au fil des vagues épidémiques"
+    authors:
+        - me
+        - Olivier Meslin
+        - Simon Delage
+        - Noémie Courtejoie
+    year: 2022
+    published_url: https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-03/dd96.pdf
+    venue: Etudes et Résultats (DREES)
+    summary: |
+        Les résultats principaux de l'étude sont les suivants:
+        
+        - Si l'étude confirme que l'__âge est le facteur de risque prépondérant d'hospitalisation__, elle met en évidence d'autres facteurs de risque ;
+        - La population hospitalisée réside dans des __logements plus densément occupés et appartenant plus fréquemment au parc social__ ;
+        - Un __risque d'hospitalisation décroissant avec le niveau de vie__ ;
+        - Une population hospitalisée __plus souvent née à l'étranger__ ;
+        - La __quatrième vague se distingue__ des vagues précédentes, ce qui pourrait traduire les effets des campagnes de vaccination ;
+        - Le risque de décéder à l'hôpital reste légèrement __moins élevé chez les personnes aux plus hauts revenus__ ;
 iasegregation:
     title: "La mixité sociale est plus forte en journée sur les lieux d'activité que pendant la nuit dans les quartiers de résidence"
     authors:
@@ -10,7 +29,7 @@ iasegregation:
     published_url: https://www.insee.fr/fr/statistiques/4930403
     venue: Insee Analyses
     github:
-    cite: "iasegregation.bib"
+    cite: "dreescovid.bib"
     abstract: |
         Les données de mobilité issues de la téléphonie mobile permettent
         d'analyser la mixité sociale au-delà des seuls lieux de résidence.
