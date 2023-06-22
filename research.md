@@ -79,7 +79,20 @@ en semaine et départements plus ruraux et littoraux le week-end reprennent.
         <i class="bi bi-journal-text" role='img' aria-label='Cite'></i>
         Cite
     </a></li>
-<li class='list-group-item'><strong>Lino Galiana</strong>, Benjamin Sakarovitch, François Sémécurbe, and Zbigniew Smoreda. (2020) "Residential segregation, daytime segregation and spatial frictions: an analysis from mobile phone data." <em>Working Paper INSEE</em><br><a class="btn btn-outline-dark btn-sm" href="https://www.insee.fr/en/statistiques/4925202" target="_blank" rel="noopener noreferrer">
+<li class='list-group-item'><strong>Lino Galiana</strong>, Benjamin Sakarovitch, François Sémécurbe, and Zbigniew Smoreda. (2020) "Residential segregation, daytime segregation and spatial frictions: an analysis from mobile phone data." <em>Working Paper INSEE</em><details>
+        <summary>Abstract</summary>
+        <div class="abstract">We bring together mobile phone and geocoded tax data on the three biggest
+French cities to shed a new light on segregation that accounts for population flows.
+Mobility being a key factor to reduce spatial segregation,
+we build a gravity model on an unprecedent scale to estimate the heterogeneity
+in travel costs.
+
+Residential segregation represents the acme of segregation.
+Low-income people spread more than high-income people during the day.
+Distance plays a key role to limit population flows.
+Low-income people live in neighbourhoods where the spatial frictions are strongest.
+</div>
+    </details><br><a class="btn btn-outline-dark btn-sm" href="https://www.insee.fr/en/statistiques/4925202" target="_blank" rel="noopener noreferrer">
         <i class="ai ai-archive" role='img' aria-label='Published'></i>
         Published
     </a> <a class="btn btn-outline-dark btn-sm" href="research/segregation2020.bib" target="_blank" rel="noopener noreferrer">
@@ -87,10 +100,3 @@ en semaine et départements plus ruraux et littoraux le week-end reprennent.
         Cite
     </a></li></ul>
 ```
-
-
-
-## Working Papers / Non-archival
-
-
-
