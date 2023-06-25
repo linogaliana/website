@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://linogaliana.fr/index.html</loc>
-    <lastmod>2023-06-23T14:55:45.009Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/research.html</loc>
-    <lastmod>2023-06-23T14:55:49.933Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/about.html</loc>
-    <lastmod>2023-06-23T14:55:50.293Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/teaching/bonnes-pratiques.html</loc>
-    <lastmod>2023-06-23T14:55:51.045Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/teaching/pythonds.html</loc>
-    <lastmod>2023-06-23T14:55:51.385Z</lastmod>
+    <loc>https://linogaliana.fr/projects/cartiflette.html</loc>
+    <lastmod>2023-06-25T13:03:52.657Z</lastmod>
   </url>
   <url>
     <loc>https://linogaliana.fr/teaching/miseenprod.html</loc>
-    <lastmod>2023-06-23T14:55:51.721Z</lastmod>
+    <lastmod>2023-06-25T13:03:51.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/pythonds.html</loc>
+    <lastmod>2023-06-25T13:03:51.293Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/about.html</loc>
+    <lastmod>2023-06-25T13:03:50.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/index.html</loc>
+    <lastmod>2023-06-25T13:03:44.600Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/research.html</loc>
+    <lastmod>2023-06-25T13:03:49.889Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/bonnes-pratiques.html</loc>
+    <lastmod>2023-06-25T13:03:50.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/donnees-emergentes.html</loc>
+    <lastmod>2023-06-25T13:03:51.621Z</lastmod>
   </url>
   <url>
     <loc>https://linogaliana.fr/projects/utilitr.html</loc>
-    <lastmod>2023-06-23T14:55:52.065Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/projects/cartiflette.html</loc>
-    <lastmod>2023-06-23T14:55:52.409Z</lastmod>
+    <lastmod>2023-06-25T13:03:52.281Z</lastmod>
   </url>
 </urlset>

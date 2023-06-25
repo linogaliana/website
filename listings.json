@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/teaching/bonnes-pratiques.html",
+      "/teaching/donnees-emergentes.html",
       "/teaching/miseenprod.html",
       "/teaching/pythonds.html",
       "/projects/cartiflette.html",
