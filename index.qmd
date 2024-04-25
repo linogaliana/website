@@ -3,6 +3,7 @@ title: "Lino Galiana"
 description: "Personal website"
 page-layout: full
 image: /photoCV.png
+toc: false
 resources:
     - "photoCV.png"
 listing: 
@@ -16,8 +17,12 @@ listing:
     template: cards.ejs
 ---
 
-:::: {.column-page-inset}
-::: {.column-page-inset-left}
+
+::: {#hero-banner .column-screen}
+
+:::: {.grid .column-page}
+
+::::: {.headline .g-col-lg-8 .g-col-12 .g-col-md-12}
 
 I am a data scientist in the innovation lab at the French national institute of statistics ([Insee](https://www.insee.fr/fr/accueil)) 🇫🇷. I study how the combination of new data sources and new methods can deepen our understanding of socioeconomic phenomena. I am particularly interested in the exploitation of textual data or spatial data. 
 
@@ -37,19 +42,13 @@ In the same engineering school, I also teach a course [_"Data science projects i
 ([`Github` repository](https://github.com/ensae-reproductibilite/website) {{< fa brands github >}})
 that brings student to the question of _state of the art_ MLOps.
 I also give an [introduction to {{< fa brands r-project >}}](https://rgeo.linogaliana.fr/) ([`Github` repository](https://github.com/linogaliana/r-geographie) {{< fa brands github >}}), an introductory course at [Ecole Normale Supérieure](https://www.geographie.ens.psl.eu/introduction-aux-methodes.html) for data analysis. 
-I used to teach urban economics at [Sciences Po Paris](https://www.sciencespo.fr/en/) and 
-macroeconomics for candidates to the Insee exam. 
 
-::::
+:::::
 
-<div class="column-margin column-container">
+::::: {.g-col-lg-4 .g-col-12 .g-col-md-12 .text-center}
+
 ![](PhotoCV.png){.rounded}
-</div>
-:::
 
-{{< pagebreak >}}
-
-::: {.column-page-inset .text-center}
 ```{=html}
 <a class="btn btn-outline-dark", href="https://twitter.com/linogaliana" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-twitter" role='img' aria-label='Twitter'></i>
@@ -63,7 +62,13 @@ macroeconomics for candidates to the Insee exam.
     <i class="bi bi-linkedin" role='img' aria-label='LinkedIn'></i>
 </a>
 ```
+
+:::::
+
+::::
+
 :::
+
 
 ## Teaching
 
@@ -71,6 +76,7 @@ Courses I currently give :
 
 :::{#teaching}
 :::
+
 
 I also gave the following courses in the past:
 
