@@ -5,8 +5,8 @@ date: '2022-04-01'
 categories: ["R","INSEE"]
 tags: ["R","data science", "utilitR"]
 summary: Une documentation collaborative sur <code>R</code>
-url: https://www.book.utilitr.org/
+url: https://book.utilitr.org/
 github: https://github.com/inseefrlab/utilitr
-website: https://www.book.utilitr.org/
-image: https://www.book.utilitr.org/resources/logo-utilitr.png
+website: https://utilitr.org/
+image: https://utilitr.org/images/logo-utilitr.png
 ---

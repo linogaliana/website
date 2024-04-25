@@ -1,12 +1,12 @@
 ---
 title: <code>cartiflette</code>
-author: <code>InseeFrLab</code>
+author: Un outil pour simplifier la récupération des fonds de carte officiels
 date: '2023-04-01'
 categories: ["Python","INSEE"]
 tags: ["Python","data science"]
 summary: Un projet pour facilement récupérer des fonds de carte IGN
 url: https://www.book.utilitr.org/
 github: https://github.com/inseefrlab/cartiflette
-website: https://observablehq.com/@linogaliana/cartiflette-demo
+website: https://inseefrlab.github.io/cartiflette-website/index.html
 image: https://github.com/InseeFrLab/cartiflette/raw/main/cartiflette.png
 ---

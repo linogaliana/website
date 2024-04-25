@@ -1,5 +1,5 @@
 ---
-title: Bonnes pratiques en <code>R</code> et <code>Git</code>
+title: "Bonnes pratiques en <i class=\"fa-brands fa-r-project\"></i> et <code>Git</code> <i class=\"fa-brands fa-git-alt\"></i>"
 author: "Romain Avouac et Lino Galiana"
 date: '2023-04-01'
 categories: ["R","INSEE"]
