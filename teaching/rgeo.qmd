@@ -1,0 +1,12 @@
+---
+title: "Introduction à <i class=\"fa-brands fa-r-project\"></i> pour l'analyse quantitative"
+author: "Lino Galiana"
+date: '2023-09-01'
+categories: ["R","ENS"]
+tags: ["python","data science", "introduction"]
+summary: Cours en 1ere année des cursus de sciences sociales de l'ENS Ulm, disponible sur https://rgeo.linogaliana.fr/
+url: 'https://rgeo.linogaliana.fr/'
+github: https://github.com/linogaliana/r-geographie
+website: https://rgeo.linogaliana.fr/
+image: https://rgeo.linogaliana.fr/cards/ggplot/drawing.png
+---
