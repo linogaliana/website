@@ -11,12 +11,12 @@ listing:
     contents: "teaching/*.qmd"
     type: grid
     template: cards.ejs
+    sort: "desc date"
   - id: projects
     contents: "projects/*.qmd"
     type: grid
     template: cards.ejs
 ---
-
 
 ::: {#hero-banner .column-screen}
 
@@ -24,24 +24,20 @@ listing:
 
 ::::: {.headline .g-col-lg-8 .g-col-12 .g-col-md-12}
 
-I am a data scientist in the innovation lab at the French national institute of statistics ([Insee](https://www.insee.fr/fr/accueil)) 🇫🇷. I study how the combination of new data sources and new methods can deepen our understanding of socioeconomic phenomena. I am particularly interested in the exploitation of textual data or spatial data. 
+I am a data scientist at the Innovation Lab of the French National Institute of Statistics ([Insee](https://www.insee.fr/fr/accueil)) 🇫🇷. My work focuses on leveraging new data sources and innovative methods to develop reliable statistics on socioeconomic phenomena. I have a particular interest in the analysis of textual and spatial data.
 
-I mostly work with `Python` {{< fa brands python >}}, {{< fa brands r-project >}} and `Javascript` {{< fa brands js-square >}}. 
+I mostly work with `Python` {{< fa brands python >}}, {{< fa brands r-project >}} and `Javascript` {{< fa brands js-square >}}. Most of my work, both personal and professional, is available on my {{< fa brands github >}} [GitHub page](https://github.com/linogaliana) or the {{< fa brands github >}} [GitHub page](https://github.com/inseefrlab) of Insee's Lab.
 
+I currently teach [*Python for Data Scientists*](https://pythonds.linogaliana.fr/) {{< fa brands python >}} at [ENSAE Paris Tech](https://www.ensae.fr/), one of France's top engineering schools. You can find the course materials on the [GitHub repository](https://github.com/linogaliana/python-datascientist) {{< fa brands github >}}.
 
-Most of my work is available on my {{< fa brands github >}} [Github page](https://github.com/linogaliana) or
-the {{< fa brands github >}} [Github page](https://github.com/inseefrlab)
-of the Insee's Lab. 
-Among my main open source projects, I maintain the [`utilitR` project](https://www.utilitr.org/) which is a collective effort involving many people from French administration to propose a high-quality documentation regarding {{< fa brands r-project >}} software. 
+Additionally, I teach a course on [_Data Science Projects in Production_](https://ensae-reproductibilite.github.io/website/) at the same institution. This course addresses state-of-the-art MLOps practices, with materials available on the [GitHub repository](https://github.com/ensae-reproductibilite/website) {{< fa brands github >}}.
 
-I currently teach [*Python for data scientists*](https://pythonds.linogaliana.fr/) 
-([Github repository](https://github.com/linogaliana/python-datascientist) {{< fa brands github >}})
-at `ENSAE Paris Tech`,
-one of the top French engineering school. 
-In the same engineering school, I also teach a course [_"Data science projects in production: from good practices to MLOps"_](https://ensae-reproductibilite.github.io/website/)
-([`Github` repository](https://github.com/ensae-reproductibilite/website) {{< fa brands github >}})
-that brings student to the question of _state of the art_ MLOps.
-I also give an [introduction to {{< fa brands r-project >}}](https://rgeo.linogaliana.fr/) ([`Github` repository](https://github.com/linogaliana/r-geographie) {{< fa brands github >}}), an introductory course at [Ecole Normale Supérieure](https://www.geographie.ens.psl.eu/introduction-aux-methodes.html) for data analysis. 
+I have developed a course on [Good Practices in `R` and `Git`](https://inseefrlab.github.io/formation-bonnes-pratiques-git-R/). Additionally, I used to teach an [Introduction to {{< fa brands r-project >}}](https://rgeo.linogaliana.fr/) ([GitHub repository](https://github.com/linogaliana/r-geographie) {{< fa brands github >}}), an introductory data analysis course at [Ecole Normale Supérieure](https://www.geographie.ens.psl.eu/introduction-aux-methodes.html).
+
+Among my main open-source projects, I maintain the [`utilitR` project](https://www.utilitr.org/), a collective effort involving many contributors from the French administration to provide high-quality documentation for the {{< fa brands r-project >}} software. I also developed [`cartiflette`](https://inseefrlab.github.io/cartiflette-website/), a project designed to offer data scientists working with spatial data easy access to France's geographic borders, facilitating the production of maps.
+
+Since I enjoy using my professional tools for personal projects, I developed [climbtracker](https://github.com/linogaliana/climbtracker) ⛰️🚲, a website that helps road cyclists find ascents in their surrounding areas.
+
 
 :::::
 
@@ -50,10 +46,6 @@ I also give an [introduction to {{< fa brands r-project >}}](https://rgeo.linoga
 ![](PhotoCV.png){.rounded}
 
 ```{=html}
-<a class="btn btn-outline-dark", href="https://twitter.com/linogaliana" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-twitter" role='img' aria-label='Twitter'></i>
-</a>
-
 <a class="btn btn-outline-dark", href="https://github.com/linogaliana" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-github" role='img' aria-label='Github'></i>
 </a>
