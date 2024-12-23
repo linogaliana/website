@@ -2,12 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
-      "/teaching/pythonds.html",
       "/teaching/bonnes-pratiques.html",
       "/teaching/dauphine-api.html",
-      "/teaching/rgeo.html",
-      "/teaching/miseenprod.html",
       "/teaching/donnees-emergentes.html",
+      "/teaching/miseenprod.html",
+      "/teaching/pythonds.html",
+      "/teaching/rgeo.html",
       "/projects/cartiflette.html",
       "/projects/utilitr.html"
     ]
