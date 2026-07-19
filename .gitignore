@@ -11,3 +11,8 @@
 /.quarto/
 
 _site/
+**/*.quarto_ipynb
+
+site_libs/
+research.html.md
+.vscode/

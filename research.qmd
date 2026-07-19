@@ -1,14 +1,88 @@
 ---
-title: "Research"
+title: "Publications"
 echo: false
 section-divs: false
 keep-md: true
 ---
 
-This is the list of my past publications. I don't have that
-much time left for research right now. 
+This is the list of my recent publications. I don't have that
+much time left for research right now: I favor teaching.
+
+
+
+```{=html}
+<style>
+details.pub-abstract summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--bs-link-color);
+    margin-top: 0.6em;
+    list-style: none;
+}
+details.pub-abstract summary::-webkit-details-marker {
+    display: none;
+}
+details.pub-abstract summary::before {
+    content: "▸ ";
+    display: inline-block;
+    transition: transform 0.15s ease-in-out;
+}
+details.pub-abstract[open] summary::before {
+    transform: rotate(90deg);
+}
+details.pub-abstract .abstract {
+    margin-top: 0.6em;
+    padding: 0.85em 1.1em;
+    border-left: 3px solid var(--bs-link-color);
+    background-color: rgba(127, 127, 127, 0.08);
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 0.95em;
+}
+details.pub-abstract .abstract p {
+    margin-bottom: 0.75em;
+}
+details.pub-abstract .abstract p:last-child {
+    margin-bottom: 0;
+}
+details.pub-abstract .abstract ul {
+    margin-bottom: 0.75em;
+    padding-left: 1.25em;
+}
+details.pub-abstract .abstract ul:last-child {
+    margin-bottom: 0;
+}
+.pub-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.5em;
+}
+.pub-btn, .pub-btn:visited {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    gap: 0.35em;
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 0.25rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.pub-btn i {
+    line-height: 1;
+}
+.pub-btn:hover, .pub-btn:visited:hover {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+}
+</style>
+```
 
 ```{python}
+import re
 import yaml
 from IPython.display import display, Markdown, HTML
 
@@ -20,21 +94,33 @@ def readable_list(_s):
 
 def button(url, str, icon):
     icon_base = icon[:2]
-    return f"""<a class="btn btn-outline-dark btn-sm" href="{url}" target="_blank" rel="noopener noreferrer">
-        <i class="{icon_base} {icon}" role='img' aria-label='{str}'></i>
-        {str}
-    </a>"""
+    return f"""<a class="pub-btn" href="{url}" target="_blank" rel="noopener noreferrer"><i class="{icon_base} {icon}" role='img' aria-label='{str}'></i>{str}</a>"""
 
 def cite_button(cite_file):
-    return f"""<a class="btn btn-outline-dark btn-sm" href="research/{cite_file}" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-journal-text" role='img' aria-label='Cite'></i>
-        Cite
-    </a>"""
+    return f"""<a class="pub-btn" href="research/{cite_file}" target="_blank" rel="noopener noreferrer"><i class="bi bi-journal-text" role='img' aria-label='Cite'></i>Cite</a>"""
+
+def format_inline(text):
+    return re.sub(r"__(.+?)__", r"<strong>\1</strong>", text)
+
+def format_abstract(text):
+    """Turn a plain-text abstract (blank-line paragraphs, '- ' bullet
+    lists, __bold__) into real HTML instead of dumping it as one
+    unbroken block of text."""
+    paragraphs = [p.strip() for p in text.strip().split("\n\n") if p.strip()]
+    html_parts = []
+    for para in paragraphs:
+        lines = [l.strip() for l in para.split("\n") if l.strip()]
+        if lines and all(l.startswith("- ") for l in lines):
+            items = "".join(f"<li>{format_inline(l[2:])}</li>" for l in lines)
+            html_parts.append(f"<ul>{items}</ul>")
+        else:
+            html_parts.append(f"<p>{format_inline(' '.join(lines))}</p>")
+    return "".join(html_parts)
 
 def details_section(abstract):
-    return f"""<details>
+    return f"""<details class="pub-abstract">
         <summary>Abstract</summary>
-        <div class="abstract">{abstract}</div>
+        <div class="abstract">{format_abstract(abstract)}</div>
     </details>"""
 
 
@@ -65,8 +151,9 @@ for _, data in yaml_data.items():
     if venue is not None:
         pub_str += f" <em>{venue}</em>"
 
-    # Add the details section with the abstract
-    abstract = data.get("abstract")
+    # Add the details section with the abstract (some older entries use
+    # "summary" instead of "abstract")
+    abstract = data.get("abstract") or data.get("summary")
     if abstract is not None:
         pub_str += details_section(abstract)
 
@@ -74,7 +161,7 @@ for _, data in yaml_data.items():
         if year_str not in pub_strs["wps"]:
             pub_strs["wps"][year_str] = []
         pub_strs["wps"][year_str].append(
-            "<li class='list-group-item'>" + pub_str + "<br>" + " ".join(buttons) + "</li>"
+            "<li class='list-group-item'>" + pub_str + "<div class='pub-buttons'>" + "".join(buttons) + "</div></li>"
         )
     else:
         if year_str not in pub_strs["pubs"]:
@@ -86,7 +173,7 @@ for _, data in yaml_data.items():
             buttons.append(cite_button(cite_file))
             
         pub_strs["pubs"][year_str].append(
-            "<li class='list-group-item'>" + pub_str + "<br>" + " ".join(buttons) + "</li>"
+            "<li class='list-group-item'>" + pub_str + "<div class='pub-buttons'>" + "".join(buttons) + "</div></li>"
         )
 
 ```

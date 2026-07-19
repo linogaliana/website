@@ -117,4 +117,65 @@ segregation:
         Distance plays a key role to limit population flows.
         Low-income people live in neighbourhoods where the spatial frictions are strongest.
 
+wealthlifecycle:
+    title: "Private Wealth Over the Life Cycle: A Meeting Between Microsimulation and Structural Approaches"
+    authors:
+        - me
+        - Lionel Wilner
+    year: 2024
+    preprint: https://hal.science/hal-04799408v1
+    published_url: https://doi.org/10.1111/roiw.12697
+    venue: Review of Income and Wealth
+    github:
+    cite: "wealthlifecycle.bib"
+    abstract: |
+        This paper embeds a structural model of private wealth accumulation over the life cycle within a dynamic microsimulation model designed for long‐run projections of pensions. In such an environment, the optimal savings path results from consumption smoothing and bequests motives, on top of the mortality risk. Preferences are estimated based on a longitudinal wealth survey through a method of simulated moments. Simulations issued from these estimations replicate quite well a private wealth that is more concentrated than labor income. They enable us to compute “augmented” standards of living including capital income, hence to quantify both the countervailing role played by private wealth to earnings dropout after retirement and the impact of the mortality risk in this regard.
+
+parquetdiffusion:
+    title: "Le format Parquet pour la diffusion de données : un choix technique au service des utilisateurs"
+    authors:
+        - Cédric Bobinec
+        - me
+    year: 2025
+    published_url: https://insee.hal.science/hal-05620130v1
+    venue: 15e Journées de méthodologie statistique de l'Insee (JMS 2025)
+    github:
+    cite: "parquetdiffusion.bib"
+    abstract: |
+        La diffusion et l'exploitation de microdonnées se heurte souvent à des freins techniques liés au volume des fichiers et à la complexité de leur exploitation. Le format Parquet, issu à l'origine de l'écosystème big data mais s'étant diffusé bien au-delà de cette sphère, s'impose comme une alternative efficace aux formats traditionnels comme le CSV. Cette présentation reviendra sur les expériences de diffusion de données dans ce format. Ce choix technique, associé à un accompagnement des utilisateurs (guides, exemples de code), a permis d'accroître l'usage de ces sources qui étaient, auparavant, complexes à valoriser. Cette communication évoquera également les implications pratiques de ce choix technique, les bonnes pratiques à mettre en œuvre lors de l'adoption de ce format de données et les opportunités d'innovation permises par ce format.
+
+reproductibilitejms:
+    title: "La reproductibilité au service de la recherche et de la mise en production de projets statistiques"
+    authors:
+        - Romain Avouac
+        - me
+    year: 2025
+    published_url: https://insee.hal.science/hal-05624778v1
+    venue: 15e Journées de méthodologie statistique de l'Insee (JMS 2025)
+    github:
+    cite: "reproductibilitejms.bib"
+    abstract: |
+        La crise de la reproductibilité observée dans la littérature scientifique depuis le milieu des années 2000 et les échecs de mise en production en contexte industriel renvoient souvent à un même phénomène : l’impossibilité de reconstruire, à coût raisonnable, les conditions ayant conduit à un résultat. 
+        
+        Cet article, reprenant de manière succincte des éléments de Avouac et Galiana (2025), adopte une position pragmatique : la reproductibilité « parfaite » est atteignable de manière coûteuse et n’est pas toujours nécessaire, mais un niveau minimal, utile au quotidien, peut être obtenu avec un ensemble restreint de pratiques et d’outils largement disponibles.
+        
+        Nous proposons une grille de lecture fondée sur la séparation de trois composantes d’un projet empirique, fréquemment entremêlées : données, code et configuration. Nous décrivons brièvement les outils et gestes permettant de rendre chaque composantes plus transparente et reproductible.
+
+metiersdata:
+    title: "Qu'apportent les métiers de la data à la statistique publique ?"
+    authors:
+        - me
+        - Olivier Lefebvre
+    year: 2026
+    published_url: https://insee.hal.science/hal-05684911v1
+    venue: Courrier des Statistiques, n°15
+    github:
+    cite: "metiersdata.bib"
+    abstract: |
+        La numérisation progressive des données a profondément transformé la production d'information, dans un contexte où les progrès technologiques et méthodologiques ont amélioré l'efficience des outils informatiques. Parallèlement, la société s'est acculturée à disposer en permanence de statistiques dans le débat public et dans le quotidien, et les entreprises utilisent de plus en plus de données dans leurs processus de décision. Face à ces besoins, il existe une forte demande sur le marché du travail pour des profils spécialisés dans la valorisation de données : data analysts, data scientists, data engineers, data journalists...
+        
+        Ces profils favorisent un rapprochement des compétences entre directions métiers et informatiques, ce qui a de nombreuses vertus : possibilité de réduire les délais de livraison, capacité à associer des données de formes et de natures diverses pour répondre à de nouveaux besoins, production plus transparente… Mais cela représente aussi un défi d'adaptation continue, dans un environnement où les besoins, les outils et les méthodes évoluent rapidement.
+        
+        La statistique publique tire pleinement parti de ces transformations au service de missions inchangées (éclairer le débat public et aider à la décision publique) et de valeurs essentielles (rigueur, transparence, respect de la confidentialité…). L'Insee et les services statistiques ministériels se sont dotés d'infrastructures et d'organisations pour explorer, expérimenter, industrialiser et maintenir ces nouveaux processus.
+
 

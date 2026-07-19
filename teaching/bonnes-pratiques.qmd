@@ -2,6 +2,8 @@
 title: "Bonnes pratiques en <i class=\"fa-brands fa-r-project\"></i> et <code>Git</code> <i class=\"fa-brands fa-git-alt\"></i>"
 author: "Romain Avouac et Lino Galiana"
 date: '2024-01-01'
+order: 3
+since: 2024
 categories: ["R","INSEE"]
 tags: ["R","data science"]
 summary: Cours sur les bonnes pratiques

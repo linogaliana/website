@@ -2,6 +2,9 @@
 title: Nouvelles sources de données
 author: "Lino Galiana et Tom Seimandi"
 date: '2023-10-01'
+order: 4
+since: 2022
+end: 2025
 categories: ["python","ENSAI"]
 tags: ["python","data science"]
 summary: Cours en 2e année d'`ENSAI` (M1) disponible sur https://inseefrlab.github.io/cours-nouvelles-donnees-slides/slides/index.html

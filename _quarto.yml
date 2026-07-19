@@ -13,7 +13,6 @@ website:
     site: "@linogaliana"
     card-style: "summary_large_image"
   navbar:
-    background: "#7ebd51"
     foreground: light
     left:
       - href: index.qmd
@@ -25,11 +24,13 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: [cosmo, theme-light.scss, fonts.scss]
+      dark: [solar, theme-dark.scss, fonts.scss]
+    # css: styles.css
     toc: true
     toc-depth: 4
     toc-title: "Contents"
     html-math-method: katex
     highlight-style: tango
-
+    respect-user-color-scheme: true
