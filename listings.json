@@ -2,11 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/teaching/bonnes-pratiques.html",
-      "/teaching/dauphine-api.html",
-      "/teaching/donnees-emergentes.html",
-      "/teaching/miseenprod.html",
       "/teaching/pythonds.html",
+      "/teaching/miseenprod.html",
+      "/teaching/bonnes-pratiques.html",
+      "/teaching/donnees-emergentes.html",
       "/teaching/rgeo.html",
       "/projects/cartiflette.html",
       "/projects/utilitr.html"
