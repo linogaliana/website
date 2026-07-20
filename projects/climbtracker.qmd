@@ -1,0 +1,12 @@
+---
+title: <code>climbtracker</code>
+author: Une application pour repérer les ascensions cyclistes à proximité
+date: '2024-01-01'
+categories: ["Python","Cyclisme"]
+tags: ["Python","data science","cyclisme"]
+summary: Un site qui aide les cyclistes sur route à trouver des ascensions dans leurs environs
+url: https://github.com/linogaliana/climbtracker
+github: https://github.com/linogaliana/climbtracker
+website: https://github.com/linogaliana/climbtracker
+image: climbtracker.png
+---

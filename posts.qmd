@@ -1,0 +1,203 @@
+---
+title: "LinkedIn"
+echo: false
+section-divs: false
+keep-md: true
+---
+
+I've posted quite a bit on [LinkedIn](https://www.linkedin.com/in/linogaliana/) {{< fa brands linkedin >}} since 2022, and since no social platform's longevity is ever guaranteed (⚰️ RIP `Twitter` {{< fa brands twitter >}}), I'd rather keep my own archive of these *posts*:
+
+
+```{=html}
+<style>
+.li-post {
+    border-left: 3px solid var(--bs-link-color);
+    background-color: rgba(127, 127, 127, 0.06);
+    border-radius: 0 0.2rem 0.2rem 0;
+    padding: 0.5em 0.8em;
+    margin-bottom: 0.5em;
+}
+.li-post-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.6em;
+    margin-bottom: 0.2em;
+}
+.li-post-date {
+    font-size: 0.75em;
+    color: var(--bs-secondary-color, #6c757d);
+    white-space: nowrap;
+}
+.li-post-link {
+    font-size: 0.75em;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--bs-link-color);
+}
+.li-post-link:hover {
+    text-decoration: underline;
+}
+.li-post-title {
+    font-weight: 600;
+    margin: 0 0 0.25em;
+}
+.li-post-teaser {
+    margin: 0;
+    font-size: 0.92em;
+}
+.li-post-toggle {
+    display: inline-block;
+    margin-top: 0.15em;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--bs-link-color);
+}
+.li-post-toggle-arrow {
+    display: inline-block;
+    transition: transform 0.15s ease-in-out;
+}
+.li-post-toggle[aria-expanded="true"] .li-post-toggle-arrow {
+    transform: rotate(90deg);
+}
+.li-post-full {
+    margin-top: 0.3em;
+    font-size: 0.92em;
+}
+.li-post-full p {
+    margin: 0 0 0.5em;
+}
+.li-post-full p:last-child {
+    margin-bottom: 0;
+}
+.li-post-hashtag {
+    color: var(--bs-link-color);
+    font-weight: 500;
+}
+.li-post-url {
+    word-break: break-all;
+}
+</style>
+```
+
+```{=html}
+<script>
+document.addEventListener("click", function (event) {
+    var toggle = event.target.closest(".li-post-toggle");
+    if (!toggle) return;
+
+    var post = toggle.closest(".li-post");
+    var teaser = post.querySelector(".li-post-teaser");
+    var full = post.querySelector(".li-post-full");
+    var expanded = toggle.getAttribute("aria-expanded") === "true";
+
+    expanded = !expanded;
+    toggle.setAttribute("aria-expanded", String(expanded));
+    toggle.querySelector(".li-post-toggle-label").textContent = expanded ? "Show less" : "Show more";
+    if (teaser) teaser.hidden = expanded;
+    full.hidden = !expanded;
+});
+</script>
+```
+
+```{python}
+import csv
+import html
+import re
+from collections import defaultdict
+from datetime import datetime
+from IPython.display import display, Markdown, HTML
+
+URL_RE = re.compile(r'https?://[^\s<>"]+')
+HASHTAG_RE = re.compile(r'(?<!\w)#([A-Za-zÀ-ÖØ-öø-ÿ0-9_]+)')
+TEASER_LEN = 180
+
+
+def clean_commentary(text):
+    """Undo LinkedIn's export artifact: each line is wrapped in stray
+    quotes (e.g. 'foo"\\n""\\n"bar' instead of 'foo\\n\\nbar')."""
+    text = re.sub(r'"(?=\n)|(?<=\n)"', "", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+
+def linkify(text):
+    text = html.escape(text, quote=False)
+
+    def repl_url(m):
+        url = m.group(0)
+        trailing = ""
+        while url and url[-1] in ".,;:!?)\"'":
+            trailing = url[-1] + trailing
+            url = url[:-1]
+        return f'<a href="{url}" target="_blank" rel="noopener noreferrer" class="li-post-url">{url}</a>{trailing}'
+
+    text = URL_RE.sub(repl_url, text)
+    text = HASHTAG_RE.sub(r'<span class="li-post-hashtag">#\1</span>', text)
+    return text
+
+
+def truncate(text, length):
+    if len(text) <= length:
+        return text, False
+    cut = text[:length].rsplit(" ", 1)[0]
+    return cut + "…", True
+
+
+def post_html(row):
+    dt = datetime.strptime(row["Date"], "%Y-%m-%d %H:%M:%S")
+    date_str = dt.strftime("%d %B %Y")
+    link = row["ShareLink"]
+
+    paragraphs = [p.strip() for p in clean_commentary(row["ShareCommentary"]).split("\n\n") if p.strip()]
+    title, *body_paragraphs = paragraphs
+    body_text = "\n\n".join(body_paragraphs)
+
+    teaser_html = ""
+    full_html = ""
+    toggle_html = ""
+    if body_text:
+        teaser, truncated = truncate(body_text, TEASER_LEN)
+        teaser_html = f'<p class="li-post-teaser">{linkify(teaser)}</p>'
+        full_paragraphs = "".join(f"<p>{linkify(p)}</p>" for p in body_paragraphs)
+        full_html = f'<div class="li-post-full" hidden>{full_paragraphs}</div>'
+        toggle_html = (
+            '<button type="button" class="li-post-toggle" aria-expanded="false">'
+            '<span class="li-post-toggle-arrow">▸</span> '
+            '<span class="li-post-toggle-label">Show more</span>'
+            "</button>"
+        )
+
+    return f"""<div class="li-post">
+        <div class="li-post-head">
+            <span class="li-post-date">{date_str}</span>
+            <a class="li-post-link" href="{link}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
+        <p class="li-post-title">{linkify(title)}</p>
+        {teaser_html}
+        {full_html}
+        {toggle_html}
+    </div>"""
+
+
+with open("shares.csv", newline="", encoding="utf-8") as f:
+    rows = [r for r in csv.DictReader(f) if r["ShareCommentary"].strip()]
+
+by_year = defaultdict(list)
+for row in rows:
+    year = row["Date"][:4]
+    by_year[year].append(row)
+```
+
+```{python}
+#| label: "linkedin-posts"
+#| id: "linkedin-posts"
+#| output: asis
+for year in sorted(by_year.keys(), reverse=True):
+    display(Markdown(f"## {year}" + "{#" + f"linkedin-{year}" + "}"))
+    display(HTML("\n".join(post_html(row) for row in by_year[year])))
+```
