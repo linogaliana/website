@@ -19,6 +19,8 @@ website:
         text: Home
       - href: about.qmd
       - href: research.qmd
+      - href: posts.qmd
+        text: Archive `LinkedIn`
       #- href: software.qmd
       #- href: blog.qmd
 

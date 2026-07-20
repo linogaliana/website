@@ -16,3 +16,5 @@ _site/
 site_libs/
 research.html.md
 .vscode/
+
+*.html.md
