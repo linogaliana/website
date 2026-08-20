@@ -349,14 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#map" id="toc-map" class="nav-link active" data-scroll-target="#map">Map</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -383,11 +377,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>A selection of talks I’ve given. Hover a title to preview it, click to pin it below.</p>
 <style>
+html {
+    /* Keep the scrollbar gutter reserved at all times: without this, hovering
+       a map pin (which resizes the talk panel below) can toggle the vertical
+       scrollbar, shrinking the page width, which makes MapLibre auto-resize
+       and shift the marker out from under the cursor — retriggering the
+       hover and causing an endless flicker loop. */
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+.talks-view-toggle {
+    display: flex;
+    gap: 0.5em;
+    margin: 1em 0;
+    max-width: 320px;
+}
+.talks-view-toggle button {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    color: var(--bs-body-color);
+    background: transparent;
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.talks-view-toggle button.is-active {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-link-color);
+    border-color: var(--bs-link-color);
+}
+.talks-columns {
+    margin: 1em 0 1.5em;
+}
+.talks-columns[data-mobile-view="list"] .talks-map-col {
+    display: none;
+}
+.talks-columns[data-mobile-view="map"] .talks-buttons-col {
+    display: none;
+}
+.talks-buttons-wrap {
+    position: relative;
+    max-height: 6.5em;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.talks-buttons-wrap.is-expanded {
+    max-height: 2000px;
+}
+.talks-buttons-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(to bottom, transparent, var(--bs-body-bg));
+    pointer-events: none;
+}
+.talks-buttons-wrap.is-expanded .talks-buttons-fade {
+    display: none;
+}
+.talks-show-more {
+    pointer-events: auto;
+    color: var(--bs-link-color);
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 999px;
+    padding: 0.2rem 0.9rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
 .talks-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
-    margin: 1em 0 1.5em;
 }
 .talk-btn {
     display: inline-flex;
@@ -441,6 +511,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     font-size: 0.9em;
     opacity: 0.75;
 }
+.talk-subitem {
+    padding-top: 1em;
+    margin-top: 1em;
+    border-top: 1px solid var(--bs-border-color, currentColor);
+}
+.talk-subitem:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+}
+.talk-subitem-title {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
 .talk-embed {
     position: relative;
     width: 100%;
@@ -468,8 +552,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 
-<div class="talks-buttons" id="talks-buttons">
-<button type="button" class="talk-btn" data-alias="rr2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Rencontres R 2026</button><button type="button" class="talk-btn" data-alias="isi-regional-2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI Regional Conference 2026</button><button type="button" class="talk-btn" data-alias="isi-world-2025"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI World Statistical Congress 2025</button>
+<div class="talks-view-toggle" id="talks-view-toggle">
+    <button type="button" class="is-active" data-view="list">List</button>
+    <button type="button" data-view="map">Map</button>
+</div>
+
+<div class="talks-columns" id="talks-columns" data-mobile-view="list">
+    <div class="talks-buttons-col">
+        <div class="talks-buttons-wrap" id="talks-buttons-wrap">
+            <div class="talks-buttons" id="talks-buttons">
+            <button type="button" class="talk-btn" data-alias="rr2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Rencontres R 2026</button><button type="button" class="talk-btn" data-alias="isi-regional-2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI Regional Conference 2026</button><button type="button" class="talk-btn" data-alias="psf-creons-2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Atelier CREONS 2026</button><button type="button" class="talk-btn" data-alias="grp-jms-2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> JMS 2026</button><button type="button" class="talk-btn" data-alias="isi-world-2025"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI WSC 2025</button><button type="button" class="talk-btn" data-alias="masa-ia-2024"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Journée IA du MASA</button><button type="button" class="talk-btn" data-alias="ssplab-bigdata-2024"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Séminaire big data (ENSAI)</button><button type="button" class="talk-btn" data-alias="parquet-ocde-2024"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> OECD workshop 2024</button><button type="button" class="talk-btn" data-alias="isi-wsc-2023-ottawa"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> 64th ISI World Statistics Congress</button><button type="button" class="talk-btn" data-alias="rr2023-avignon"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Rencontres R 2023</button><button type="button" class="talk-btn" data-alias="goodit-2022"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> GoodIT 2022</button><button type="button" class="talk-btn" data-alias="jms-relevanc-2022"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> JMS 2022</button><button type="button" class="talk-btn" data-alias="onyxia-scaleup-2022"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Onyxia Scale Up #1</button><button type="button" class="talk-btn" data-alias="methodo-relevanc-2021"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Séminaire de méthodologie</button><button type="button" class="talk-btn" data-alias="spyrales-2021"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Rencontres Spyrales</button><button type="button" class="talk-btn" data-alias="jma-segregation-2021"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> JMA 2021</button><button type="button" class="talk-btn" data-alias="cepr-workshop-2019"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> Workshop CEPR-AMSE-Banque de France</button><button type="button" class="talk-btn" data-alias="cdc-workshop-2019"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> Workshop on Pensions and Ageing</button><button type="button" class="talk-btn" data-alias="netmob-2019"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> Netmob 2019</button><button type="button" class="talk-btn" data-alias="amsterdam-uea-2019"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> UEA Amsterdam</button><button type="button" class="talk-btn" data-alias="seminaire-d2e-2019"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Séminaire du D2E</button><button type="button" class="talk-btn" data-alias="bigsurv18-barcelona"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> BigSurv18</button>
+            </div>
+            <div class="talks-buttons-fade">
+                <button type="button" class="talks-show-more" id="talks-show-more">Show more ▾</button>
+            </div>
+        </div>
+    </div>
+    <div class="talks-map-col" id="talks-map-col">
+<script type="ojs-define">{"contents": [{"name": "talks_map_data", "value": [{"alias": "rr2026", "event": "Rencontres R 2026", "lat": 47.2375, "lng": -1.5537}, {"alias": "isi-regional-2026", "event": "ISI Regional Conference 2026", "lat": 35.9020939, "lng": 14.4834608}, {"alias": "psf-creons-2026", "event": "Atelier CREONS 2026", "lat": 48.8027, "lng": 2.1329}, {"alias": "grp-jms-2026", "event": "JMS 2026", "lat": 48.8462, "lng": 2.3556}, {"alias": "isi-world-2025", "event": "ISI WSC 2025", "lat": 52.0787, "lng": 4.2888}, {"alias": "masa-ia-2024", "event": "Journ\u00e9e IA du MASA", "lat": 48.8548, "lng": 2.3187}, {"alias": "ssplab-bigdata-2024", "event": "S\u00e9minaire big data (ENSAI)", "lat": 48.0186, "lng": -1.7461}, {"alias": "parquet-ocde-2024", "event": "OECD workshop 2024", "lat": 48.8578, "lng": 2.2717}, {"alias": "isi-wsc-2023-ottawa", "event": "64th ISI World Statistics Congress", "lat": 45.4215, "lng": -75.6972}, {"alias": "rr2023-avignon", "event": "Rencontres R 2023", "lat": 43.9493, "lng": 4.8055}, {"alias": "goodit-2022", "event": "GoodIT 2022", "lat": 34.6851, "lng": 33.0429}, {"alias": "jms-relevanc-2022", "event": "JMS 2022", "lat": 48.8566, "lng": 2.3522}, {"alias": "onyxia-scaleup-2022", "event": "Onyxia Scale Up #1", "lat": 48.8566, "lng": 2.3522}, {"alias": "methodo-relevanc-2021", "event": "S\u00e9minaire de m\u00e9thodologie", "lat": 48.8566, "lng": 2.3522}, {"alias": "spyrales-2021", "event": "Rencontres Spyrales", "lat": 48.8566, "lng": 2.3522}, {"alias": "cepr-workshop-2019", "event": "Workshop CEPR-AMSE-Banque de France", "lat": 48.8566, "lng": 2.3522}, {"alias": "cdc-workshop-2019", "event": "Workshop on Pensions and Ageing", "lat": 48.8566, "lng": 2.3522}, {"alias": "netmob-2019", "event": "Netmob 2019", "lat": 51.752, "lng": -1.2577}, {"alias": "amsterdam-uea-2019", "event": "UEA Amsterdam", "lat": 52.3676, "lng": 4.9041}, {"alias": "seminaire-d2e-2019", "event": "S\u00e9minaire du D2E", "lat": 48.8137, "lng": 2.3138}, {"alias": "bigsurv18-barcelona", "event": "BigSurv18", "lat": 41.3888, "lng": 2.1969}]}]}</script>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="333" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 332;"><span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>maplibregl <span class="op">=</span> (<span class="cf">await</span> <span class="im">import</span>(<span class="st">"https://esm.sh/maplibre-gl@4.7.1"</span>))<span class="op">.</span><span class="at">default</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> container <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>  container<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"talks-map"</span><span class="op">;</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    container<span class="op">,</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> <span class="st">"https://tiles.openfreemap.org/styles/liberty"</span><span class="op">,</span></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">46</span>]<span class="op">,</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">addControl</span>(<span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">NavigationControl</span>()<span class="op">,</span> <span class="st">"top-right"</span>)<span class="op">;</span></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">on</span>(<span class="st">"load"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>talks_map_data<span class="op">.</span><span class="at">length</span>) <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> bounds <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">LngLatBounds</span>()<span class="op">;</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>    talks_map_data<span class="op">.</span><span class="fu">forEach</span>((t) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> marker <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Marker</span>({ <span class="dt">color</span><span class="op">:</span> <span class="st">"#eb6864"</span> })</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">setLngLat</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">addTo</span>(m)<span class="op">;</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> el <span class="op">=</span> marker<span class="op">.</span><span class="fu">getElement</span>()<span class="op">;</span></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cursor</span> <span class="op">=</span> <span class="st">"pointer"</span><span class="op">;</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="at">title</span> <span class="op">=</span> t<span class="op">.</span><span class="at">event</span><span class="op">;</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> leaveTimeout <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"mouseenter"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>        <span class="pp">clearTimeout</span>(leaveTimeout)<span class="op">;</span></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>        <span class="bu">window</span><span class="op">.</span><span class="at">__talksHoverPreview</span> <span class="op">&amp;&amp;</span> <span class="bu">window</span><span class="op">.</span><span class="fu">__talksHoverPreview</span>(t<span class="op">.</span><span class="at">alias</span>)<span class="op">;</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"mouseleave"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MapLibre repositions marker elements on every map render, so the</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>        <span class="co">// pin can shift a pixel or two under the cursor while it's loading</span></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>        <span class="co">// tiles, firing spurious enter/leave pairs. Debounce the "leave" so</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>        <span class="co">// a near-immediate re-enter cancels it instead of flip-flopping the</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>        <span class="co">// panel content.</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>        leaveTimeout <span class="op">=</span> <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>          <span class="bu">window</span><span class="op">.</span><span class="at">__talksHoverEnd</span> <span class="op">&amp;&amp;</span> <span class="bu">window</span><span class="op">.</span><span class="fu">__talksHoverEnd</span>()<span class="op">;</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span> <span class="dv">150</span>)<span class="op">;</span></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>      el<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"click"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>        <span class="bu">window</span><span class="op">.</span><span class="at">__talksSelect</span> <span class="op">&amp;&amp;</span> <span class="bu">window</span><span class="op">.</span><span class="fu">__talksSelect</span>(t<span class="op">.</span><span class="at">alias</span>)<span class="op">;</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>      bounds<span class="op">.</span><span class="fu">extend</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])<span class="op">;</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>    m<span class="op">.</span><span class="fu">fitBounds</span>(bounds<span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">8</span> })<span class="op">;</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+
+    </div>
 </div>
 
 <div class="talk-panel" id="talk-panel" tabindex="-1">
@@ -477,19 +645,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 <script id="talks-data" type="application/json">
-[{"event": "Rencontres R 2026", "title": "R est-il un langage adapt\u00e9 \u00e0 la production?", "alias": "rr2026", "date": "2026-06-17", "location": "Nantes, France", "coords": "Latitude : 47.2375\u00b0 N\nLongitude : -1.5537\u00b0 W\n", "language": "fr", "slides": "https://linogaliana.github.io/prez-rencontresR-2026/#/title-slide", "video": ""}, {"event": "ISI Regional Conference 2026", "title": "From 'it worked on my notebook' to production-ready machine learning", "alias": "isi-regional-2026", "date": "2026-06-04", "location": "Valetta, Malta", "coords": " Latitude : 35.9020939\u00b0 N Longitude: 14.4834608\u00b0 E ", "language": "en", "slides": "https://linogaliana.github.io/20260603-prez-isi-regional/", "video": ""}, {"event": "ISI World Statistical Congress 2025", "title": "Challenges and insights in developing and evaluating a RAG pipeline for Official Statistics", "alias": "isi-world-2025", "date": "2025-06-10", "location": "The Hague, Netherlands", "coords": " Latitude: 52.0787\u00b0 N Longitude: 4.2888\u00b0 E ", "language": "en", "slides": "https://github.com/linogaliana/isi2025-wsc-prez/raw/main/isi-wsc-galiana.pdf/", "video": ""}]
-</script>
-
+[{"alias": "rr2026", "event": "Rencontres R 2026", "language": "fr", "talks": [{"event": "Rencontres R 2026", "title": "R est-il un langage adapt\u00e9 \u00e0 la production?", "alias": "rr2026", "date": "2026-06-17", "location": "Nantes, France", "coords": "Latitude : 47.2375\u00b0 N\nLongitude : -1.5537\u00b0 W\n", "language": "fr", "slides": "https://linogaliana.github.io/prez-rencontresR-2026/#/title-slide", "video": ""}]}, {"alias": "isi-regional-2026", "event": "ISI Regional Conference 2026", "language": "en", "talks": [{"event": "ISI Regional Conference 2026", "title": "From 'it worked on my notebook' to production-ready machine learning", "alias": "isi-regional-2026", "date": "2026-06-04", "location": "Valetta, Malta", "coords": " Latitude : 35.9020939\u00b0 N Longitude: 14.4834608\u00b0 E ", "language": "en", "slides": "https://linogaliana.github.io/20260603-prez-isi-regional/", "video": ""}]}, {"alias": "psf-creons-2026", "event": "Atelier CREONS 2026", "language": "fr", "talks": [{"event": "Atelier CREONS 2026", "title": "Enjeux et m\u00e9thodes de la reproductibilit\u00e9 scientifique", "alias": "psf-creons-2026", "date": "2026-05-29", "location": "Versailles, France", "coords": " Latitude : 48.8027\u00b0 N Longitude: 2.1329\u00b0 E ", "language": "fr", "slides": "https://linogaliana.github.io/psf-presentation-reproductibilite/#/title-slide", "video": ""}]}, {"alias": "grp-jms-2026", "event": "JMS 2026", "language": "fr", "talks": [{"event": "JMS 2026", "title": "La reproductibilit\u00e9 au service de la recherche et de la mise en production de projets statistiques", "alias": "jms-papier-repro-2025", "date": "2025-11-26", "location": "Paris, France", "coords": " Latitude : 48.8462\u00b0 N Longitude: 2.3556\u00b0 E ", "language": "fr", "slides": "https://linogaliana.github.io/jms-papier-repro/#/title-slide", "video": ""}, {"event": "JMS 2026", "title": "Le format Parquet pour la diffusion de donn\u00e9es", "alias": "jms-slides-parquet-2025", "date": "2025-11-26", "location": "Paris, France", "coords": " Latitude : 48.8462\u00b0 N Longitude: 2.3556\u00b0 E ", "language": "fr", "slides": "https://linogaliana.github.io/jms-slides-parquet/#/title-slide", "video": ""}]}, {"alias": "isi-world-2025", "event": "ISI WSC 2025", "language": "en", "talks": [{"event": "ISI WSC 2025", "title": "Challenges and insights in developing and evaluating a RAG pipeline for Official Statistics", "alias": "isi-world-2025", "date": "2025-06-10", "location": "The Hague, Netherlands", "coords": " Latitude: 52.0787\u00b0 N Longitude: 4.2888\u00b0 E ", "language": "en", "slides": "https://github.com/linogaliana/isi2025-wsc-prez/raw/main/isi-wsc-galiana.pdf/", "video": ""}]}, {"alias": "masa-ia-2024", "event": "Journ\u00e9e IA du MASA", "language": "fr", "talks": [{"event": "Journ\u00e9e IA du MASA", "title": "Les enjeux de l'adoption de mod\u00e8les d'apprentissage", "alias": "masa-ia-2024", "date": "2024-10-15", "location": "Paris, France", "coords": " Latitude : 48.8548\u00b0 N Longitude: 2.3187\u00b0 E ", "language": "fr", "slides": "https://linogaliana.github.io/20241015-prez-ia-masa/#/title-slide", "video": ""}]}, {"alias": "ssplab-bigdata-2024", "event": "S\u00e9minaire big data (ENSAI)", "language": "fr", "talks": [{"event": "S\u00e9minaire big data (ENSAI)", "title": "Statistique publique et big data", "alias": "ssplab-bigdata-2024", "date": "2024-05-14", "location": "Bruz, France", "coords": " Latitude : 48.0186\u00b0 N Longitude: -1.7461\u00b0 W ", "language": "fr", "slides": "", "video": ""}]}, {"alias": "parquet-ocde-2024", "event": "OECD workshop 2024", "language": "en", "talks": [{"event": "OECD workshop 2024", "title": "Parquet files for large (and big) data dissemination", "alias": "parquet-ocde-2024", "date": "2024-02-20", "location": "Paris, France", "coords": " Latitude : 48.8578\u00b0 N Longitude: 2.2717\u00b0 E ", "language": "en", "slides": "https://linogaliana.github.io/prez-parquet-ocde-2024/#/title-slide", "video": ""}]}, {"alias": "isi-wsc-2023-ottawa", "event": "64th ISI World Statistics Congress", "language": "en", "talks": [{"event": "64th ISI World Statistics Congress", "title": "Fuzzy matching on big-data: an illustration with scanner and crowd-sourced nutritional datasets", "alias": "isi-wsc-2023-ottawa", "date": "2023-07-19", "location": "Ottawa, Canada", "coords": " Latitude : 45.4215\u00b0 N Longitude: -75.6972\u00b0 W ", "language": "en", "slides": "https://www.isi-next.org/abstracts/submission/901/view/", "video": ""}]}, {"alias": "rr2023-avignon", "event": "Rencontres R 2023", "language": "fr", "talks": [{"event": "Rencontres R 2023", "title": "Diffuser la culture de la reproductibilit\u00e9 par une formation aux bonnes pratiques", "alias": "rr2023-avignon", "date": "2023-06-22", "location": "Avignon, France", "coords": " Latitude : 43.9493\u00b0 N Longitude: 4.8055\u00b0 E ", "language": "fr", "slides": "https://linogaliana.github.io/prez-rr2023-avignon/#/title-slide", "video": ""}]}, {"alias": "goodit-2022", "event": "GoodIT 2022", "language": "en", "talks": [{"event": "GoodIT 2022", "title": "Fuzzy matching on big-data: illustration with scanner and crowd-sourced nutritional datasets", "alias": "goodit-2022", "date": "2022-07-09", "location": "Limassol, Cyprus", "coords": " Latitude : 34.6851\u00b0 N Longitude: 33.0429\u00b0 E ", "language": "en", "slides": "", "video": ""}]}, {"alias": "jms-relevanc-2022", "event": "JMS 2022", "language": "fr", "talks": [{"event": "JMS 2022", "title": "Enrichissement de donn\u00e9es de caisses \u00e0 partir d'informations nutritionnelles", "alias": "jms-relevanc-2022", "date": "2022-03-31", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "fr", "slides": "", "video": "https://www.youtube.com/watch?v=VZKjzAm0PGc"}]}, {"alias": "onyxia-scaleup-2022", "event": "Onyxia Scale Up #1", "language": "fr", "talks": [{"event": "Onyxia Scale Up #1", "title": "Ressources Python pour s'autoformer sur le SSPCloud", "alias": "onyxia-scaleup-2022", "date": "2022-03-11", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "fr", "slides": "https://linogaliana-scaleup-onyxia.netlify.app", "video": "https://minio.lab.sspcloud.fr/projet-onyxia/diffusion/scaleup/20220311-formations.mp4"}]}, {"alias": "methodo-relevanc-2021", "event": "S\u00e9minaire de m\u00e9thodologie", "language": "fr", "talks": [{"event": "S\u00e9minaire de m\u00e9thodologie", "title": "Appariements flous de donn\u00e9es textuelles en grande dimension", "alias": "methodo-relevanc-2021", "date": "2021-12-09", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "fr", "slides": "", "video": ""}]}, {"alias": "spyrales-2021", "event": "Rencontres Spyrales", "language": "fr", "talks": [{"event": "Rencontres Spyrales", "title": "Quelques ressources R et Python utiles pour s'autoformer", "alias": "spyrales-2021", "date": "2021-11-30", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "fr", "slides": "https://linogaliana-spyrales-rencontres-prez.netlify.app", "video": ""}]}, {"alias": "jma-segregation-2021", "event": "JMA 2021", "language": "en", "talks": [{"event": "JMA 2021", "title": "Dynamic approach of spatial segregation: a framework with mobile phone data", "alias": "jma-segregation-2021", "date": "2021-06-03", "location": "Online", "language": "en", "slides": "", "video": ""}]}, {"alias": "cepr-workshop-2019", "event": "Workshop CEPR-AMSE-Banque de France", "language": "en", "talks": [{"event": "Workshop CEPR-AMSE-Banque de France", "title": "2019 Workshop CEPR-AMSE on social mobility", "alias": "cepr-workshop-2019", "date": "2019-11-15", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "en", "slides": "https://linogaliana.netlify.app/pdf/workshopCEPR/markdown.pdf", "video": ""}]}, {"alias": "cdc-workshop-2019", "event": "Workshop on Pensions and Ageing", "language": "en", "talks": [{"event": "Workshop on Pensions and Ageing", "title": "Workshop on Pensions and Ageing (2019)", "alias": "cdc-workshop-2019", "date": "2019-11-07", "location": "Paris, France", "coords": " Latitude : 48.8566\u00b0 N Longitude: 2.3522\u00b0 E ", "language": "en", "slides": "", "video": ""}]}, {"alias": "netmob-2019", "event": "Netmob 2019", "language": "en", "talks": [{"event": "Netmob 2019", "title": "Netmob 2019 poster about segregation", "alias": "netmob-2019", "date": "2019-07-09", "location": "Oxford, UK", "coords": " Latitude : 51.7520\u00b0 N Longitude: -1.2577\u00b0 W ", "language": "en", "slides": "https://linogaliana.netlify.app/pdf/netmob2019/Poster_NETMOB.pdf", "video": ""}]}, {"alias": "amsterdam-uea-2019", "event": "UEA Amsterdam", "language": "en", "talks": [{"event": "UEA Amsterdam", "title": "Dynamic approach of spatial segregation, a framework with mobile phone data", "alias": "amsterdam-uea-2019", "date": "2019-05-31", "location": "Amsterdam, Netherlands", "coords": " Latitude : 52.3676\u00b0 N Longitude: 4.9041\u00b0 E ", "language": "en", "slides": "https://linogaliana.netlify.app/pdf/uea2019/uea2019.pdf", "video": ""}]}, {"alias": "seminaire-d2e-2019", "event": "S\u00e9minaire du D2E", "language": "fr", "talks": [{"event": "S\u00e9minaire du D2E", "title": "S\u00e9minaire du D\u00e9partement des Etudes Economiques", "alias": "seminaire-d2e-2019", "date": "2019-02-19", "location": "Montrouge, France", "coords": " Latitude : 48.8137\u00b0 N Longitude: 2.3138\u00b0 E ", "language": "fr", "slides": "", "video": ""}]}, {"alias": "bigsurv18-barcelona", "event": "BigSurv18", "language": "en", "talks": [{"event": "BigSurv18", "title": "Complementing Official Statistics With Mobile Phone Data", "alias": "bigsurv18-barcelona", "date": "2018-10-26", "location": "Barcelona, Spain", "coords": " Latitude : 41.3888\u00b0 N Longitude: 2.1969\u00b0 E ", "language": "en", "slides": "https://www.bigsurv18.org/conf18/uploads/217/237/main_diffusion2.pdf", "video": ""}]}]</script>
 <script>
 (function () {
     const data = JSON.parse(document.getElementById("talks-data").textContent);
-    const talksByAlias = Object.fromEntries(data.map((t) => [t.alias, t]));
+    const talksByAlias = {};
+    data.forEach((group) => {
+        talksByAlias[group.alias] = group;
+        // Deep links to an individual talk's own alias (e.g. from an old
+        // URL) still resolve, landing on the group it now belongs to.
+        group.talks.forEach((t) => { talksByAlias[t.alias] = group; });
+    });
     const panel = document.getElementById("talk-panel");
     const buttons = Array.from(document.querySelectorAll(".talk-btn"));
     let selectedAlias = null;
+    let renderedAlias = null;
 
     function embedSlides(url) {
-        return `<div class="talk-embed"><iframe src="${url}" loading="lazy" allowfullscreen></iframe></div>`;
+        // Serve PDFs through PDF.js's own viewer instead of framing the file
+        // directly: some hosts (e.g. GitHub's raw file server) send
+        // "X-Frame-Options: deny" and an octet-stream content-type on PDFs,
+        // which makes a plain <iframe src="..."> download the file instead
+        // of showing it. PDF.js fetches the bytes itself (allowed by CORS)
+        // rather than navigating the iframe to that URL, so it renders fine.
+        const isPdf = /\.pdf\/?(?:[?#]|$)/i.test(url);
+        const src = isPdf
+            ? `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(url)}`
+            : url;
+        return `<div class="talk-embed"><iframe src="${src}" loading="lazy" allowfullscreen></iframe></div>`;
     }
 
     function embedVideo(url) {
@@ -504,22 +687,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         return `<div class="talk-embed"><video controls src="${url}"></video></div>`;
     }
 
-    function renderTalk(alias) {
-        const talk = talksByAlias[alias];
-        if (!talk) return;
-        let html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
-        const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
-        const meta = metaParts.filter(Boolean).join(" · ");
-        if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+    function talkEmbedsHtml(talk) {
+        let html = "";
         if (talk.slides) html += embedSlides(talk.slides);
         if (talk.video) html += embedVideo(talk.video);
         if (!talk.slides && !talk.video) {
             html += '<p class="talk-panel-placeholder">No slides or video available yet.</p>';
         }
+        return html;
+    }
+
+    function renderTalk(alias) {
+        if (alias === renderedAlias) return;
+        const group = talksByAlias[alias];
+        if (!group) return;
+        renderedAlias = alias;
+        const items = group.talks;
+        let html;
+        if (items.length === 1) {
+            const talk = items[0];
+            html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
+            const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
+            const meta = metaParts.filter(Boolean).join(" · ");
+            if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+            html += talkEmbedsHtml(talk);
+        } else {
+            html = `<h3 class="talk-panel-title no-anchor">${group.event}</h3>`;
+            items.forEach((talk, i) => {
+                html += `<div class="talk-subitem">`;
+                html += `<h4 class="talk-subitem-title no-anchor">${talk.title || `Talk ${i + 1}`}</h4>`;
+                const meta = [talk.date, talk.location, talk.language].filter(Boolean).join(" · ");
+                if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+                html += talkEmbedsHtml(talk);
+                html += `</div>`;
+            });
+        }
         panel.innerHTML = html;
     }
 
     function showPlaceholder() {
+        renderedAlias = null;
         panel.innerHTML = '<p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>';
     }
 
@@ -555,64 +762,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     if (initialAlias && talksByAlias[initialAlias]) {
         selectTalk(initialAlias, { scroll: true });
     }
+
+    const buttonsWrap = document.getElementById("talks-buttons-wrap");
+    const showMoreBtn = document.getElementById("talks-show-more");
+    if (buttonsWrap && showMoreBtn) {
+        if (buttons.length && buttonsWrap.scrollHeight <= buttonsWrap.clientHeight + 2) {
+            // Everything already fits within the collapsed height: no need
+            // for the fade/toggle at all.
+            buttonsWrap.querySelector(".talks-buttons-fade").style.display = "none";
+        } else {
+            showMoreBtn.addEventListener("click", () => {
+                const expanded = buttonsWrap.classList.toggle("is-expanded");
+                showMoreBtn.textContent = expanded ? "Show less ▴" : "Show more ▾";
+            });
+        }
+    }
+
+    const viewToggle = document.getElementById("talks-view-toggle");
+    if (viewToggle) {
+        const viewButtons = Array.from(viewToggle.querySelectorAll("button"));
+        viewButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                document.getElementById("talks-columns").dataset.mobileView = btn.dataset.view;
+                viewButtons.forEach((b) => b.classList.toggle("is-active", b === btn));
+            });
+        });
+    }
+
+    window.__talksHoverPreview = renderTalk;
+    window.__talksHoverEnd = restoreSelection;
+    window.__talksSelect = selectTalk;
 })();
 </script>
-<script type="ojs-define">{"contents": [{"name": "talks_map_data", "value": [{"alias": "rr2026", "event": "Rencontres R 2026", "title": "R est-il un langage adapt\u00e9 \u00e0 la production?", "date": "2026-06-17", "location": "Nantes, France", "lat": 47.2375, "lng": -1.5537}, {"alias": "isi-regional-2026", "event": "ISI Regional Conference 2026", "title": "From 'it worked on my notebook' to production-ready machine learning", "date": "2026-06-04", "location": "Valetta, Malta", "lat": 35.9020939, "lng": 14.4834608}, {"alias": "isi-world-2025", "event": "ISI World Statistical Congress 2025", "title": "Challenges and insights in developing and evaluating a RAG pipeline for Official Statistics", "date": "2025-06-10", "location": "The Hague, Netherlands", "lat": 52.0787, "lng": 4.2888}]}]}</script>
-<h2 id="map" class="anchored">Map</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="285" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 284;"><span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>maplibregl <span class="op">=</span> (<span class="cf">await</span> <span class="im">import</span>(<span class="st">"https://esm.sh/maplibre-gl@4.7.1"</span>))<span class="op">.</span><span class="at">default</span></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> container <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  container<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"talks-map"</span><span class="op">;</span></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>    container<span class="op">,</span></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> <span class="st">"https://tiles.openfreemap.org/styles/liberty"</span><span class="op">,</span></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">46</span>]<span class="op">,</span></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">3</span></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">addControl</span>(<span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">NavigationControl</span>()<span class="op">,</span> <span class="st">"top-right"</span>)<span class="op">;</span></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">on</span>(<span class="st">"load"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>talks_map_data<span class="op">.</span><span class="at">length</span>) <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> bounds <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">LngLatBounds</span>()<span class="op">;</span></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>    talks_map_data<span class="op">.</span><span class="fu">forEach</span>((t) <span class="kw">=&gt;</span> {</span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> meta <span class="op">=</span> [t<span class="op">.</span><span class="at">date</span><span class="op">,</span> t<span class="op">.</span><span class="at">location</span>]<span class="op">.</span><span class="fu">filter</span>(<span class="bu">Boolean</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="op">;</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> popupHtml <span class="op">=</span> <span class="vs">`&lt;strong&gt;</span><span class="sc">${</span>t<span class="op">.</span><span class="at">event</span><span class="sc">}</span><span class="vs">&lt;/strong&gt;`</span> <span class="op">+</span></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>        (meta <span class="op">?</span> <span class="vs">`&lt;br&gt;</span><span class="sc">${</span>meta<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span>) <span class="op">+</span></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`&lt;br&gt;&lt;a href="#</span><span class="sc">${</span>t<span class="op">.</span><span class="at">alias</span><span class="sc">}</span><span class="vs">" onclick="window.__talksSelect &amp;&amp; window.__talksSelect('</span><span class="sc">${</span>t<span class="op">.</span><span class="at">alias</span><span class="sc">}</span><span class="vs">')"&gt;View talk ↓&lt;/a&gt;`</span><span class="op">;</span></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>      <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Marker</span>({ <span class="dt">color</span><span class="op">:</span> <span class="st">"#eb6864"</span> })</span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">setLngLat</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">setPopup</span>(<span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Popup</span>({ <span class="dt">offset</span><span class="op">:</span> <span class="dv">25</span> })<span class="op">.</span><span class="fu">setHTML</span>(popupHtml))</span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">addTo</span>(m)<span class="op">;</span></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>      bounds<span class="op">.</span><span class="fu">extend</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])<span class="op">;</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>    m<span class="op">.</span><span class="fu">fitBounds</span>(bounds<span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">8</span> })<span class="op">;</span></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
 
 
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcGxpYnJlZ2wgPSAoYXdhaXQgaW1wb3J0KFwiaHR0cHM6Ly9lc20uc2gvbWFwbGlicmUtZ2xANC43LjFcIikpLmRlZmF1bHRcblxubWFwID0ge1xuICBjb25zdCBjb250YWluZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJ0YWxrcy1tYXBcIjtcbiAgeWllbGQgY29udGFpbmVyO1xuXG4gIGNvbnN0IG0gPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgIGNvbnRhaW5lcixcbiAgICBzdHlsZTogXCJodHRwczovL3RpbGVzLm9wZW5mcmVlbWFwLm9yZy9zdHlsZXMvbGliZXJ0eVwiLFxuICAgIGNlbnRlcjogWzQsIDQ2XSxcbiAgICB6b29tOiAzXG4gIH0pO1xuICBtLmFkZENvbnRyb2wobmV3IG1hcGxpYnJlZ2wuTmF2aWdhdGlvbkNvbnRyb2woKSwgXCJ0b3AtcmlnaHRcIik7XG5cbiAgbS5vbihcImxvYWRcIiwgKCkgPT4ge1xuICAgIGlmICghdGFsa3NfbWFwX2RhdGEubGVuZ3RoKSByZXR1cm47XG4gICAgY29uc3QgYm91bmRzID0gbmV3IG1hcGxpYnJlZ2wuTG5nTGF0Qm91bmRzKCk7XG4gICAgdGFsa3NfbWFwX2RhdGEuZm9yRWFjaCgodCkgPT4ge1xuICAgICAgY29uc3QgbWV0YSA9IFt0LmRhdGUsIHQubG9jYXRpb25dLmZpbHRlcihCb29sZWFuKS5qb2luKFwiIMK3IFwiKTtcbiAgICAgIGNvbnN0IHBvcHVwSHRtbCA9IGA8c3Ryb25nPiR7dC5ldmVudH08L3N0cm9uZz5gICtcbiAgICAgICAgKG1ldGEgPyBgPGJyPiR7bWV0YX1gIDogXCJcIikgK1xuICAgICAgICBgPGJyPjxhIGhyZWY9XCIjJHt0LmFsaWFzfVwiIG9uY2xpY2s9XCJ3aW5kb3cuX190YWxrc1NlbGVjdCAmJiB3aW5kb3cuX190YWxrc1NlbGVjdCgnJHt0LmFsaWFzfScpXCI+VmlldyB0YWxrIOKGkzwvYT5gO1xuICAgICAgbmV3IG1hcGxpYnJlZ2wuTWFya2VyKHsgY29sb3I6IFwiI2ViNjg2NFwiIH0pXG4gICAgICAgIC5zZXRMbmdMYXQoW3QubG5nLCB0LmxhdF0pXG4gICAgICAgIC5zZXRQb3B1cChuZXcgbWFwbGlicmVnbC5Qb3B1cCh7IG9mZnNldDogMjUgfSkuc2V0SFRNTChwb3B1cEh0bWwpKVxuICAgICAgICAuYWRkVG8obSk7XG4gICAgICBib3VuZHMuZXh0ZW5kKFt0LmxuZywgdC5sYXRdKTtcbiAgICB9KTtcbiAgICBtLmZpdEJvdW5kcyhib3VuZHMsIHsgcGFkZGluZzogNjAsIG1heFpvb206IDggfSk7XG4gIH0pO1xufVxuIn1dfQ==
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcGxpYnJlZ2wgPSAoYXdhaXQgaW1wb3J0KFwiaHR0cHM6Ly9lc20uc2gvbWFwbGlicmUtZ2xANC43LjFcIikpLmRlZmF1bHRcblxubWFwID0ge1xuICBjb25zdCBjb250YWluZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJ0YWxrcy1tYXBcIjtcbiAgeWllbGQgY29udGFpbmVyO1xuXG4gIGNvbnN0IG0gPSBuZXcgbWFwbGlicmVnbC5NYXAoe1xuICAgIGNvbnRhaW5lcixcbiAgICBzdHlsZTogXCJodHRwczovL3RpbGVzLm9wZW5mcmVlbWFwLm9yZy9zdHlsZXMvbGliZXJ0eVwiLFxuICAgIGNlbnRlcjogWzQsIDQ2XSxcbiAgICB6b29tOiAzXG4gIH0pO1xuICBtLmFkZENvbnRyb2wobmV3IG1hcGxpYnJlZ2wuTmF2aWdhdGlvbkNvbnRyb2woKSwgXCJ0b3AtcmlnaHRcIik7XG5cbiAgbS5vbihcImxvYWRcIiwgKCkgPT4ge1xuICAgIGlmICghdGFsa3NfbWFwX2RhdGEubGVuZ3RoKSByZXR1cm47XG4gICAgY29uc3QgYm91bmRzID0gbmV3IG1hcGxpYnJlZ2wuTG5nTGF0Qm91bmRzKCk7XG4gICAgdGFsa3NfbWFwX2RhdGEuZm9yRWFjaCgodCkgPT4ge1xuICAgICAgY29uc3QgbWFya2VyID0gbmV3IG1hcGxpYnJlZ2wuTWFya2VyKHsgY29sb3I6IFwiI2ViNjg2NFwiIH0pXG4gICAgICAgIC5zZXRMbmdMYXQoW3QubG5nLCB0LmxhdF0pXG4gICAgICAgIC5hZGRUbyhtKTtcblxuICAgICAgY29uc3QgZWwgPSBtYXJrZXIuZ2V0RWxlbWVudCgpO1xuICAgICAgZWwuc3R5bGUuY3Vyc29yID0gXCJwb2ludGVyXCI7XG4gICAgICBlbC50aXRsZSA9IHQuZXZlbnQ7XG4gICAgICBsZXQgbGVhdmVUaW1lb3V0ID0gbnVsbDtcbiAgICAgIGVsLmFkZEV2ZW50TGlzdGVuZXIoXCJtb3VzZWVudGVyXCIsICgpID0+IHtcbiAgICAgICAgY2xlYXJUaW1lb3V0KGxlYXZlVGltZW91dCk7XG4gICAgICAgIHdpbmRvdy5fX3RhbGtzSG92ZXJQcmV2aWV3ICYmIHdpbmRvdy5fX3RhbGtzSG92ZXJQcmV2aWV3KHQuYWxpYXMpO1xuICAgICAgfSk7XG4gICAgICBlbC5hZGRFdmVudExpc3RlbmVyKFwibW91c2VsZWF2ZVwiLCAoKSA9PiB7XG4gICAgICAgIC8vIE1hcExpYnJlIHJlcG9zaXRpb25zIG1hcmtlciBlbGVtZW50cyBvbiBldmVyeSBtYXAgcmVuZGVyLCBzbyB0aGVcbiAgICAgICAgLy8gcGluIGNhbiBzaGlmdCBhIHBpeGVsIG9yIHR3byB1bmRlciB0aGUgY3Vyc29yIHdoaWxlIGl0J3MgbG9hZGluZ1xuICAgICAgICAvLyB0aWxlcywgZmlyaW5nIHNwdXJpb3VzIGVudGVyL2xlYXZlIHBhaXJzLiBEZWJvdW5jZSB0aGUgXCJsZWF2ZVwiIHNvXG4gICAgICAgIC8vIGEgbmVhci1pbW1lZGlhdGUgcmUtZW50ZXIgY2FuY2VscyBpdCBpbnN0ZWFkIG9mIGZsaXAtZmxvcHBpbmcgdGhlXG4gICAgICAgIC8vIHBhbmVsIGNvbnRlbnQuXG4gICAgICAgIGxlYXZlVGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHdpbmRvdy5fX3RhbGtzSG92ZXJFbmQgJiYgd2luZG93Ll9fdGFsa3NIb3ZlckVuZCgpO1xuICAgICAgICB9LCAxNTApO1xuICAgICAgfSk7XG4gICAgICBlbC5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKCkgPT4ge1xuICAgICAgICB3aW5kb3cuX190YWxrc1NlbGVjdCAmJiB3aW5kb3cuX190YWxrc1NlbGVjdCh0LmFsaWFzKTtcbiAgICAgIH0pO1xuXG4gICAgICBib3VuZHMuZXh0ZW5kKFt0LmxuZywgdC5sYXRdKTtcbiAgICB9KTtcbiAgICBtLmZpdEJvdW5kcyhib3VuZHMsIHsgcGFkZGluZzogNjAsIG1heFpvb206IDggfSk7XG4gIH0pO1xufVxuIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
