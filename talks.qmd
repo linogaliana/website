@@ -9,11 +9,87 @@ A selection of talks I've given. Hover a title to preview it, click to pin it be
 
 ```{=html}
 <style>
+html {
+    /* Keep the scrollbar gutter reserved at all times: without this, hovering
+       a map pin (which resizes the talk panel below) can toggle the vertical
+       scrollbar, shrinking the page width, which makes MapLibre auto-resize
+       and shift the marker out from under the cursor — retriggering the
+       hover and causing an endless flicker loop. */
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+.talks-view-toggle {
+    display: flex;
+    gap: 0.5em;
+    margin: 1em 0;
+    max-width: 320px;
+}
+.talks-view-toggle button {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    color: var(--bs-body-color);
+    background: transparent;
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.talks-view-toggle button.is-active {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-link-color);
+    border-color: var(--bs-link-color);
+}
+.talks-columns {
+    margin: 1em 0 1.5em;
+}
+.talks-columns[data-mobile-view="list"] .talks-map-col {
+    display: none;
+}
+.talks-columns[data-mobile-view="map"] .talks-buttons-col {
+    display: none;
+}
+.talks-buttons-wrap {
+    position: relative;
+    max-height: 6.5em;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.talks-buttons-wrap.is-expanded {
+    max-height: 2000px;
+}
+.talks-buttons-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(to bottom, transparent, var(--bs-body-bg));
+    pointer-events: none;
+}
+.talks-buttons-wrap.is-expanded .talks-buttons-fade {
+    display: none;
+}
+.talks-show-more {
+    pointer-events: auto;
+    color: var(--bs-link-color);
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 999px;
+    padding: 0.2rem 0.9rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
 .talks-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
-    margin: 1em 0 1.5em;
 }
 .talk-btn {
     display: inline-flex;
@@ -67,6 +143,20 @@ A selection of talks I've given. Hover a title to preview it, click to pin it be
     font-size: 0.9em;
     opacity: 0.75;
 }
+.talk-subitem {
+    padding-top: 1em;
+    margin-top: 1em;
+    border-top: 1px solid var(--bs-border-color, currentColor);
+}
+.talk-subitem:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+}
+.talk-subitem-title {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
 .talk-embed {
     position: relative;
     width: 100%;
@@ -98,10 +188,41 @@ A selection of talks I've given. Hover a title to preview it, click to pin it be
 ```{python}
 #| output: asis
 import json
+import re
 import yaml
 from IPython.display import display, HTML
 
 talks = yaml.safe_load(open("./talks/talks.yaml")) or []
+
+
+def slugify(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "event"
+
+
+# Talks that share the same "event" (e.g. two presentations at the same
+# conference) are grouped under a single button/pin; clicking it shows all
+# of them in the panel. Order is preserved by first appearance.
+groups_by_event = {}
+event_order = []
+for talk in talks:
+    event = talk["event"]
+    if event not in groups_by_event:
+        groups_by_event[event] = []
+        event_order.append(event)
+    groups_by_event[event].append(talk)
+
+groups = []
+for event in event_order:
+    items = groups_by_event[event]
+    alias = items[0]["alias"] if len(items) == 1 else "grp-" + slugify(event)
+    groups.append(
+        {
+            "alias": alias,
+            "event": event,
+            "language": items[0].get("language"),
+            "talks": items,
+        }
+    )
 
 LANGUAGE_FLAGS = {
     "fr": "🇫🇷",
@@ -127,15 +248,144 @@ def flag_span(language):
 
 
 buttons_html = "".join(
-    f'<button type="button" class="talk-btn" data-alias="{talk["alias"]}">'
-    f'{flag_span(talk.get("language"))}{talk["event"]}</button>'
-    for talk in talks
+    f'<button type="button" class="talk-btn" data-alias="{g["alias"]}">'
+    f'{flag_span(g.get("language"))}{g["event"]}</button>'
+    for g in groups
 )
-talks_json = json.dumps(talks).replace("</", "<\\/")
+talks_json = json.dumps(groups).replace("</", "<\\/")
 
 markup = f"""
-<div class="talks-buttons" id="talks-buttons">
-{buttons_html}
+<div class="talks-view-toggle" id="talks-view-toggle">
+    <button type="button" class="is-active" data-view="list">List</button>
+    <button type="button" data-view="map">Map</button>
+</div>
+
+<div class="talks-columns" id="talks-columns" data-mobile-view="list">
+    <div class="talks-buttons-col">
+        <div class="talks-buttons-wrap" id="talks-buttons-wrap">
+            <div class="talks-buttons" id="talks-buttons">
+            {buttons_html}
+            </div>
+            <div class="talks-buttons-fade">
+                <button type="button" class="talks-show-more" id="talks-show-more">Show more ▾</button>
+            </div>
+        </div>
+    </div>
+    <div class="talks-map-col" id="talks-map-col">
+"""
+# The {{ojs}} map chunk that follows renders its output right here, inside
+# this still-open .talks-map-col — the closing tags come from the next
+# Python chunk after it. Raw HTML blocks are passed through verbatim, so an
+# element opened in one chunk can be closed in a later one.
+
+display(HTML(markup))
+
+
+def parse_coords(text):
+    """Accepts whatever Google Maps happens to give you: the desktop
+    "Latitude : X° N / Longitude : Y° E" panel, a single-line "X N, Y E"
+    paste, or the plain mobile "X, Y" long-press copy. The hemisphere
+    letter (not its label) decides whether a number is a lat or a lng,
+    so mislabelled or reordered pastes still resolve correctly."""
+    if not text:
+        return None
+    matches = re.findall(r"(-?[\d.]+)\s*°?\s*([NSEW])", text, re.IGNORECASE)
+    if matches:
+        lat = lng = None
+        for value, hemi in matches:
+            magnitude = abs(float(value))
+            hemi = hemi.upper()
+            if hemi in ("N", "S"):
+                lat = -magnitude if hemi == "S" else magnitude
+            else:
+                lng = -magnitude if hemi == "W" else magnitude
+        if lat is not None and lng is not None:
+            return lat, lng
+    plain = re.match(r"^\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*$", text.strip())
+    if plain:
+        return float(plain.group(1)), float(plain.group(2))
+    return None
+
+
+map_points = []
+for g in groups:
+    parsed = None
+    for talk in g["talks"]:
+        parsed = parse_coords(talk.get("coords"))
+        if parsed is not None:
+            break
+    if parsed is None:
+        continue
+    lat, lng = parsed
+    map_points.append(
+        {
+            "alias": g["alias"],
+            "event": g["event"],
+            "lat": lat,
+            "lng": lng,
+        }
+    )
+
+ojs_define(talks_map_data=map_points)
+```
+
+```{ojs}
+maplibregl = (await import("https://esm.sh/maplibre-gl@4.7.1")).default
+
+map = {
+  const container = document.createElement("div");
+  container.className = "talks-map";
+  yield container;
+
+  const m = new maplibregl.Map({
+    container,
+    style: "https://tiles.openfreemap.org/styles/liberty",
+    center: [4, 46],
+    zoom: 3
+  });
+  m.addControl(new maplibregl.NavigationControl(), "top-right");
+
+  m.on("load", () => {
+    if (!talks_map_data.length) return;
+    const bounds = new maplibregl.LngLatBounds();
+    talks_map_data.forEach((t) => {
+      const marker = new maplibregl.Marker({ color: "#eb6864" })
+        .setLngLat([t.lng, t.lat])
+        .addTo(m);
+
+      const el = marker.getElement();
+      el.style.cursor = "pointer";
+      el.title = t.event;
+      let leaveTimeout = null;
+      el.addEventListener("mouseenter", () => {
+        clearTimeout(leaveTimeout);
+        window.__talksHoverPreview && window.__talksHoverPreview(t.alias);
+      });
+      el.addEventListener("mouseleave", () => {
+        // MapLibre repositions marker elements on every map render, so the
+        // pin can shift a pixel or two under the cursor while it's loading
+        // tiles, firing spurious enter/leave pairs. Debounce the "leave" so
+        // a near-immediate re-enter cancels it instead of flip-flopping the
+        // panel content.
+        leaveTimeout = setTimeout(() => {
+          window.__talksHoverEnd && window.__talksHoverEnd();
+        }, 150);
+      });
+      el.addEventListener("click", () => {
+        window.__talksSelect && window.__talksSelect(t.alias);
+      });
+
+      bounds.extend([t.lng, t.lat]);
+    });
+    m.fitBounds(bounds, { padding: 60, maxZoom: 8 });
+  });
+}
+```
+
+```{python}
+#| output: asis
+closing_markup = """
+    </div>
 </div>
 
 <div class="talk-panel" id="talk-panel" tabindex="-1">
@@ -143,21 +393,37 @@ markup = f"""
 </div>
 
 <script id="talks-data" type="application/json">
-{talks_json}
-</script>
 """
+closing_markup += talks_json + "</script>"
 
 script = """
 <script>
 (function () {
     const data = JSON.parse(document.getElementById("talks-data").textContent);
-    const talksByAlias = Object.fromEntries(data.map((t) => [t.alias, t]));
+    const talksByAlias = {};
+    data.forEach((group) => {
+        talksByAlias[group.alias] = group;
+        // Deep links to an individual talk's own alias (e.g. from an old
+        // URL) still resolve, landing on the group it now belongs to.
+        group.talks.forEach((t) => { talksByAlias[t.alias] = group; });
+    });
     const panel = document.getElementById("talk-panel");
     const buttons = Array.from(document.querySelectorAll(".talk-btn"));
     let selectedAlias = null;
+    let renderedAlias = null;
 
     function embedSlides(url) {
-        return `<div class="talk-embed"><iframe src="${url}" loading="lazy" allowfullscreen></iframe></div>`;
+        // Serve PDFs through PDF.js's own viewer instead of framing the file
+        // directly: some hosts (e.g. GitHub's raw file server) send
+        // "X-Frame-Options: deny" and an octet-stream content-type on PDFs,
+        // which makes a plain <iframe src="..."> download the file instead
+        // of showing it. PDF.js fetches the bytes itself (allowed by CORS)
+        // rather than navigating the iframe to that URL, so it renders fine.
+        const isPdf = /\\.pdf\\/?(?:[?#]|$)/i.test(url);
+        const src = isPdf
+            ? `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(url)}`
+            : url;
+        return `<div class="talk-embed"><iframe src="${src}" loading="lazy" allowfullscreen></iframe></div>`;
     }
 
     function embedVideo(url) {
@@ -172,22 +438,46 @@ script = """
         return `<div class="talk-embed"><video controls src="${url}"></video></div>`;
     }
 
-    function renderTalk(alias) {
-        const talk = talksByAlias[alias];
-        if (!talk) return;
-        let html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
-        const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
-        const meta = metaParts.filter(Boolean).join(" · ");
-        if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+    function talkEmbedsHtml(talk) {
+        let html = "";
         if (talk.slides) html += embedSlides(talk.slides);
         if (talk.video) html += embedVideo(talk.video);
         if (!talk.slides && !talk.video) {
             html += '<p class="talk-panel-placeholder">No slides or video available yet.</p>';
         }
+        return html;
+    }
+
+    function renderTalk(alias) {
+        if (alias === renderedAlias) return;
+        const group = talksByAlias[alias];
+        if (!group) return;
+        renderedAlias = alias;
+        const items = group.talks;
+        let html;
+        if (items.length === 1) {
+            const talk = items[0];
+            html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
+            const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
+            const meta = metaParts.filter(Boolean).join(" · ");
+            if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+            html += talkEmbedsHtml(talk);
+        } else {
+            html = `<h3 class="talk-panel-title no-anchor">${group.event}</h3>`;
+            items.forEach((talk, i) => {
+                html += `<div class="talk-subitem">`;
+                html += `<h4 class="talk-subitem-title no-anchor">${talk.title || `Talk ${i + 1}`}</h4>`;
+                const meta = [talk.date, talk.location, talk.language].filter(Boolean).join(" · ");
+                if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+                html += talkEmbedsHtml(talk);
+                html += `</div>`;
+            });
+        }
         panel.innerHTML = html;
     }
 
     function showPlaceholder() {
+        renderedAlias = null;
         panel.innerHTML = '<p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>';
     }
 
@@ -223,95 +513,39 @@ script = """
     if (initialAlias && talksByAlias[initialAlias]) {
         selectTalk(initialAlias, { scroll: true });
     }
+
+    const buttonsWrap = document.getElementById("talks-buttons-wrap");
+    const showMoreBtn = document.getElementById("talks-show-more");
+    if (buttonsWrap && showMoreBtn) {
+        if (buttons.length && buttonsWrap.scrollHeight <= buttonsWrap.clientHeight + 2) {
+            // Everything already fits within the collapsed height: no need
+            // for the fade/toggle at all.
+            buttonsWrap.querySelector(".talks-buttons-fade").style.display = "none";
+        } else {
+            showMoreBtn.addEventListener("click", () => {
+                const expanded = buttonsWrap.classList.toggle("is-expanded");
+                showMoreBtn.textContent = expanded ? "Show less ▴" : "Show more ▾";
+            });
+        }
+    }
+
+    const viewToggle = document.getElementById("talks-view-toggle");
+    if (viewToggle) {
+        const viewButtons = Array.from(viewToggle.querySelectorAll("button"));
+        viewButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                document.getElementById("talks-columns").dataset.mobileView = btn.dataset.view;
+                viewButtons.forEach((b) => b.classList.toggle("is-active", b === btn));
+            });
+        });
+    }
+
+    window.__talksHoverPreview = renderTalk;
+    window.__talksHoverEnd = restoreSelection;
+    window.__talksSelect = selectTalk;
 })();
 </script>
 """
 
-display(HTML(markup + script))
-
-import re
-
-
-def parse_coords(text):
-    """Accepts whatever Google Maps happens to give you: the desktop
-    "Latitude : X° N / Longitude : Y° E" panel, a single-line "X N, Y E"
-    paste, or the plain mobile "X, Y" long-press copy. The hemisphere
-    letter (not its label) decides whether a number is a lat or a lng,
-    so mislabelled or reordered pastes still resolve correctly."""
-    if not text:
-        return None
-    matches = re.findall(r"(-?[\d.]+)\s*°?\s*([NSEW])", text, re.IGNORECASE)
-    if matches:
-        lat = lng = None
-        for value, hemi in matches:
-            magnitude = abs(float(value))
-            hemi = hemi.upper()
-            if hemi in ("N", "S"):
-                lat = -magnitude if hemi == "S" else magnitude
-            else:
-                lng = -magnitude if hemi == "W" else magnitude
-        if lat is not None and lng is not None:
-            return lat, lng
-    plain = re.match(r"^\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*$", text.strip())
-    if plain:
-        return float(plain.group(1)), float(plain.group(2))
-    return None
-
-
-map_points = []
-for talk in talks:
-    parsed = parse_coords(talk.get("coords"))
-    if parsed is None:
-        continue
-    lat, lng = parsed
-    map_points.append(
-        {
-            "alias": talk["alias"],
-            "event": talk["event"],
-            "title": talk.get("title") or talk["event"],
-            "date": talk.get("date") or "",
-            "location": talk.get("location") or "",
-            "lat": lat,
-            "lng": lng,
-        }
-    )
-
-ojs_define(talks_map_data=map_points)
-```
-
-## Map
-
-```{ojs}
-maplibregl = (await import("https://esm.sh/maplibre-gl@4.7.1")).default
-
-map = {
-  const container = document.createElement("div");
-  container.className = "talks-map";
-  yield container;
-
-  const m = new maplibregl.Map({
-    container,
-    style: "https://tiles.openfreemap.org/styles/liberty",
-    center: [4, 46],
-    zoom: 3
-  });
-  m.addControl(new maplibregl.NavigationControl(), "top-right");
-
-  m.on("load", () => {
-    if (!talks_map_data.length) return;
-    const bounds = new maplibregl.LngLatBounds();
-    talks_map_data.forEach((t) => {
-      const meta = [t.date, t.location].filter(Boolean).join(" · ");
-      const popupHtml = `<strong>${t.event}</strong>` +
-        (meta ? `<br>${meta}` : "") +
-        `<br><a href="#${t.alias}" onclick="window.__talksSelect && window.__talksSelect('${t.alias}')">View talk ↓</a>`;
-      new maplibregl.Marker({ color: "#eb6864" })
-        .setLngLat([t.lng, t.lat])
-        .setPopup(new maplibregl.Popup({ offset: 25 }).setHTML(popupHtml))
-        .addTo(m);
-      bounds.extend([t.lng, t.lat]);
-    });
-    m.fitBounds(bounds, { padding: 60, maxZoom: 8 });
-  });
-}
+display(HTML(closing_markup + script))
 ```
