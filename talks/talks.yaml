@@ -1,0 +1,35 @@
+- event: "Rencontres R 2026"
+  title: "R est-il un langage adapté à la production?"
+  alias: "rr2026"
+  date: "2026-06-17"
+  location: "Nantes, France"
+  coords: | # paste as-is from Google Maps "Latitude : ... / Longitude : ..." panel
+    Latitude : 47.2375° N
+    Longitude : -1.5537° W
+  language: "fr"
+  slides: "https://linogaliana.github.io/prez-rencontresR-2026/#/title-slide"
+  video: ""
+- event: "ISI Regional Conference 2026"
+  title: "From 'it worked on my notebook' to production-ready machine learning"
+  alias: "isi-regional-2026"
+  date: "2026-06-04"
+  location: "Valetta, Malta"
+  coords: "
+    Latitude : 35.9020939° N,
+    Longitude: 14.4834608° E
+  "
+  language: "en"
+  slides: "https://linogaliana.github.io/20260603-prez-isi-regional/"
+  video: ""
+- event: "ISI World Statistical Congress 2025"
+  title: "Challenges and insights in developing and evaluating a RAG pipeline for Official Statistics"
+  alias: "isi-world-2025"
+  date: "2025-06-10"
+  location: "The Hague, Netherlands"
+  coords: "
+  "
+  language: "en"
+  slides: "https://github.com/linogaliana/isi2025-wsc-prez/raw/main/isi-wsc-galiana.pdf/"
+  video: ""
+
+

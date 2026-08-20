@@ -1,0 +1,321 @@
+---
+title: "Talks"
+echo: false
+section-divs: false
+keep-md: true
+---
+
+A selection of talks I've given. Hover a title to preview it, click to pin it below.
+
+```{=html}
+<style>
+.talks-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 1em 0 1.5em;
+}
+.talk-btn {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    color: var(--bs-body-color);
+    background: transparent;
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 0.25rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.talk-btn:hover,
+.talk-btn:focus-visible {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+}
+.talk-flag {
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.15em;
+    margin-right: 0.3em;
+    border-radius: 2px;
+}
+.talk-btn.is-selected {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-link-color);
+    border-color: var(--bs-link-color);
+}
+.talk-panel {
+    scroll-margin-top: 5em;
+    border-left: 3px solid var(--bs-link-color);
+    background-color: rgba(127, 127, 127, 0.06);
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding: 1em 1.2em;
+    min-height: 4em;
+}
+.talk-panel-placeholder {
+    margin: 0;
+    opacity: 0.7;
+    font-style: italic;
+}
+.talk-panel-title {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
+.talk-panel-meta {
+    margin: 0 0 1em;
+    font-size: 0.9em;
+    opacity: 0.75;
+}
+.talk-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    margin-bottom: 1em;
+}
+.talk-embed iframe,
+.talk-embed video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0.25rem;
+}
+.talks-map {
+    height: 420px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    margin: 1em 0;
+}
+.talks-map .maplibregl-popup-content a {
+    color: var(--bs-link-color);
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+```
+
+```{python}
+#| output: asis
+import json
+import yaml
+from IPython.display import display, HTML
+
+talks = yaml.safe_load(open("./talks/talks.yaml")) or []
+
+LANGUAGE_FLAGS = {
+    "fr": "🇫🇷",
+    "en": "🇬🇧",
+    "es": "🇪🇸",
+    "de": "🇩🇪",
+    "it": "🇮🇹",
+    "pt": "🇵🇹",
+    "nl": "🇳🇱",
+}
+
+
+TWEMOJI_BASE = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg"
+
+
+def flag_span(language):
+    flag = LANGUAGE_FLAGS.get((language or "").lower())
+    if not flag:
+        return ""
+    codepoints = "-".join(f"{ord(ch):x}" for ch in flag if ch != "️")
+    src = f"{TWEMOJI_BASE}/{codepoints}.svg"
+    return f'<img class="talk-flag" src="{src}" alt="{language}" title="{language}" loading="lazy"> '
+
+
+buttons_html = "".join(
+    f'<button type="button" class="talk-btn" data-alias="{talk["alias"]}">'
+    f'{flag_span(talk.get("language"))}{talk["event"]}</button>'
+    for talk in talks
+)
+talks_json = json.dumps(talks).replace("</", "<\\/")
+
+markup = f"""
+<div class="talks-buttons" id="talks-buttons">
+{buttons_html}
+</div>
+
+<div class="talk-panel" id="talk-panel" tabindex="-1">
+    <p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>
+</div>
+
+<script id="talks-data" type="application/json">
+{talks_json}
+</script>
+"""
+
+script = """
+<script>
+(function () {
+    const data = JSON.parse(document.getElementById("talks-data").textContent);
+    const talksByAlias = Object.fromEntries(data.map((t) => [t.alias, t]));
+    const panel = document.getElementById("talk-panel");
+    const buttons = Array.from(document.querySelectorAll(".talk-btn"));
+    let selectedAlias = null;
+
+    function embedSlides(url) {
+        return `<div class="talk-embed"><iframe src="${url}" loading="lazy" allowfullscreen></iframe></div>`;
+    }
+
+    function embedVideo(url) {
+        const youtube = url.match(/(?:youtu\\.be\\/|youtube\\.com\\/(?:watch\\?v=|embed\\/))([\\w-]+)/);
+        const vimeo = url.match(/vimeo\\.com\\/(\\d+)/);
+        if (youtube) {
+            return `<div class="talk-embed"><iframe src="https://www.youtube.com/embed/${youtube[1]}" loading="lazy" allowfullscreen></iframe></div>`;
+        }
+        if (vimeo) {
+            return `<div class="talk-embed"><iframe src="https://player.vimeo.com/video/${vimeo[1]}" loading="lazy" allowfullscreen></iframe></div>`;
+        }
+        return `<div class="talk-embed"><video controls src="${url}"></video></div>`;
+    }
+
+    function renderTalk(alias) {
+        const talk = talksByAlias[alias];
+        if (!talk) return;
+        let html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
+        const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
+        const meta = metaParts.filter(Boolean).join(" · ");
+        if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+        if (talk.slides) html += embedSlides(talk.slides);
+        if (talk.video) html += embedVideo(talk.video);
+        if (!talk.slides && !talk.video) {
+            html += '<p class="talk-panel-placeholder">No slides or video available yet.</p>';
+        }
+        panel.innerHTML = html;
+    }
+
+    function showPlaceholder() {
+        panel.innerHTML = '<p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>';
+    }
+
+    function restoreSelection() {
+        if (selectedAlias) {
+            renderTalk(selectedAlias);
+        } else {
+            showPlaceholder();
+        }
+    }
+
+    function selectTalk(alias, opts) {
+        opts = opts || {};
+        selectedAlias = alias;
+        buttons.forEach((b) => b.classList.toggle("is-selected", b.dataset.alias === alias));
+        renderTalk(alias);
+        history.replaceState(null, "", "#" + alias);
+        if (opts.scroll !== false) {
+            panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }
+
+    buttons.forEach((btn) => {
+        const alias = btn.dataset.alias;
+        btn.addEventListener("mouseenter", () => renderTalk(alias));
+        btn.addEventListener("mouseleave", restoreSelection);
+        btn.addEventListener("focus", () => renderTalk(alias));
+        btn.addEventListener("blur", restoreSelection);
+        btn.addEventListener("click", () => selectTalk(alias));
+    });
+
+    const initialAlias = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (initialAlias && talksByAlias[initialAlias]) {
+        selectTalk(initialAlias, { scroll: true });
+    }
+})();
+</script>
+"""
+
+display(HTML(markup + script))
+
+import re
+
+
+def parse_coords(text):
+    """Accepts whatever Google Maps happens to give you: the desktop
+    "Latitude : X° N / Longitude : Y° E" panel, a single-line "X N, Y E"
+    paste, or the plain mobile "X, Y" long-press copy. The hemisphere
+    letter (not its label) decides whether a number is a lat or a lng,
+    so mislabelled or reordered pastes still resolve correctly."""
+    if not text:
+        return None
+    matches = re.findall(r"(-?[\d.]+)\s*°?\s*([NSEW])", text, re.IGNORECASE)
+    if matches:
+        lat = lng = None
+        for value, hemi in matches:
+            magnitude = abs(float(value))
+            hemi = hemi.upper()
+            if hemi in ("N", "S"):
+                lat = -magnitude if hemi == "S" else magnitude
+            else:
+                lng = -magnitude if hemi == "W" else magnitude
+        if lat is not None and lng is not None:
+            return lat, lng
+    plain = re.match(r"^\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*$", text.strip())
+    if plain:
+        return float(plain.group(1)), float(plain.group(2))
+    return None
+
+
+map_points = []
+for talk in talks:
+    parsed = parse_coords(talk.get("coords"))
+    if parsed is None:
+        continue
+    lat, lng = parsed
+    map_points.append(
+        {
+            "alias": talk["alias"],
+            "event": talk["event"],
+            "title": talk.get("title") or talk["event"],
+            "date": talk.get("date") or "",
+            "location": talk.get("location") or "",
+            "lat": lat,
+            "lng": lng,
+        }
+    )
+
+ojs_define(talks_map_data=map_points)
+```
+
+## Map
+
+```{ojs}
+maplibregl = (await import("https://esm.sh/maplibre-gl@4.7.1")).default
+
+mapContainer = {
+  const div = document.createElement("div");
+  div.className = "talks-map";
+  return div;
+}
+
+map = {
+  const m = new maplibregl.Map({
+    container: mapContainer,
+    style: "https://tiles.openfreemap.org/styles/liberty",
+    center: [4, 46],
+    zoom: 3
+  });
+  m.addControl(new maplibregl.NavigationControl(), "top-right");
+
+  m.on("load", () => {
+    if (!talks_map_data.length) return;
+    const bounds = new maplibregl.LngLatBounds();
+    talks_map_data.forEach((t) => {
+      const meta = [t.date, t.location].filter(Boolean).join(" · ");
+      const popupHtml = `<strong>${t.event}</strong>` +
+        (meta ? `<br>${meta}` : "") +
+        `<br><a href="#${t.alias}" onclick="window.__talksSelect && window.__talksSelect('${t.alias}')">View talk ↓</a>`;
+      new maplibregl.Marker({ color: "#eb6864" })
+        .setLngLat([t.lng, t.lat])
+        .setPopup(new maplibregl.Popup({ offset: 25 }).setHTML(popupHtml))
+        .addTo(m);
+      bounds.extend([t.lng, t.lat]);
+    });
+    m.fitBounds(bounds, { padding: 60, maxZoom: 8 });
+  });
+
+  return m;
+}
+```
