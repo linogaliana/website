@@ -15,7 +15,7 @@
   date: "2026-06-04"
   location: "Valetta, Malta"
   coords: "
-    Latitude : 35.9020939° N,
+    Latitude : 35.9020939° N
     Longitude: 14.4834608° E
   "
   language: "en"
@@ -27,6 +27,8 @@
   date: "2025-06-10"
   location: "The Hague, Netherlands"
   coords: "
+    Latitude: 52.0787° N
+    Longitude: 4.2888° E
   "
   language: "en"
   slides: "https://github.com/linogaliana/isi2025-wsc-prez/raw/main/isi-wsc-galiana.pdf/"
