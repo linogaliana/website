@@ -284,15 +284,13 @@ ojs_define(talks_map_data=map_points)
 ```{ojs}
 maplibregl = (await import("https://esm.sh/maplibre-gl@4.7.1")).default
 
-mapContainer = {
-  const div = document.createElement("div");
-  div.className = "talks-map";
-  return div;
-}
-
 map = {
+  const container = document.createElement("div");
+  container.className = "talks-map";
+  yield container;
+
   const m = new maplibregl.Map({
-    container: mapContainer,
+    container,
     style: "https://tiles.openfreemap.org/styles/liberty",
     center: [4, 46],
     zoom: 3
@@ -315,7 +313,5 @@ map = {
     });
     m.fitBounds(bounds, { padding: 60, maxZoom: 8 });
   });
-
-  return m;
 }
 ```
