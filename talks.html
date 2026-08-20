@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Lino Galiana">
-<meta name="dcterms.date" content="2023-09-01">
 
-<title>Introduction à  pour l’analyse quantitative – Lino Galiana</title>
+<title>Talks – Lino Galiana</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,30 +26,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-743fe3d5dfd0c7e435ad6fa76b785fd0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-14e1b8c78673789d831ef9c27ffbeb7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-743fe3d5dfd0c7e435ad6fa76b785fd0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-024142648952941f4336f88d34853d23.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-14e1b8c78673789d831ef9c27ffbeb7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-024142648952941f4336f88d34853d23.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,8 +112,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
+<meta property="og:title" content="Talks – Lino Galiana">
+<meta property="og:description" content="Personal website of Lino Galiana">
+<meta property="og:site_name" content="Lino Galiana">
+<meta name="twitter:title" content="Talks – Lino Galiana">
+<meta name="twitter:description" content="Personal website of Lino Galiana">
+<meta name="twitter:creator" content="@linogaliana">
+<meta name="twitter:site" content="@linogaliana">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -261,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Lino Galiana</span>
     </a>
   </div>
@@ -272,23 +318,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../research.html"> 
+    <a class="nav-link" href="./research.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks.html"> 
+    <a class="nav-link active" href="./talks.html" aria-current="page"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html"> 
+    <a class="nav-link" href="./posts.html"> 
 <span class="menu-text">Archive <code>LinkedIn</code></span></a>
   </li>  
 </ul>
@@ -303,8 +349,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#map" id="toc-map" class="nav-link active" data-scroll-target="#map">Map</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -312,30 +364,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction à <i class="fa-brands fa-r-project"></i> pour l’analyse quantitative</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">R</div>
-    <div class="quarto-category">ENS</div>
-  </div>
-  </div>
+<h1 class="title">Talks</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Lino Galiana </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 1, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -345,10 +381,258 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>A selection of talks I’ve given. Hover a title to preview it, click to pin it below.</p>
+<style>
+.talks-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 1em 0 1.5em;
+}
+.talk-btn {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    color: var(--bs-body-color);
+    background: transparent;
+    border: 1px solid var(--bs-border-color, currentColor);
+    border-radius: 0.25rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.talk-btn:hover,
+.talk-btn:focus-visible {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+}
+.talk-flag {
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.15em;
+    margin-right: 0.3em;
+    border-radius: 2px;
+}
+.talk-btn.is-selected {
+    color: var(--bs-body-bg);
+    background-color: var(--bs-link-color);
+    border-color: var(--bs-link-color);
+}
+.talk-panel {
+    scroll-margin-top: 5em;
+    border-left: 3px solid var(--bs-link-color);
+    background-color: rgba(127, 127, 127, 0.06);
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding: 1em 1.2em;
+    min-height: 4em;
+}
+.talk-panel-placeholder {
+    margin: 0;
+    opacity: 0.7;
+    font-style: italic;
+}
+.talk-panel-title {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
+.talk-panel-meta {
+    margin: 0 0 1em;
+    font-size: 0.9em;
+    opacity: 0.75;
+}
+.talk-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    margin-bottom: 1em;
+}
+.talk-embed iframe,
+.talk-embed video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0.25rem;
+}
+.talks-map {
+    height: 420px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    margin: 1em 0;
+}
+.talks-map .maplibregl-popup-content a {
+    color: var(--bs-link-color);
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+
+<div class="talks-buttons" id="talks-buttons">
+<button type="button" class="talk-btn" data-alias="rr2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1eb-1f1f7.svg" alt="fr" title="fr" loading="lazy"> Rencontres R 2026</button><button type="button" class="talk-btn" data-alias="isi-regional-2026"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI Regional Conference 2026</button><button type="button" class="talk-btn" data-alias="isi-world-2025"><img class="talk-flag" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1e7.svg" alt="en" title="en" loading="lazy"> ISI World Statistical Congress 2025</button>
+</div>
+
+<div class="talk-panel" id="talk-panel" tabindex="-1">
+    <p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>
+</div>
+
+<script id="talks-data" type="application/json">
+[{"event": "Rencontres R 2026", "title": "R est-il un langage adapt\u00e9 \u00e0 la production?", "alias": "rr2026", "date": "2026-06-17", "location": "Nantes, France", "coords": "Latitude : 47.2375\u00b0 N\nLongitude : -1.5537\u00b0 W\n", "language": "fr", "slides": "https://linogaliana.github.io/prez-rencontresR-2026/#/title-slide", "video": ""}, {"event": "ISI Regional Conference 2026", "title": "From 'it worked on my notebook' to production-ready machine learning", "alias": "isi-regional-2026", "date": "2026-06-04", "location": "Valetta, Malta", "coords": " Latitude : 35.9020939\u00b0 N, Longitude: 14.4834608\u00b0 E ", "language": "en", "slides": "https://linogaliana.github.io/20260603-prez-isi-regional/", "video": ""}, {"event": "ISI World Statistical Congress 2025", "title": "Challenges and insights in developing and evaluating a RAG pipeline for Official Statistics", "alias": "isi-world-2025", "date": "2025-06-10", "location": "The Hague, Netherlands", "coords": " ", "language": "en", "slides": "https://github.com/linogaliana/isi2025-wsc-prez/raw/main/isi-wsc-galiana.pdf/", "video": ""}]
+</script>
+
+<script>
+(function () {
+    const data = JSON.parse(document.getElementById("talks-data").textContent);
+    const talksByAlias = Object.fromEntries(data.map((t) => [t.alias, t]));
+    const panel = document.getElementById("talk-panel");
+    const buttons = Array.from(document.querySelectorAll(".talk-btn"));
+    let selectedAlias = null;
+
+    function embedSlides(url) {
+        return `<div class="talk-embed"><iframe src="${url}" loading="lazy" allowfullscreen></iframe></div>`;
+    }
+
+    function embedVideo(url) {
+        const youtube = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]+)/);
+        const vimeo = url.match(/vimeo\.com\/(\d+)/);
+        if (youtube) {
+            return `<div class="talk-embed"><iframe src="https://www.youtube.com/embed/${youtube[1]}" loading="lazy" allowfullscreen></iframe></div>`;
+        }
+        if (vimeo) {
+            return `<div class="talk-embed"><iframe src="https://player.vimeo.com/video/${vimeo[1]}" loading="lazy" allowfullscreen></iframe></div>`;
+        }
+        return `<div class="talk-embed"><video controls src="${url}"></video></div>`;
+    }
+
+    function renderTalk(alias) {
+        const talk = talksByAlias[alias];
+        if (!talk) return;
+        let html = `<h3 class="talk-panel-title no-anchor">${talk.title || talk.event}</h3>`;
+        const metaParts = talk.title ? [talk.event, talk.date, talk.location, talk.language] : [talk.date, talk.location, talk.language];
+        const meta = metaParts.filter(Boolean).join(" · ");
+        if (meta) html += `<p class="talk-panel-meta">${meta}</p>`;
+        if (talk.slides) html += embedSlides(talk.slides);
+        if (talk.video) html += embedVideo(talk.video);
+        if (!talk.slides && !talk.video) {
+            html += '<p class="talk-panel-placeholder">No slides or video available yet.</p>';
+        }
+        panel.innerHTML = html;
+    }
+
+    function showPlaceholder() {
+        panel.innerHTML = '<p class="talk-panel-placeholder">Hover or click a talk above to see it here.</p>';
+    }
+
+    function restoreSelection() {
+        if (selectedAlias) {
+            renderTalk(selectedAlias);
+        } else {
+            showPlaceholder();
+        }
+    }
+
+    function selectTalk(alias, opts) {
+        opts = opts || {};
+        selectedAlias = alias;
+        buttons.forEach((b) => b.classList.toggle("is-selected", b.dataset.alias === alias));
+        renderTalk(alias);
+        history.replaceState(null, "", "#" + alias);
+        if (opts.scroll !== false) {
+            panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }
+
+    buttons.forEach((btn) => {
+        const alias = btn.dataset.alias;
+        btn.addEventListener("mouseenter", () => renderTalk(alias));
+        btn.addEventListener("mouseleave", restoreSelection);
+        btn.addEventListener("focus", () => renderTalk(alias));
+        btn.addEventListener("blur", restoreSelection);
+        btn.addEventListener("click", () => selectTalk(alias));
+    });
+
+    const initialAlias = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (initialAlias && talksByAlias[initialAlias]) {
+        selectTalk(initialAlias, { scroll: true });
+    }
+})();
+</script>
+<script type="ojs-define">{"contents": [{"name": "talks_map_data", "value": [{"alias": "rr2026", "event": "Rencontres R 2026", "title": "R est-il un langage adapt\u00e9 \u00e0 la production?", "date": "2026-06-17", "location": "Nantes, France", "lat": 47.2375, "lng": -1.5537}, {"alias": "isi-regional-2026", "event": "ISI Regional Conference 2026", "title": "From 'it worked on my notebook' to production-ready machine learning", "date": "2026-06-04", "location": "Valetta, Malta", "lat": 35.9020939, "lng": 14.4834608}]}]}</script>
+<h2 id="map" class="anchored">Map</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="285" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 284;"><span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>maplibregl <span class="op">=</span> (<span class="cf">await</span> <span class="im">import</span>(<span class="st">"https://esm.sh/maplibre-gl@4.7.1"</span>))<span class="op">.</span><span class="at">default</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>mapContainer <span class="op">=</span> {</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> div <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  div<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"talks-map"</span><span class="op">;</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Map</span>({</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>    <span class="dt">container</span><span class="op">:</span> mapContainer<span class="op">,</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> <span class="st">"https://tiles.openfreemap.org/styles/liberty"</span><span class="op">,</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">46</span>]<span class="op">,</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">addControl</span>(<span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">NavigationControl</span>()<span class="op">,</span> <span class="st">"top-right"</span>)<span class="op">;</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">on</span>(<span class="st">"load"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>talks_map_data<span class="op">.</span><span class="at">length</span>) <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> bounds <span class="op">=</span> <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">LngLatBounds</span>()<span class="op">;</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>    talks_map_data<span class="op">.</span><span class="fu">forEach</span>((t) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> meta <span class="op">=</span> [t<span class="op">.</span><span class="at">date</span><span class="op">,</span> t<span class="op">.</span><span class="at">location</span>]<span class="op">.</span><span class="fu">filter</span>(<span class="bu">Boolean</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="op">;</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> popupHtml <span class="op">=</span> <span class="vs">`&lt;strong&gt;</span><span class="sc">${</span>t<span class="op">.</span><span class="at">event</span><span class="sc">}</span><span class="vs">&lt;/strong&gt;`</span> <span class="op">+</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>        (meta <span class="op">?</span> <span class="vs">`&lt;br&gt;</span><span class="sc">${</span>meta<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span>) <span class="op">+</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`&lt;br&gt;&lt;a href="#</span><span class="sc">${</span>t<span class="op">.</span><span class="at">alias</span><span class="sc">}</span><span class="vs">" onclick="window.__talksSelect &amp;&amp; window.__talksSelect('</span><span class="sc">${</span>t<span class="op">.</span><span class="at">alias</span><span class="sc">}</span><span class="vs">')"&gt;View talk ↓&lt;/a&gt;`</span><span class="op">;</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>      <span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Marker</span>({ <span class="dt">color</span><span class="op">:</span> <span class="st">"#eb6864"</span> })</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">setLngLat</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">setPopup</span>(<span class="kw">new</span> maplibregl<span class="op">.</span><span class="fu">Popup</span>({ <span class="dt">offset</span><span class="op">:</span> <span class="dv">25</span> })<span class="op">.</span><span class="fu">setHTML</span>(popupHtml))</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">addTo</span>(m)<span class="op">;</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>      bounds<span class="op">.</span><span class="fu">extend</span>([t<span class="op">.</span><span class="at">lng</span><span class="op">,</span> t<span class="op">.</span><span class="at">lat</span>])<span class="op">;</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>    m<span class="op">.</span><span class="fu">fitBounds</span>(bounds<span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">8</span> })<span class="op">;</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> m<span class="op">;</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
 
 
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcGxpYnJlZ2wgPSAoYXdhaXQgaW1wb3J0KFwiaHR0cHM6Ly9lc20uc2gvbWFwbGlicmUtZ2xANC43LjFcIikpLmRlZmF1bHRcblxubWFwQ29udGFpbmVyID0ge1xuICBjb25zdCBkaXYgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICBkaXYuY2xhc3NOYW1lID0gXCJ0YWxrcy1tYXBcIjtcbiAgcmV0dXJuIGRpdjtcbn1cblxubWFwID0ge1xuICBjb25zdCBtID0gbmV3IG1hcGxpYnJlZ2wuTWFwKHtcbiAgICBjb250YWluZXI6IG1hcENvbnRhaW5lcixcbiAgICBzdHlsZTogXCJodHRwczovL3RpbGVzLm9wZW5mcmVlbWFwLm9yZy9zdHlsZXMvbGliZXJ0eVwiLFxuICAgIGNlbnRlcjogWzQsIDQ2XSxcbiAgICB6b29tOiAzXG4gIH0pO1xuICBtLmFkZENvbnRyb2wobmV3IG1hcGxpYnJlZ2wuTmF2aWdhdGlvbkNvbnRyb2woKSwgXCJ0b3AtcmlnaHRcIik7XG5cbiAgbS5vbihcImxvYWRcIiwgKCkgPT4ge1xuICAgIGlmICghdGFsa3NfbWFwX2RhdGEubGVuZ3RoKSByZXR1cm47XG4gICAgY29uc3QgYm91bmRzID0gbmV3IG1hcGxpYnJlZ2wuTG5nTGF0Qm91bmRzKCk7XG4gICAgdGFsa3NfbWFwX2RhdGEuZm9yRWFjaCgodCkgPT4ge1xuICAgICAgY29uc3QgbWV0YSA9IFt0LmRhdGUsIHQubG9jYXRpb25dLmZpbHRlcihCb29sZWFuKS5qb2luKFwiIMK3IFwiKTtcbiAgICAgIGNvbnN0IHBvcHVwSHRtbCA9IGA8c3Ryb25nPiR7dC5ldmVudH08L3N0cm9uZz5gICtcbiAgICAgICAgKG1ldGEgPyBgPGJyPiR7bWV0YX1gIDogXCJcIikgK1xuICAgICAgICBgPGJyPjxhIGhyZWY9XCIjJHt0LmFsaWFzfVwiIG9uY2xpY2s9XCJ3aW5kb3cuX190YWxrc1NlbGVjdCAmJiB3aW5kb3cuX190YWxrc1NlbGVjdCgnJHt0LmFsaWFzfScpXCI+VmlldyB0YWxrIOKGkzwvYT5gO1xuICAgICAgbmV3IG1hcGxpYnJlZ2wuTWFya2VyKHsgY29sb3I6IFwiI2ViNjg2NFwiIH0pXG4gICAgICAgIC5zZXRMbmdMYXQoW3QubG5nLCB0LmxhdF0pXG4gICAgICAgIC5zZXRQb3B1cChuZXcgbWFwbGlicmVnbC5Qb3B1cCh7IG9mZnNldDogMjUgfSkuc2V0SFRNTChwb3B1cEh0bWwpKVxuICAgICAgICAuYWRkVG8obSk7XG4gICAgICBib3VuZHMuZXh0ZW5kKFt0LmxuZywgdC5sYXRdKTtcbiAgICB9KTtcbiAgICBtLmZpdEJvdW5kcyhib3VuZHMsIHsgcGFkZGluZzogNjAsIG1heFpvb206IDggfSk7XG4gIH0pO1xuXG4gIHJldHVybiBtO1xufVxuIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -435,7 +719,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/linogaliana\.fr");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

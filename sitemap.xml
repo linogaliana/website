@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://linogaliana.fr/posts.html</loc>
-    <lastmod>2026-07-20T19:09:20.928Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/teaching/rgeo.html</loc>
-    <lastmod>2026-07-20T19:09:20.931Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/teaching/donnees-emergentes.html</loc>
-    <lastmod>2026-07-20T19:09:20.931Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/teaching/bonnes-pratiques.html</loc>
-    <lastmod>2026-07-20T19:09:20.930Z</lastmod>
-  </url>
-  <url>
     <loc>https://linogaliana.fr/research.html</loc>
-    <lastmod>2026-07-20T19:09:20.929Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/projects/utilitr.html</loc>
-    <lastmod>2026-07-20T19:09:20.929Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/projects/cartiflette.html</loc>
-    <lastmod>2026-07-20T19:09:20.928Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/projects/climbtracker.html</loc>
-    <lastmod>2026-07-20T19:09:20.929Z</lastmod>
-  </url>
-  <url>
-    <loc>https://linogaliana.fr/about.html</loc>
-    <lastmod>2026-07-20T19:09:20.928Z</lastmod>
+    <lastmod>2026-08-20T12:50:58.137Z</lastmod>
   </url>
   <url>
     <loc>https://linogaliana.fr/teaching/pythonds.html</loc>
-    <lastmod>2026-07-20T19:09:20.931Z</lastmod>
+    <lastmod>2026-08-20T12:50:58.140Z</lastmod>
   </url>
   <url>
-    <loc>https://linogaliana.fr/teaching/miseenprod.html</loc>
-    <lastmod>2026-07-20T19:09:20.931Z</lastmod>
+    <loc>https://linogaliana.fr/teaching/rgeo.html</loc>
+    <lastmod>2026-08-20T12:50:58.140Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/posts.html</loc>
+    <lastmod>2026-08-20T12:50:58.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/projects/utilitr.html</loc>
+    <lastmod>2026-08-20T12:50:58.137Z</lastmod>
   </url>
   <url>
     <loc>https://linogaliana.fr/index.html</loc>
-    <lastmod>2026-07-20T19:09:20.928Z</lastmod>
+    <lastmod>2026-08-20T12:50:58.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/talks.html</loc>
+    <lastmod>2026-08-20T12:50:58.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/about.html</loc>
+    <lastmod>2026-08-20T12:50:58.135Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/projects/cartiflette.html</loc>
+    <lastmod>2026-08-20T12:50:58.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/projects/climbtracker.html</loc>
+    <lastmod>2026-08-20T12:50:58.137Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/bonnes-pratiques.html</loc>
+    <lastmod>2026-08-20T12:50:58.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/donnees-emergentes.html</loc>
+    <lastmod>2026-08-20T12:50:58.140Z</lastmod>
+  </url>
+  <url>
+    <loc>https://linogaliana.fr/teaching/miseenprod.html</loc>
+    <lastmod>2026-08-20T12:50:58.140Z</lastmod>
   </url>
 </urlset>
